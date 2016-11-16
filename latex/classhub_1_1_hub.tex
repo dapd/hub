@@ -1,0 +1,141 @@
+\hypertarget{classhub_1_1_hub}{}\section{Referência à classe hub.\+Hub}
+\label{classhub_1_1_hub}\index{hub.\+Hub@{hub.\+Hub}}
+
+
+Classe para o H\+UB.  
+
+
+Diagrama de heranças da classe hub.\+Hub\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classhub_1_1_hub}
+\end{center}
+\end{figure}
+\subsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classhub_1_1_hub_a6927b78580ea47e1525a945e7d1da004}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, status)
+\begin{DoxyCompactList}\small\item\em Método de inicialização para o H\+UB. \end{DoxyCompactList}\item 
+def \hyperlink{classhub_1_1_hub_aa41079065dfa6828808c061629f70b68}{configurar\+Primeira\+Vez} ()
+\begin{DoxyCompactList}\small\item\em Método configura o H\+UB no primeiro acesso. \end{DoxyCompactList}\item 
+def \hyperlink{classhub_1_1_hub_ad440e34d328f4dc716307d5578594a9b}{tocar\+Buzzer} ()
+\begin{DoxyCompactList}\small\item\em Método aciona o Buzzer. \end{DoxyCompactList}\item 
+def \hyperlink{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}{acionar\+Led} ()
+\begin{DoxyCompactList}\small\item\em Método aciona o Led. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries status}\hypertarget{classhub_1_1_hub_aca0fde3216b7d279e6619aed32bfa418}{}\label{classhub_1_1_hub_aca0fde3216b7d279e6619aed32bfa418}
+
+\end{DoxyCompactItemize}
+\subsection*{Atributos Públicos Estáticos}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries status} = \char`\"{}\char`\"{}\hypertarget{classhub_1_1_hub_a5b81b3d458d8bea39e1a6aa5122ae5f0}{}\label{classhub_1_1_hub_a5b81b3d458d8bea39e1a6aa5122ae5f0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+Classe para o H\+UB. 
+
+Nesta classe, espera-\/se que todos os métodos principais do H\+UB sejam devidamente escritos. O comportamento do H\+UB por enquanto 
+
+\subsection{Documentação dos Construtores \& Destrutor}
+\index{hub\+::\+Hub@{hub\+::\+Hub}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!hub\+::\+Hub@{hub\+::\+Hub}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+(self, status)}{__init__(self, status)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{status}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_1_1_hub_a6927b78580ea47e1525a945e7d1da004}{}\label{classhub_1_1_hub_a6927b78580ea47e1525a945e7d1da004}
+
+
+Método de inicialização para o H\+UB. 
+
+O método de inicialização para o H\+UB recebe como entrada o valor inicial do status do H\+UB e retorna um booleano, que informa se a operação foi concluída com sucesso. Espera-\/se que após chamar essa função, todos os parâmetros do H\+UB estejam devidamente inicializados. Isso inclui parâmetros adicionados posteriormente por necessidade, ou seja, parâmetros auxiliares.
+
+Para adicionar parâmetros auxiliares, adicione o mesmo em\+:
+
+
+\begin{DoxyCode}
+1 \textcolor{keyword}{def }\_\_init\_\_(self, status):
+\end{DoxyCode}
+
+
+Por exemplo, para adicionar o parâmetro aux (cujo nome não é recomendável de ser usado), deve-\/se fazer o seguinte\+:
+
+
+\begin{DoxyCode}
+1 \textcolor{keyword}{def} \_\_init\_\_(self, status, aux):
+2   super(Hub, self).\_\_init\_\_()
+3       self.status = status
+4   self.aux = xpto
+\end{DoxyCode}
+
+
+Onde xpto é o valor inicial desejado.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em self} & O objeto \\
+\hline
+{\em status} & O status do H\+UB. Uma string pré-\/definida. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentação dos métodos}
+\index{hub\+::\+Hub@{hub\+::\+Hub}!acionar\+Led@{acionar\+Led}}
+\index{acionar\+Led@{acionar\+Led}!hub\+::\+Hub@{hub\+::\+Hub}}
+\subsubsection[{\texorpdfstring{acionar\+Led()}{acionarLed()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+acionar\+Led (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}{}\label{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}
+
+
+Método aciona o Led. 
+
+\begin{DoxyReturn}{Retorna}
+O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+\index{hub\+::\+Hub@{hub\+::\+Hub}!configurar\+Primeira\+Vez@{configurar\+Primeira\+Vez}}
+\index{configurar\+Primeira\+Vez@{configurar\+Primeira\+Vez}!hub\+::\+Hub@{hub\+::\+Hub}}
+\subsubsection[{\texorpdfstring{configurar\+Primeira\+Vez()}{configurarPrimeiraVez()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+configurar\+Primeira\+Vez (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_1_1_hub_aa41079065dfa6828808c061629f70b68}{}\label{classhub_1_1_hub_aa41079065dfa6828808c061629f70b68}
+
+
+Método configura o H\+UB no primeiro acesso. 
+
+No primeiro acesso ao H\+UB, o mesmo não estará cadastrado no servidor e, portanto, não estará anexado ao usuário. Espera-\/se que esse método realize uma coneção com o firebase, sem utilizar o respectivo objeto de coneção ao firebase. Ou seja, uma conexão simples ao firebase é realizada aqui. Espera-\/se receber através dessa conexão o U\+ID do usuário que adicionou este H\+UB.
+
+\begin{DoxyReturn}{Retorna}
+U\+ID do usuário que adicionou este H\+UB. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Aviso}
+Modificar diagrama de bloco para que demonstre o que é retornado aqui. 
+\end{DoxyWarning}
+\index{hub\+::\+Hub@{hub\+::\+Hub}!tocar\+Buzzer@{tocar\+Buzzer}}
+\index{tocar\+Buzzer@{tocar\+Buzzer}!hub\+::\+Hub@{hub\+::\+Hub}}
+\subsubsection[{\texorpdfstring{tocar\+Buzzer()}{tocarBuzzer()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+tocar\+Buzzer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_1_1_hub_ad440e34d328f4dc716307d5578594a9b}{}\label{classhub_1_1_hub_ad440e34d328f4dc716307d5578594a9b}
+
+
+Método aciona o Buzzer. 
+
+\begin{DoxyReturn}{Retorna}
+O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+
+
+A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
+\item 
+hub.\+py\end{DoxyCompactItemize}

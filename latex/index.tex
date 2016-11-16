@@ -1,0 +1,217 @@
+\begin{center} \section*{Engenharia de Software e Sistemas para ~\newline
+ Engenharia da Computação -\/ E\+S\+S/\+EC Cin U\+F\+PE }\end{center} 
+
+\begin{center} \end{center} 
+
+~\newline
+ ~\newline
+
+
+\subsection*{~~~~ ~~~~Plano de Projeto -\/ lembrol }
+
+\subsubsection*{Introdução }
+
+Uma preocupação constante ao sair de uma residência é se algo foi esquecido, seja um guarda-\/chuva, até algo mais grave como um gás ligado. Existem momentos que lembramos logo ao sair, outros em que estamos longe demais para retornar e ficamos preocupados.
+
+lembrol é um sistema de monitorame-\/nto residencial que avisa ao usuário algo que ele não lembrou, seja uma ação ou objeto, a fim de minimizar a quantidade de acidentes domésticos.
+
+Baseado na IoT, esse sistema se comunica com sensores dos quais respondem com informações do ambiente, essas informações são comparadas com os dados registrados no momento da instalação, tudo que é fora do padrão é transformado em uma lista de ações que é mandada para o usuário em seu celular. Se o cliente sair de casa sem o dispositivo, um som gerado no lembrol alertará o usuário.
+
+\subsubsection*{Organização do Projeto }
+
+
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*2{|X[-1]}|}
+\hline
+Área &Responsabilidades  \\\cline{1-2}
+Gerente de Projeto &Definir, coordenar e integrar as atividades executadas para o desenvolvimento do projeto.  \\\cline{1-2}
+Engenharia de Requisitos &Determinar, definir e gerenciar o estado e demais aspectos relacionados aos requisitos de software do sistema.  \\\cline{1-2}
+Arquitetura de Sistemas &Desenhar e desenvolver a arquitetura dos sistemas.  \\\cline{1-2}
+Desenvolvimento de Hardware &Projetar a arquitetura e desenvolver o hardware do projeto realizando os testes pertinentes.  \\\cline{1-2}
+Desenvolvimento de Software &Projetar a arquitetura e desenvolver os componentes de software utilizados no projeto, realizando testes sob demanda.  \\\cline{1-2}
+Gerência de Configuração e Mudanças &Controlar os artefatos produzidos pelos desenvolvedores e controlar os custos e esforços envolvidos na realização de uma mudança em um sistema.  \\\cline{1-2}
+Engenharia de Testes &Criação de estratégias de teste com objetivo de validar os componentes do sistema durante e após seu desenvolvimento.  \\\cline{1-2}
+User Interface Engineering &Desenvolver a parte de Interação com o usuário no sistema, para que fique da forma mais acessível o possível.  \\\cline{1-2}
+\end{longtabu}
+
+
+\subsubsection*{Análise de Riscos }
+
+A análise a seguir leva em consideração os riscos identificados e sua categorização através dos valores atribuídos para as variáveis {\itshape severidade} e $\ast$probabilidade $\ast$de ocorrência. Esses atributos podem assumir valores em uma escala definida de 1 a 3, sendo o cálculo do risco dado pela seguinte multiplicação\+:
+
+R\+I\+S\+CO = S\+E\+V\+E\+R\+I\+D\+A\+DE x P\+R\+O\+B\+A\+B\+I\+L\+I\+D\+A\+DE
+
+Com base nas métricas definidas anteriormente e nos riscos potenciais evidenciados durante a etapa de levantamento foi possível consolidar a seguinte tabela\+:
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*5{|X[-1]}|}
+\hline
+Código &Descrição &Severidade &Probabilidade &Risco  \\\cline{1-5}
+R1 &Problemas com a integração da central com os diferentes módulos do projeto &3 &2 &6  \\\cline{1-5}
+R2 &Atrasos relacionados ao aprendizado das diferentes tecnologias envolvidas. &2 &3 &6  \\\cline{1-5}
+R3 &Atrasos na entrega dos dispositivos de hardware solicitados / adquiridos. &3 &1 &3  \\\cline{1-5}
+R4 &Mudança de requisitos de software / hardware envolvidos no projeto. &2 &2 &4  \\\cline{1-5}
+R5 &Abandono de integrante devido a desistência de participação no projeto &2 &1 &2  \\\cline{1-5}
+R6 &Integrante ficar doente &3 &2 &6  \\\cline{1-5}
+\end{longtabu}
+
+
+A seguir será apresentada uma breve descrição a respeito de possíveis ações associadas a cada um desses riscos. O objetivo é descrever as principais medidas para mitigá-\/los e como agir no caso da ocorrência de um incidente.
+
+{\itshape R1 -\/ Problemas com a integração dos diferentes componentes de hardware e software.}
+
+
+\begin{DoxyItemize}
+\item Como mitigar o risco\+: A equipe deve procurar escolher tecnologias conhecidas para evitar erros causados pela falta de conhecimento nas plataformas de desenvolvimento. Além disso, é importante ficar atento a possíveis incompatibilidades que possam impactar e inviabilizar o desenvolvimento do projeto.
+\item Ocorrência do incidente\+: Inicialmente pode-\/se alocar mais desenvolvedores para tentar resolver o problema de integração. Caso as dificuldades persistam, deve-\/se partir para tentar encontrar outras alternativas, como por exemplo, alterar os componentes de software ou de hardware e realizar ajustes.
+\end{DoxyItemize}
+
+{\itshape R2 -\/ Atrasos relacionados ao aprendizado das diferentes tecnologias envolvidas.}
+
+
+\begin{DoxyItemize}
+\item Como mitigar o risco\+: Escolher pessoas qualificadas para cada tarefa e que tenham engajamento dentro da sua área de atuação. Além disso, deve-\/se buscar ferramentas que proporcionem agilidade ao desenvolvimento garantindo que as atividades sejam cumpridas no tempo estimado.
+\item Ocorrência do incidente\+: Deve-\/se alocar mais desenvolvedores para ajudar na tarefa e/ou auxiliar o desenvolvedor que está com dificuldades. Caso o problema persista, pode-\/se realocar o desenvolvedor com dificuldades para trabalhar em uma atividade diferente, que envolva uma tecnologia a qual ele está mais bem ambientado.
+\end{DoxyItemize}
+
+{\itshape R3 -\/ Atrasos na entrega dos dispositivos de hardware / software solicitados.}
+
+
+\begin{DoxyItemize}
+\item Como mitigar o risco\+: Realizar a decisão e pedido dos dispositivos com antecedência, minimizando assim eventuais riscos de atraso. Além disso, deve-\/se buscar alternativas na concepção inicial do projeto de modo a minimizar a dependência de um hardware específico, criando alternativas e maximizando o número de fornecedores.
+\item Ocorrência do incidente\+: Buscar dentre as alternativas existentes um outro fornecedor, com disponibilidade de entrega imediata. Deve-\/se ainda adaptar, conforme necessário, os requisitos de hardware utilizados na concepção inicial do projeto.
+\end{DoxyItemize}
+
+{\itshape R4 -\/ Mudança de requisitos de software / hardware envolvidos no projeto.}
+
+
+\begin{DoxyItemize}
+\item Como mitigar o risco\+: Realizar uma pesquisa exaustiva durante o período inicial do projeto com foco na definição de requisitos sólidos, minimizando dessa forma a ocorrência de eventuais incompatibilidades durante a etapa de desenvolvimento.
+\item Ocorrência do incidente\+: Certificar-\/se que a mudança é realmente necessária e definir corretamente o novo requisito, mapeando adequadamente o impacto nos demais requisitos do projeto e minimizando o risco de alterações futuras.
+\end{DoxyItemize}
+
+{\itshape R5 -\/ Abandono de integrante devido a desistência de participação no projeto.}
+
+
+\begin{DoxyItemize}
+\item Como mitigar o risco\+: Realizar um acompanhamento periódico das atividades realizadas, certificando-\/se que todos os membros da equipe tenham acesso ao material e o suporte necessário durante todo o desenvolvimento do projeto.
+\item Ocorrência do incidente\+: Minimizar o impacto a partir da alocação de um outro desenvolvedor para área desfalcada. Negociar com o membro desistente a transferência do conhecimento e das responsabilidades envolvidas.
+\end{DoxyItemize}
+
+{\itshape R5 -\/ Integrante ficar doente}
+
+
+\begin{DoxyItemize}
+\item Como mitigar o risco\+: Evitar comidas estragadas, usar repelente, ser mais higiênico.
+\item Ocorrência do incidente\+: Minimizar o impacto a partir da alocação de um outro desenvolvedor para área desfalcada. Pedir ao membro doente a transferência do conhecimento e das responsabilidades envolvidas.
+\end{DoxyItemize}
+
+\subsubsection*{Requisitos de recursos de hardware e software }
+
+Foram mapeados os seguintes requisitos com relação aos recursos mínimos de hardware e software necessários para o desenvolvimento das atividades do projeto.
+
+
+\begin{DoxyItemize}
+\item Raspberry Pi\+: Será utilizada uma Raspberry Pi para atuar como coração do H\+UB..
+\item Arduino Nano\+: Serão necessários dois Arduinos Nano para efetuar o processamento de dados necessário em cada módulo.
+\item Resistores e Jumpers\+: Utilizados no desenvolvimento do circuito montado na protoboard. Necessários para efetuar a automação e o controle dos sensores que irão monitorar o ambiente.
+\item Sensor de gás\+: Utilizado para detecção de vazamento de gás. Capta o nível de gás no ar, transformando em uma leitura analógica.
+\item Piezzo elétrico \+: Reconhece quando há ou não há um peso acima do mesmo. Necessário para saber se o objeto importante está no lugar desejado ou não.
+\item Swift\+: Linguagem open source utilizada para desenvolvimento em plataformas da Apple de fácil legibilidade e redigibilidade. Necessária para programação do aplicativo i\+OS.
+\item Firebase \+: Serviço de nuvem para banco de dados em tempo real, com A\+PI para diversas linguagens, permite que mudanças no banco de dados possam ser acompanhadas de forma simples
+\item Python \+: Linguagem open source conhecida por ser extremamente simples e fácil de entender. Necessária para programação da Raspberry Pi.
+\item Baterias Lipo \+: Baterias para funcionamento do sistema em modo remoto. Necessárias para garantir autonomia do sistema.
+\item E\+S\+P8266 \+: Módulo Wi\+Fi para conexão de internet para Arduino. Necessário para passagem de dados entre o H\+UB e os módulos.
+\end{DoxyItemize}
+
+\subsubsection*{Estrutura Analítica }
+
+Com base nas reuniões efetuadas para discussão sobre o processo de divisão de atividades foram identificadas as seguintes estruturas analíticas para o projeto.
+
+{\itshape T1 -\/ Fazer requisitos}
+
+Detalhar os requisitos de serviços funcionais e não funcionais, de forma, detalhada e registrar todos os requisitos.
+
+{\itshape T2 -\/ Montar os casos de uso}
+
+Descrever os casos de uso para serem consultados durante todo o desenvolvimento.
+
+{\itshape T3 -\/ Montar a arquitetura do H\+UB}
+
+Arquitetar o H\+UB, arquitetura deve conter todo o sistema do H\+UB que será o centro do serviço e deve se conectar com todos os componentes e usuários do sistema. A sua arquitetura deve ser bem montada para sua comunicação.
+
+{\itshape T4 -\/ Modelar comunicação do H\+UB}
+
+Modelar a comunicação do H\+UB com módulos e aplicativos, para uma comunicação efetiva e sem atrasos, feita com diversos testes no sistema
+
+{\itshape T5 -\/ Modelar banco de dados do H\+UB}
+
+Modelar o banco de dados onde os estados dos sensores vão ser armazenados para em seguida serem enviadas para o aplicativo e serem visualizados pelo usuário.
+
+{\itshape T6 -\/ Desenvolver aplicativo}
+
+Desenvolver aplicativo de gerenciamento do sistema pelo usuário, o aplicativo deverá informar ao usuário o estado dos sensores, se comunicar com o H\+UB e seu banco de dados além de informar ao H\+UB sua localização para análise de esquecimento do dispositivo.
+
+{\itshape T7 -\/ Montar hardware do módulo de objetos importantes}
+
+Desenvolver módulo de localização para hardware que será colocado em objetos que possuem grande importância e não poderão ser esquecidos pelo usuário.
+
+O módulo deve estar anexado ao objeto e o usuário deve ser alertado caso saia de sua residência e esqueça o objeto, no caso do celular a sua posição será feita pelo aplicativo.
+
+{\itshape T8 -\/ Desenvolver o software do módulo de objetos importantes}
+
+Desenvolver software de comunicação do módulo com o H\+UB, leitura de dados e envio para o H\+UB, que armazenará seu estado em seu banco de dados.
+
+{\itshape T9 -\/ Integração do módulo de objetos importantes com o H\+UB}
+
+Integração do módulo e com o H\+UB deve ser feita de forma com que o módulo possa ser facilmente removido e adicionado. Sua comunicação deve ser feita para uma interação rápida e deve ser amplamente testada.
+
+{\itshape T10 -\/ Montar o módulo de gás}
+
+Desenvolver o módulo de gás e sua comunicação com o H\+UB, suas funcionalidades e suas conexões
+
+{\itshape T11 -\/ Desenvolver o software do módulo de gás}
+
+{\itshape Desenvolver software de leitura, análise e envio de dados do módulo.}
+
+{\itshape T12 -\/ Integrar o módulo de gás com o H\+UB}
+
+Conectar o módulo com o H\+UB, testar funcionalidades e comunicação entre H\+UB e módulos.
+
+\subsubsection*{Cronograma do Projeto }
+
+Com base nas estruturas analíticas do projeto foi estabelecido o seguinte cronograma.
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*4{|X[-1]}|}
+\hline
+Atividade &Entrega &Responsáveis &Dependências  \\\cline{1-4}
+T1 &12/10/2016 &hcf2 &-\/  \\\cline{1-4}
+T2 &12/10/2016 &hcf2 &T1  \\\cline{1-4}
+T3 &26/10/2016 &mpmr,jnolj &T2  \\\cline{1-4}
+T4 &26/10/2016 &mpmr,jnolj &T3  \\\cline{1-4}
+T5 &26/10/2016 &mpmr,jnolj &T3  \\\cline{1-4}
+T6 &14/11/2016 &jnolj &T5  \\\cline{1-4}
+T7 &21/11/2016 &dapd,mapa &T1  \\\cline{1-4}
+T8 &21/11/2016 &dapd,mapa,jnolj,mpmr &T7  \\\cline{1-4}
+T9 &21/11/2016 &dapd,mapa,jnolj,mpmr &T8  \\\cline{1-4}
+T10 &05/12/2016 &dapd,mapa &T1  \\\cline{1-4}
+T11 &05/12/2016 &dapd,mapa,jnolj,mpmr &T10  \\\cline{1-4}
+T12 &05/12/2016 &dapd,mapa,jnolj,mpmr &T11  \\\cline{1-4}
+\end{longtabu}
+
+
+\subsubsection*{Mecanismos de monitoramento e elaboração de relatórios }
+
+Ao longo do processo de desenvolvimento serão disponibilizados relatórios gerenciais para refletir o nível atual de progresso e andamento das atividades através de métricas bem definidas. Esses relatórios serão consolidados em cada milestone e servirão de instrumento fundamental para o acompanhamento do projeto pelas partes interessadas.
+
+Com base no cronograma apresentado serão definidas atividades elementares para representar as etapas de desenvolvimento necessárias para alcançar os milestones definidos. Cada atividade terá uma prioridade para execução, uma estimativa de esforço, além de um responsável pelo desenvolvimento.
+
+O registro global dessas atividades com relação ao progresso e a rastreabilidade serão efetuados através de ferramentas auxiliares, notadamente o Trello \mbox{[}1\mbox{]} e o Git\+Hub \mbox{[}2\mbox{]}. A primeira proporciona uma visão gerencial dando indicativos claros a respeito do progresso efetuado, enquanto a segunda permite um acompanhamento operacional, fornecendo indicadores essenciais que orientam o processo de gestão de mudanças.
+
+Referências
+
+\mbox{[}1\mbox{]} \href{http://www.trello.com}{\tt http\+://www.\+trello.\+com}
+
+\mbox{[}2\mbox{]} \href{https://github.com/}{\tt https\+://github.\+com/} 
