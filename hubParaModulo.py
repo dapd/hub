@@ -3,7 +3,7 @@
 ##
 ## @brief      Classe para HubParaMódulo.
 ##
-class hubParaModulo(object):
+class HubParaModulo(object):
 	
 
 	##
@@ -13,6 +13,6 @@ class hubParaModulo(object):
 	## @param      arg   O argumento
 	##
 	def __init__(self, arg):
-		super(hubParaModulo, self).__init__()
+		super(HubParaModulo, self).__init__()
 		self.arg = arg
 		

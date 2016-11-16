@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tocarbuzzer',['tocarBuzzer',['../classhub_1_1_hub.html#ad440e34d328f4dc716307d5578594a9b',1,'hub::Hub']]]
+  ['loopprincipal',['loopPrincipal',['../classhub_1_1_hub.html#a27a1a63e552a3cf6a6229e655ef4e368',1,'hub::Hub']]]
 ];

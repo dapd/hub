@@ -16,11 +16,13 @@ Diagrama de heranças da classe hub.\+Hub\begin{figure}[H]
 \item 
 def \hyperlink{classhub_1_1_hub_a6927b78580ea47e1525a945e7d1da004}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, status)
 \begin{DoxyCompactList}\small\item\em Método de inicialização para o H\+UB. \end{DoxyCompactList}\item 
-def \hyperlink{classhub_1_1_hub_aa41079065dfa6828808c061629f70b68}{configurar\+Primeira\+Vez} ()
+def \hyperlink{classhub_1_1_hub_a27a1a63e552a3cf6a6229e655ef4e368}{loop\+Principal} (self)
+\begin{DoxyCompactList}\small\item\em Esse é o loop principal do H\+UB, onde será implementada sua máquina de estados. \end{DoxyCompactList}\item 
+def \hyperlink{classhub_1_1_hub_a32160e972d5ac2c695a3e86816113b95}{configurar\+Primeira\+Vez} (self)
 \begin{DoxyCompactList}\small\item\em Método configura o H\+UB no primeiro acesso. \end{DoxyCompactList}\item 
-def \hyperlink{classhub_1_1_hub_ad440e34d328f4dc716307d5578594a9b}{tocar\+Buzzer} ()
+def \hyperlink{classhub_1_1_hub_a9b81ca32890f6df8dece0e1ae497ee20}{tocar\+Buzzer} (self)
 \begin{DoxyCompactList}\small\item\em Método aciona o Buzzer. \end{DoxyCompactList}\item 
-def \hyperlink{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}{acionar\+Led} ()
+def \hyperlink{classhub_1_1_hub_ac549b975878cf88b96dfbc57c319193e}{acionar\+Led} (self)
 \begin{DoxyCompactList}\small\item\em Método aciona o Led. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Atributos Públicos}
 \begin{DoxyCompactItemize}
@@ -33,13 +35,50 @@ def \hyperlink{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}{acionar\+Led}
 \item 
 string {\bfseries status} = \char`\"{}\char`\"{}\hypertarget{classhub_1_1_hub_a5b81b3d458d8bea39e1a6aa5122ae5f0}{}\label{classhub_1_1_hub_a5b81b3d458d8bea39e1a6aa5122ae5f0}
 
+\item 
+string {\bfseries U\+ID} = \char`\"{}\char`\"{}\hypertarget{classhub_1_1_hub_ab0675c400cb26d7ecf6c7e8216b38f88}{}\label{classhub_1_1_hub_ab0675c400cb26d7ecf6c7e8216b38f88}
+
+\item 
+{\bfseries led\+Manager} = None\hypertarget{classhub_1_1_hub_a1072169bef5f5cfc46957270c95ac0e3}{}\label{classhub_1_1_hub_a1072169bef5f5cfc46957270c95ac0e3}
+
+\item 
+{\bfseries hub\+Para\+Modulo} = None\hypertarget{classhub_1_1_hub_ad76ddaf14bf717d58801e482ec8170b5}{}\label{classhub_1_1_hub_ad76ddaf14bf717d58801e482ec8170b5}
+
+\item 
+{\bfseries hub\+Para\+Firebase} = None\hypertarget{classhub_1_1_hub_adeb7bfdecbaeb53c2b288e7e1fd9e7fd}{}\label{classhub_1_1_hub_adeb7bfdecbaeb53c2b288e7e1fd9e7fd}
+
+\item 
+{\bfseries adaptador\+Bluetooth} = None\hypertarget{classhub_1_1_hub_a1b5657982fcd346c9733253e842b0e82}{}\label{classhub_1_1_hub_a1b5657982fcd346c9733253e842b0e82}
+
 \end{DoxyCompactItemize}
 
 
 \subsection{Descrição detalhada}
 Classe para o H\+UB. 
 
-Nesta classe, espera-\/se que todos os métodos principais do H\+UB sejam devidamente escritos. O comportamento do H\+UB por enquanto 
+Nesta classe, espera-\/se que todos os métodos principais do H\+UB sejam devidamente escritos. O comportamento do H\+UB por enquanto se limita a um método que fica rodando em loop infinito, e de acordo com os estímulos recebidos das threads de {\itshape escutar}, executa ações, ou seja, é uma máquina de estados. É importante que os métodos de escutar das instâncias {\ttfamily hub\+Para\+Módulo} e {\ttfamily hub\+Para\+Firebase} rodem em paralelo como threads, e que haja um comportamento de produtor-\/consumidor quanto às informações obtidas e enviadas.
+
+A convenção será\+: nome minúsculo para instâncias, variáveis e métodos, e nome maiúsculo para classes.
+
+\begin{DoxyWarning}{Aviso}
+Colocar verificações e erros caso algo aconteça, mas nunca paralizar ou fechar o programa. É importante que os erros sejam tratados.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parâmetros}
+{\em status} & O status do H\+UB. Uma string pré-\/definida. \\
+\hline
+{\em U\+ID} & O ID do usuário que cadastrou o H\+UB. Uma String. \\
+\hline
+{\em led\+Manager} & Instância da classe Led\+Manager. \\
+\hline
+{\em hub\+Para\+Modulo} & Instância da classe Hub\+Para\+Modulo. \\
+\hline
+{\em hub\+Para\+Firebase} & Instância da classe Hub\+Para\+Firebase. \\
+\hline
+{\em adaptador\+Bluetooth} & Instância da classe Adaptador\+Bluetooth. \\
+\hline
+\end{DoxyParams}
+
 
 \subsection{Documentação dos Construtores \& Destrutor}
 \index{hub\+::\+Hub@{hub\+::\+Hub}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
@@ -62,21 +101,25 @@ Para adicionar parâmetros auxiliares, adicione o mesmo em\+:
 \begin{DoxyCode}
 1 \textcolor{keyword}{def }\_\_init\_\_(self, status):
 \end{DoxyCode}
+ \begin{DoxyVerb}        Por exemplo, para adicionar o parâmetro aux (cujo nome não é
+        recomendável de ser usado), deve-se fazer o seguinte:
+\end{DoxyVerb}
 
-
-Por exemplo, para adicionar o parâmetro aux (cujo nome não é recomendável de ser usado), deve-\/se fazer o seguinte\+:
 
 
 \begin{DoxyCode}
 1 \textcolor{keyword}{def} \_\_init\_\_(self, status, aux):
-2   super(Hub, self).\_\_init\_\_()
-3       self.status = status
-4   self.aux = xpto
+2  super(Hub, self).\_\_init\_\_()
+3  self.status = status
+4  self.aux = xpto
 \end{DoxyCode}
+ \begin{DoxyVerb}        Onde xpto é o valor inicial desejado.
+\end{DoxyVerb}
 
 
-Onde xpto é o valor inicial desejado.
-
+\begin{DoxyWarning}{Aviso}
+Inicializar instâncias de classes depois.
+\end{DoxyWarning}
 
 \begin{DoxyParams}{Parâmetros}
 {\em self} & O objeto \\
@@ -89,25 +132,27 @@ Onde xpto é o valor inicial desejado.
 \subsection{Documentação dos métodos}
 \index{hub\+::\+Hub@{hub\+::\+Hub}!acionar\+Led@{acionar\+Led}}
 \index{acionar\+Led@{acionar\+Led}!hub\+::\+Hub@{hub\+::\+Hub}}
-\subsubsection[{\texorpdfstring{acionar\+Led()}{acionarLed()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+acionar\+Led (
+\subsubsection[{\texorpdfstring{acionar\+Led(self)}{acionarLed(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+acionar\+Led (
 \begin{DoxyParamCaption}
-{}
+\item[{}]{self}
 \end{DoxyParamCaption}
-)}\hypertarget{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}{}\label{classhub_1_1_hub_adfaed7c1b066104b83f4785c16b19496}
+)}\hypertarget{classhub_1_1_hub_ac549b975878cf88b96dfbc57c319193e}{}\label{classhub_1_1_hub_ac549b975878cf88b96dfbc57c319193e}
 
 
 Método aciona o Led. 
+
+Este método utiliza a instância {\ttfamily led\+Manager} que é atributo desta classe, e deve se comportar, utilizando o atributo {\ttfamily status} e chamando os métodos de ligar\+Led, desligar\+Led e procurar\+Significado da classe led\+Manager. Em resumo, ao chamar essa classe, é esperado que ela atualize o comportamento do led de acordo com o status atual.
 
 \begin{DoxyReturn}{Retorna}
 O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
 \end{DoxyReturn}
 \index{hub\+::\+Hub@{hub\+::\+Hub}!configurar\+Primeira\+Vez@{configurar\+Primeira\+Vez}}
 \index{configurar\+Primeira\+Vez@{configurar\+Primeira\+Vez}!hub\+::\+Hub@{hub\+::\+Hub}}
-\subsubsection[{\texorpdfstring{configurar\+Primeira\+Vez()}{configurarPrimeiraVez()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+configurar\+Primeira\+Vez (
+\subsubsection[{\texorpdfstring{configurar\+Primeira\+Vez(self)}{configurarPrimeiraVez(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+configurar\+Primeira\+Vez (
 \begin{DoxyParamCaption}
-{}
+\item[{}]{self}
 \end{DoxyParamCaption}
-)}\hypertarget{classhub_1_1_hub_aa41079065dfa6828808c061629f70b68}{}\label{classhub_1_1_hub_aa41079065dfa6828808c061629f70b68}
+)}\hypertarget{classhub_1_1_hub_a32160e972d5ac2c695a3e86816113b95}{}\label{classhub_1_1_hub_a32160e972d5ac2c695a3e86816113b95}
 
 
 Método configura o H\+UB no primeiro acesso. 
@@ -118,20 +163,52 @@ No primeiro acesso ao H\+UB, o mesmo não estará cadastrado no servidor e, port
 U\+ID do usuário que adicionou este H\+UB. 
 \end{DoxyReturn}
 \begin{DoxyWarning}{Aviso}
-Modificar diagrama de bloco para que demonstre o que é retornado aqui. 
+Modificar diagrama de blocos para que demonstre o que é retornado aqui. 
 \end{DoxyWarning}
+\index{hub\+::\+Hub@{hub\+::\+Hub}!loop\+Principal@{loop\+Principal}}
+\index{loop\+Principal@{loop\+Principal}!hub\+::\+Hub@{hub\+::\+Hub}}
+\subsubsection[{\texorpdfstring{loop\+Principal(self)}{loopPrincipal(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+loop\+Principal (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_1_1_hub_a27a1a63e552a3cf6a6229e655ef4e368}{}\label{classhub_1_1_hub_a27a1a63e552a3cf6a6229e655ef4e368}
+
+
+Esse é o loop principal do H\+UB, onde será implementada sua máquina de estados. 
+
+Este será o segundo método a ser chamado do H\+UB. Ele deverá ficar em loop e se comportar como uma máquina de estados, chamando os outros métodos de acordo com a situação.
+
+\begin{DoxyWarning}{Aviso}
+É possível adicionar o comportamento de parar como uma feature\+: botão de desligar. 
+\end{DoxyWarning}
+\begin{DoxyReturn}{Retorna}
+Essa função nunca para. 
+\end{DoxyReturn}
 \index{hub\+::\+Hub@{hub\+::\+Hub}!tocar\+Buzzer@{tocar\+Buzzer}}
 \index{tocar\+Buzzer@{tocar\+Buzzer}!hub\+::\+Hub@{hub\+::\+Hub}}
-\subsubsection[{\texorpdfstring{tocar\+Buzzer()}{tocarBuzzer()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+tocar\+Buzzer (
+\subsubsection[{\texorpdfstring{tocar\+Buzzer(self)}{tocarBuzzer(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub.\+Hub.\+tocar\+Buzzer (
 \begin{DoxyParamCaption}
-{}
+\item[{}]{self}
 \end{DoxyParamCaption}
-)}\hypertarget{classhub_1_1_hub_ad440e34d328f4dc716307d5578594a9b}{}\label{classhub_1_1_hub_ad440e34d328f4dc716307d5578594a9b}
+)}\hypertarget{classhub_1_1_hub_a9b81ca32890f6df8dece0e1ae497ee20}{}\label{classhub_1_1_hub_a9b81ca32890f6df8dece0e1ae497ee20}
 
 
 Método aciona o Buzzer. 
 
 \begin{DoxyReturn}{Retorna}
+O valor de retorno sempre será {\ttfamily N\+U\+L\+L.\+Método} aciona o Buzzer. \begin{DoxyVerb}        Espera-se que ao chamar esse método, caso o estado atual @c
+        status da classe atual remeta à ideia de @c alerta, ou seja,
+        caso seja necessário sinalizar algo para o usuário, ao chamar
+        essa função, o buzzer irá ser acionado em volume máximo. Caso
+        o buzzer esteja acionado e o estado atual @c status da classe
+        atual remeta à ideia de que não há alerta, ou seja, caso o @c
+        status seja normal, ao chamar essa função, o buzzer será
+        desligado. De forma simples, essa função funciona como um
+        interruptor e acessa o parâmetro da própria classe @c status
+        para decidir o que fazer.
+\end{DoxyVerb}
+
+
 O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
 \end{DoxyReturn}
 
