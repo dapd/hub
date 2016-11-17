@@ -1,17 +1,36 @@
 # -*- coding: UTF-8 -*-
 
 ##
-## @brief      Classe para Device.
+## @brief      Class for device.
+##
+## @param _id       The Id
 ##
 class Device(object):
 	
+	_id = ""
+
 	##
-	## @brief      Constrói o objeto.
+	## @brief      Constructs the object.
 	##
-	## @param      self  O objeto
-	## @param      arg   O argumento
+	## @param      self  The object
+	## @param      arg   The argument
 	##
 	def __init__(self, arg):
 		super(Device, self).__init__()
 		self.arg = arg
-		
+	
+	##
+	## @brief      { function_description }
+	##
+	## @return     { description_of_the_return_value }
+	##
+	def desativar():
+		return False
+
+	##
+	## @brief      { function_description }
+	##
+	## @return     { description_of_the_return_value }
+	##
+	def validarSenha():
+		return False

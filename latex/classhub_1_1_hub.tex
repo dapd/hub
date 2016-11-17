@@ -101,10 +101,9 @@ Para adicionar parâmetros auxiliares, adicione o mesmo em\+:
 \begin{DoxyCode}
 1 \textcolor{keyword}{def }\_\_init\_\_(self, status):
 \end{DoxyCode}
- \begin{DoxyVerb}        Por exemplo, para adicionar o parâmetro aux (cujo nome não é
-        recomendável de ser usado), deve-se fazer o seguinte:
-\end{DoxyVerb}
 
+
+Por exemplo, para adicionar o parâmetro aux (cujo nome não é recomendável de ser usado), deve-\/se fazer o seguinte\+:
 
 
 \begin{DoxyCode}
@@ -113,9 +112,9 @@ Para adicionar parâmetros auxiliares, adicione o mesmo em\+:
 3  self.status = status
 4  self.aux = xpto
 \end{DoxyCode}
- \begin{DoxyVerb}        Onde xpto é o valor inicial desejado.
-\end{DoxyVerb}
 
+
+Onde xpto é o valor inicial desejado.
 
 \begin{DoxyWarning}{Aviso}
 Inicializar instâncias de classes depois.
@@ -195,20 +194,9 @@ Essa função nunca para.
 
 Método aciona o Buzzer. 
 
+Espera-\/se que ao chamar esse método, caso o estado atual {\ttfamily status} da classe atual remeta à ideia de {\ttfamily alerta}, ou seja, caso seja necessário sinalizar algo para o usuário, ao chamar essa função, o buzzer irá ser acionado em volume máximo. Caso o buzzer esteja acionado e o estado atual {\ttfamily status} da classe atual remeta à ideia de que não há alerta, ou seja, caso o {\ttfamily status} seja normal, ao chamar essa função, o buzzer será desligado. De forma simples, essa função funciona como um interruptor e acessa o parâmetro da própria classe {\ttfamily status} para decidir o que fazer.
+
 \begin{DoxyReturn}{Retorna}
-O valor de retorno sempre será {\ttfamily N\+U\+L\+L.\+Método} aciona o Buzzer. \begin{DoxyVerb}        Espera-se que ao chamar esse método, caso o estado atual @c
-        status da classe atual remeta à ideia de @c alerta, ou seja,
-        caso seja necessário sinalizar algo para o usuário, ao chamar
-        essa função, o buzzer irá ser acionado em volume máximo. Caso
-        o buzzer esteja acionado e o estado atual @c status da classe
-        atual remeta à ideia de que não há alerta, ou seja, caso o @c
-        status seja normal, ao chamar essa função, o buzzer será
-        desligado. De forma simples, essa função funciona como um
-        interruptor e acessa o parâmetro da própria classe @c status
-        para decidir o que fazer.
-\end{DoxyVerb}
-
-
 O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
 \end{DoxyReturn}
 

@@ -53,8 +53,8 @@ class Hub(object):
 	##  def __init__(self, status):
 	## @endcode
 	##
-	##             Por exemplo, para adicionar o parâmetro aux (cujo nome não é
-	##             recomendável de ser usado), deve-se fazer o seguinte:
+    ##  Por exemplo, para adicionar o parâmetro aux (cujo nome não é
+    ## recomendável de ser usado), deve-se fazer o seguinte:
 	##
 	## @code
 	##  def __init__(self, status, aux):
@@ -63,7 +63,7 @@ class Hub(object):
 	##   self.aux = xpto
 	## @endcode
 	##
-	##             Onde xpto é o valor inicial desejado.
+	## Onde xpto é o valor inicial desejado.
 	##
 	## @warning    Inicializar instâncias de classes depois.
 	##
@@ -73,6 +73,7 @@ class Hub(object):
 	def __init__(self, status):
 		super(Hub, self).__init__()
 		self.status = status
+		self.ledManager = LedManager()
 
 	#------------------------------------------------------------------------------
 	## @brief      Esse é o loop principal do HUB, onde será implementada sua 
@@ -107,16 +108,6 @@ class Hub(object):
 	##
 	def configurarPrimeiraVez(self):
 		raise NotImplementedError(" Favor implementar esse metodo. ")
-
-    
-	#------------------------------------------------------------------------------
-	## @brief      Método aciona o Buzzer.
-	##
-	##
-	##
-	## @return O valor de retorno sempre será @c NULL.
-	##
-
 	#------------------------------------------------------------------------------
 	## @brief      Método aciona o Buzzer.
 	##

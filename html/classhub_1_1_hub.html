@@ -197,10 +197,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>UID</b> = &quot;&qu
 <p>Método de inicialização para o HUB. </p>
 <p>O método de inicialização para o HUB recebe como entrada o valor inicial do status do HUB e retorna um booleano, que informa se a operação foi concluída com sucesso. Espera-se que após chamar essa função, todos os parâmetros do HUB estejam devidamente inicializados. Isso inclui parâmetros adicionados posteriormente por necessidade, ou seja, parâmetros auxiliares.</p>
 <p>Para adicionar parâmetros auxiliares, adicione o mesmo em:</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;def __init__(self, status):</div></div><!-- fragment --> <pre class="fragment">        Por exemplo, para adicionar o parâmetro aux (cujo nome não é
-        recomendável de ser usado), deve-se fazer o seguinte:
-</pre><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">def </span>__init__(self, status, aux):</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; super(Hub, self).__init__()</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; self.status = status</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; self.aux = xpto</div></div><!-- fragment --> <pre class="fragment">        Onde xpto é o valor inicial desejado.
-</pre><dl class="section warning"><dt>Aviso</dt><dd>Inicializar instâncias de classes depois.</dd></dl>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;def __init__(self, status):</div></div><!-- fragment --><p>Por exemplo, para adicionar o parâmetro aux (cujo nome não é recomendável de ser usado), deve-se fazer o seguinte:</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="keyword">def </span>__init__(self, status, aux):</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; super(Hub, self).__init__()</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; self.status = status</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; self.aux = xpto</div></div><!-- fragment --><p>Onde xpto é o valor inicial desejado.</p>
+<dl class="section warning"><dt>Aviso</dt><dd>Inicializar instâncias de classes depois.</dd></dl>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">self</td><td>O objeto </td></tr>
@@ -289,19 +288,8 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>UID</b> = &quot;&qu
 </div><div class="memdoc">
 
 <p>Método aciona o Buzzer. </p>
-<dl class="section return"><dt>Retorna</dt><dd>O valor de retorno sempre será <code>NULL.Método</code> aciona o Buzzer. <pre class="fragment">        Espera-se que ao chamar esse método, caso o estado atual @c
-        status da classe atual remeta à ideia de @c alerta, ou seja,
-        caso seja necessário sinalizar algo para o usuário, ao chamar
-        essa função, o buzzer irá ser acionado em volume máximo. Caso
-        o buzzer esteja acionado e o estado atual @c status da classe
-        atual remeta à ideia de que não há alerta, ou seja, caso o @c
-        status seja normal, ao chamar essa função, o buzzer será
-        desligado. De forma simples, essa função funciona como um
-        interruptor e acessa o parâmetro da própria classe @c status
-        para decidir o que fazer.
-</pre></dd>
-<dd>
-O valor de retorno sempre será <code>NULL</code>. </dd></dl>
+<p>Espera-se que ao chamar esse método, caso o estado atual <code>status</code> da classe atual remeta à ideia de <code>alerta</code>, ou seja, caso seja necessário sinalizar algo para o usuário, ao chamar essa função, o buzzer irá ser acionado em volume máximo. Caso o buzzer esteja acionado e o estado atual <code>status</code> da classe atual remeta à ideia de que não há alerta, ou seja, caso o <code>status</code> seja normal, ao chamar essa função, o buzzer será desligado. De forma simples, essa função funciona como um interruptor e acessa o parâmetro da própria classe <code>status</code> para decidir o que fazer.</p>
+<dl class="section return"><dt>Retorna</dt><dd>O valor de retorno sempre será <code>NULL</code>. </dd></dl>
 
 </div>
 </div>

@@ -2,7 +2,7 @@
 \label{classled_manager_1_1_led_manager}\index{led\+Manager.\+Led\+Manager@{led\+Manager.\+Led\+Manager}}
 
 
-coding\+: U\+T\+F-\/8 -\/$\ast$-\/  
+Classe para o \hyperlink{classled_manager_1_1_led_manager}{Led\+Manager}.  
 
 
 Diagrama de heranças da classe led\+Manager.\+Led\+Manager\begin{figure}[H]
@@ -14,41 +14,119 @@ Diagrama de heranças da classe led\+Manager.\+Led\+Manager\begin{figure}[H]
 \subsection*{Membros públicos}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classled_manager_1_1_led_manager_a3a48b4b298106eb5cc113d2da0d0ddb1}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, arg)
-\begin{DoxyCompactList}\small\item\em Constrói o objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Atributos Públicos}
+def \hyperlink{classled_manager_1_1_led_manager_a5bc4f172c79144377da875a1290a7dbd}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self)
+\begin{DoxyCompactList}\small\item\em Método de inicialização para o \hyperlink{classled_manager_1_1_led_manager}{Led\+Manager}. \end{DoxyCompactList}\item 
+def \hyperlink{classled_manager_1_1_led_manager_ace03fe1a941d4b5f4d7e9d3c47964e36}{procura\+Significado} (status)
+\begin{DoxyCompactList}\small\item\em Dado um {\ttfamily status}, método retorna uma cor. \end{DoxyCompactList}\item 
+def \hyperlink{classled_manager_1_1_led_manager_aa6376276d32605b1958f941a05ed0a3d}{ligar\+Led} (rgb)
+\begin{DoxyCompactList}\small\item\em Método usa biblioteca de manipulação de hardware da raspberry para acionar led. \end{DoxyCompactList}\item 
+def \hyperlink{classled_manager_1_1_led_manager_a14e59e953d64be5fe1e58e7ecbfdbe7c}{desligar\+Led} ()
+\begin{DoxyCompactList}\small\item\em Desliga o led. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Públicos Estáticos}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries arg}\hypertarget{classled_manager_1_1_led_manager_a647203eaa79b8353cd8efcd22c178f76}{}\label{classled_manager_1_1_led_manager_a647203eaa79b8353cd8efcd22c178f76}
+dictionary {\bfseries cores} = \{\}\hypertarget{classled_manager_1_1_led_manager_a1ca6df605b67f9dac8a8775fd10c540e}{}\label{classled_manager_1_1_led_manager_a1ca6df605b67f9dac8a8775fd10c540e}
 
 \end{DoxyCompactItemize}
 
 
 \subsection{Descrição detalhada}
-coding\+: U\+T\+F-\/8 -\/$\ast$-\/ 
+Classe para o \hyperlink{classled_manager_1_1_led_manager}{Led\+Manager}. 
 
-Classe para o led\+Manager. 
+O \hyperlink{classled_manager_1_1_led_manager}{Led\+Manager} tem seus métodos chamados pelo método acionar\+Led do H\+UB. Esta classe deve servir de apoio para a classe correspondente no H\+UB. Não há um loop principal.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em cores} & Dicionário que contém os status e cores, onde para cada status há uma cor correspondente \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Aviso}
+Adicionar os atributos dessa classe correspondentes a classes necessárias para de fato acionar o led em hardware, e inicializar os mesmos em init. 
+\end{DoxyWarning}
+
 
 \subsection{Documentação dos Construtores \& Destrutor}
 \index{led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
 \index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+(self, arg)}{__init__(self, arg)}}]{\setlength{\rightskip}{0pt plus 5cm}def led\+Manager.\+Led\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+(self)}{__init__(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def led\+Manager.\+Led\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (
 \begin{DoxyParamCaption}
-\item[{}]{self, }
-\item[{}]{arg}
+\item[{}]{self}
 \end{DoxyParamCaption}
-)}\hypertarget{classled_manager_1_1_led_manager_a3a48b4b298106eb5cc113d2da0d0ddb1}{}\label{classled_manager_1_1_led_manager_a3a48b4b298106eb5cc113d2da0d0ddb1}
+)}\hypertarget{classled_manager_1_1_led_manager_a5bc4f172c79144377da875a1290a7dbd}{}\label{classled_manager_1_1_led_manager_a5bc4f172c79144377da875a1290a7dbd}
 
 
-Constrói o objeto. 
+Método de inicialização para o \hyperlink{classled_manager_1_1_led_manager}{Led\+Manager}. 
+
+O atributo cores deve ser inicializado aqui, de modo que cada status tenha uma cor correspondente. Levando em conta que {\ttfamily cores} é um dicionário.
+
+\begin{DoxyWarning}{Aviso}
+Inicializar instâncias de classes necessárias depois aqui. 
+
+Possível melhoria\+: pegar cores de arquivo de configuração. 
+\end{DoxyWarning}
+
+
+\subsection{Documentação dos métodos}
+\index{led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}!desligar\+Led@{desligar\+Led}}
+\index{desligar\+Led@{desligar\+Led}!led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}}
+\subsubsection[{\texorpdfstring{desligar\+Led()}{desligarLed()}}]{\setlength{\rightskip}{0pt plus 5cm}def led\+Manager.\+Led\+Manager.\+desligar\+Led (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classled_manager_1_1_led_manager_a14e59e953d64be5fe1e58e7ecbfdbe7c}{}\label{classled_manager_1_1_led_manager_a14e59e953d64be5fe1e58e7ecbfdbe7c}
+
+
+Desliga o led. 
+
+Simples assim.
+
+O método deve usar uma biblioteca para manipulação de hardware da raspberry e enviar para o led um comando que apropriadamente o desliga.
+
+\begin{DoxyReturn}{Retorna}
+O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+\index{led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}!ligar\+Led@{ligar\+Led}}
+\index{ligar\+Led@{ligar\+Led}!led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}}
+\subsubsection[{\texorpdfstring{ligar\+Led(rgb)}{ligarLed(rgb)}}]{\setlength{\rightskip}{0pt plus 5cm}def led\+Manager.\+Led\+Manager.\+ligar\+Led (
+\begin{DoxyParamCaption}
+\item[{}]{rgb}
+\end{DoxyParamCaption}
+)}\hypertarget{classled_manager_1_1_led_manager_aa6376276d32605b1958f941a05ed0a3d}{}\label{classled_manager_1_1_led_manager_aa6376276d32605b1958f941a05ed0a3d}
+
+
+Método usa biblioteca de manipulação de hardware da raspberry para acionar led. 
+
+O método deve usar uma biblioteca para manipulação de hardware da raspberry e enviar para o led um comando que apropriadamente o coloque na cor indicada.
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em self} & O objeto \\
-\hline
-{\em arg} & O argumento \\
+{\em rgb} & O valor de rbg para o led. É uma intância da classe \hyperlink{classled_manager_1_1_r_g_b}{R\+GB}.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+O valor de retorno sempre será {\ttfamily N\+U\+LL}. 
+\end{DoxyReturn}
+\index{led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}!procura\+Significado@{procura\+Significado}}
+\index{procura\+Significado@{procura\+Significado}!led\+Manager\+::\+Led\+Manager@{led\+Manager\+::\+Led\+Manager}}
+\subsubsection[{\texorpdfstring{procura\+Significado(status)}{procuraSignificado(status)}}]{\setlength{\rightskip}{0pt plus 5cm}def led\+Manager.\+Led\+Manager.\+procura\+Significado (
+\begin{DoxyParamCaption}
+\item[{}]{status}
+\end{DoxyParamCaption}
+)}\hypertarget{classled_manager_1_1_led_manager_ace03fe1a941d4b5f4d7e9d3c47964e36}{}\label{classled_manager_1_1_led_manager_ace03fe1a941d4b5f4d7e9d3c47964e36}
+
+
+Dado um {\ttfamily status}, método retorna uma cor. 
+
+Tão simples quanto na descrição resumida. O método deve receber um status e devolver uma cor. Nada mais é do que a aplicação do dicionário desta classe.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em status} & O Estado que deseja-\/se saber a cor.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Retorna a cor, do tipo \hyperlink{classled_manager_1_1_r_g_b}{R\+GB}. 
+\end{DoxyReturn}
 
 
 A documentação para esta classe foi gerada a partir do seguinte ficheiro\+:\begin{DoxyCompactItemize}
