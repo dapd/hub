@@ -1,5 +1,8 @@
 # -*- coding: UTF-8 -*-
 
+from ledManager import *
+import hubParaFirebase
+
 #-------------------------------------------------------------------------------
 ## @brief      Classe para o HUB.
 ##
@@ -74,6 +77,7 @@ class Hub(object):
 		super(Hub, self).__init__()
 		self.status = status
 		self.ledManager = LedManager()
+		self.hubParaFirebase = HubParaFirebase()
 
 	#------------------------------------------------------------------------------
 	## @brief      Esse é o loop principal do HUB, onde será implementada sua 
@@ -144,4 +148,3 @@ class Hub(object):
 
 hubs = Hub("normal")
 hubs.loopPrincipal()
-	
