@@ -110,9 +110,9 @@ Diagrama de heranças da classe hubParaFirebase.HubParaFirebase</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Membros públicos</h2></td></tr>
-<tr class="memitem:a2c9535c4753cd92950dab73023519e0c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a2c9535c4753cd92950dab73023519e0c">__init__</a> (self, hubID, appID)</td></tr>
-<tr class="memdesc:a2c9535c4753cd92950dab73023519e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the object.  <a href="#a2c9535c4753cd92950dab73023519e0c">Mais...</a><br /></td></tr>
-<tr class="separator:a2c9535c4753cd92950dab73023519e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a8553e4a8f4a5564e69a1ebac33e255b3">__init__</a> (self, hubID)</td></tr>
+<tr class="memdesc:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the object.  <a href="#a8553e4a8f4a5564e69a1ebac33e255b3">Mais...</a><br /></td></tr>
+<tr class="separator:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8867ea8f38db645837f1c0ab0a4b207e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a8867ea8f38db645837f1c0ab0a4b207e">desconectarFirebase</a> (self)</td></tr>
 <tr class="memdesc:a8867ea8f38db645837f1c0ab0a4b207e"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a8867ea8f38db645837f1c0ab0a4b207e">Mais...</a><br /></td></tr>
 <tr class="separator:a8867ea8f38db645837f1c0ab0a4b207e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +171,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">hubID</td><td>O id do hub cadastrado no banco de dados firebase </td></tr>
-    <tr><td class="paramname">appID</td><td>O id do app / do usuário do app no banco de dados firebase </td></tr>
+    <tr><td class="paramname">appID</td><td>O id do app/do usuário do app no banco de dados firebase que possui o hub. </td></tr>
     <tr><td class="paramname">firebase</td><td>Objeto da classe pyrebase, responsável pela conexão com o servidor </td></tr>
     <tr><td class="paramname">database</td><td>Objeto da classe pyrebase, responsável por recuperar dados do banco de dados firebase. </td></tr>
     <tr><td class="paramname">mensagensRecebidas</td><td>As mensagens recebidas pelo módulo, guardadas como uma lista ordenada. </td></tr>
@@ -179,7 +179,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&
   </dd>
 </dl>
 </div><h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
-<a class="anchor" id="a2c9535c4753cd92950dab73023519e0c"></a>
+<a class="anchor" id="a8553e4a8f4a5564e69a1ebac33e255b3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -193,13 +193,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>hubID</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>appID</em>&#160;</td>
+          <td class="paramname"><em>hubID</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -212,9 +206,8 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&
 <p>Constructs the object. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">self</td><td>The object </td></tr>
+    <tr><td class="paramname">self</td><td>O objeto </td></tr>
     <tr><td class="paramname">hubID</td><td>The hub id </td></tr>
-    <tr><td class="paramname">appID</td><td>The application id </td></tr>
   </table>
   </dd>
 </dl>
