@@ -4,27 +4,30 @@ from threading import *
 import collections
 
 ##
-## @brief      Class for hub para firebase.
+## @brief      Esta classe é responsável pela comunicação entre o HUB e o banco de dados firebase.
+##  
+##  Este módulo provem funções básicas de comunição, entretando não é responsável
+## pela lógica usada de acordo com as mensagens.
 ##
-## @param      status              O status
-## @param      hubID               O id do hub
-## @param      appID               O id do app
-## @param      firebase            Objeto do firebase
-## @param      mensagensRecebidas  As mensagens recebidas
+## @param      hubID               O id do hub cadastrado no banco de dados firebase
+## @param      appID               O id do app/do usuário do app no banco de dados firebase
+## @param      firebase            Objeto da classe pyrebase, responsável pela conexão com o servidor
+## @param      database            Objeto da classe pyrebase, responsável por recuperar dados do banco
+##                                 de dados firebase.
+## @param      mensagensRecebidas  As mensagens recebidas pelo módulo, guardadas como uma lista ordenada.
 ## 
 class HubParaFirebase(object):
-	status = ""
 	hubID = ""
 	appID = ""
 	firebase = None
 	database = None
-	gerenciadorMensagensRecebidas = Lock()
-	mensagensRecebidas = []
+	gerenciadorMensagensRecebidas = None
+	mensagensRecebidas = None
 
 	##
 	## @brief      Constructs the object.
 	##
-	## @param      self   The object
+	## @param      self   O objeto
 	## @param      hubID  The hub id
 	## @param      appID  The application id
 	##
@@ -40,11 +43,22 @@ class HubParaFirebase(object):
 		    "serviceAccount": "lembrol-be0b6-firebase-adminsdk-1a3ov-55e9f39567.json"
   		}
 
-		self.hubID = hubID
-		self.appID = appID
+		self.gerenciadorMensagensRecebidas = Lock()
+		if self.gerenciadorMensagensRecebidas == None:
+			raise RuntimeError(" Nao foi possivel criar o objeto Lock")
+
 		self.mensagensRecebidas = collections.deque()
+		if self.gerenciadorMensagensRecebidas == None:
+			raise RuntimeError(" Nao foi possivel criar o deque")		
+
 		self.firebase = pyrebase.initialize_app(config)
+		if self.firebase == None:
+			raise RuntimeError(" Nao foi possivel criar a instancia do firebase")
+
 		self.database = self.firebase.database()
+			if self.database == None:
+				raise RuntimeError(" Nao foi possivel criar a instancia de database")
+
 		self.stream = self.database.child("msgs_app").child(self.appID).stream(self.receberFirebase, stream_id="mensagens_app")
 		self.database.child("hubs").child(self.hubID).update({"status" : "ON"})
 
@@ -72,8 +86,11 @@ class HubParaFirebase(object):
 	## @return     { description_of_the_return_value }
 	##
 	def mensagemAlarme(self, moduloID, mensagem):
-		self.database.child("msgs_hub").child(self.hubID).push("alarme:" + moduloID)
-		self.database.child("msgs_hub").child(self.hubID).push(mensagem)
+
+
+		if len(mensagem) > 0:
+			self.database.child("msgs_hub").child(self.hubID).push("alarme:" + moduloID)
+			self.database.child("msgs_hub").child(self.hubID).push(mensagem)
 
 	##
 	## @brief      { function_description }
@@ -105,7 +122,11 @@ class HubParaFirebase(object):
 				finally:
 					self.gerenciadorMensagensRecebidas.release()
 		elif mensagem["data"] != None:
-			self.mensagensRecebidas.append(mensagem["data"])
+			self.gerenciadorMensagensRecebidas.acquire()
+				try:
+					self.mensagensRecebidas.append(mensagem["data"])
+				finally:
+					self.gerenciadorMensagensRecebidas.release()
 
 	##
 	## @brief      Gets the ultima mensagem.
@@ -117,12 +138,12 @@ class HubParaFirebase(object):
 	def getUltimaMensagem(self):
 		retorno = None
 
-		self.gerenciadorMensagensRecebidas.acquire()
-		try:
-			if len(self.mensagensRecebidas) > 0:
+		if len(self.mensagensRecebidas) > 0:
+			self.gerenciadorMensagensRecebidas.acquire()
+			try:
 				retorno = self.mensagensRecebidas.popleft()
-		finally:
-			self.gerenciadorMensagensRecebidas.release()
+			finally:
+				self.gerenciadorMensagensRecebidas.release()
 		return retorno
 
 	##

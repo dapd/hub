@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['mandarfirebase',['mandarFirebase',['../classhub_para_firebase_1_1_hub_para_firebase.html#a45da9f7fe0cd5f3feef0c44ae10523c1',1,'hubParaFirebase::HubParaFirebase']]],
-  ['mandarmodulo',['mandarModulo',['../classhub_para_modulo_1_1_hub_para_modulo.html#a3b77e329ad83e2a107f0125332d92486',1,'hubParaModulo::HubParaModulo']]]
+  ['ledmanager',['LedManager',['../classled_manager_1_1_led_manager.html',1,'ledManager']]],
+  ['ledmanager',['LedManager',['../class_led__manager_1_1_led_manager.html',1,'Led_manager']]],
+  ['ligarled',['ligarLed',['../classled_manager_1_1_led_manager.html#aa6376276d32605b1958f941a05ed0a3d',1,'ledManager::LedManager']]],
+  ['loopprincipal',['loopPrincipal',['../classhub_1_1_hub.html#a27a1a63e552a3cf6a6229e655ef4e368',1,'hub::Hub']]]
 ];

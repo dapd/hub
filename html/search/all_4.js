@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['hub',['Hub',['../classhub_1_1_hub.html',1,'hub']]],
-  ['hubparafirebase',['HubParaFirebase',['../classhub_para_firebase_1_1_hub_para_firebase.html',1,'hubParaFirebase']]],
-  ['hubparamodulo',['HubParaModulo',['../classhub_para_modulo_1_1_hub_para_modulo.html',1,'hubParaModulo']]]
+  ['getultimamensagem',['getUltimaMensagem',['../classhub_para_firebase_1_1_hub_para_firebase.html#a8c00d07d181c47e4567b602947466abe',1,'hubParaFirebase::HubParaFirebase']]]
 ];

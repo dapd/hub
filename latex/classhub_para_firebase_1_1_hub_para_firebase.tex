@@ -2,7 +2,7 @@
 \label{classhub_para_firebase_1_1_hub_para_firebase}\index{hub\+Para\+Firebase.\+Hub\+Para\+Firebase@{hub\+Para\+Firebase.\+Hub\+Para\+Firebase}}
 
 
-Class for hub para firebase.  
+Esta classe é responsável pela comunicação entre o H\+UB e o banco de dados firebase.  
 
 
 Diagrama de heranças da classe hub\+Para\+Firebase.\+Hub\+Para\+Firebase\begin{figure}[H]
@@ -14,34 +14,71 @@ Diagrama de heranças da classe hub\+Para\+Firebase.\+Hub\+Para\+Firebase\begin{
 \subsection*{Membros públicos}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a2125568a783092a9463703c03cbfe9d6}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, arg)
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a2c9535c4753cd92950dab73023519e0c}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, hub\+ID, app\+ID)
 \begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
-def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_adc3d6a4b1544ed5ae5caf1deb28cd296}{receber\+Firebase} ()
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a8867ea8f38db645837f1c0ab0a4b207e}{desconectar\+Firebase} (self)
 \begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
-def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a45da9f7fe0cd5f3feef0c44ae10523c1}{mandar\+Firebase} (mensagem)
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_aec0b9ed7691e78978716075fe999019a}{mensagem\+Alarme} (self, modulo\+ID, mensagem)
 \begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
-def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_ad8ec2f4305787c63c27cab2822ddfd03}{conectar\+Firebase} ()
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a269bab1a9f98ad3ef1ac4a0f31a59a57}{mensagem\+Modulo\+ON} (self, modulo\+ID)
+\begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_aab4023d0316ce43f1ed743aa6d02064e}{receber\+Firebase} (self, mensagem)
+\begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a8c00d07d181c47e4567b602947466abe}{get\+Ultima\+Mensagem} (self)
+\begin{DoxyCompactList}\small\item\em Gets the ultima mensagem. \end{DoxyCompactList}\item 
+def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a434ba152fb00900dddfaf2f61e5d78b6}{apagar\+Mensagens\+Hub} (self)
 \begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Atributos Públicos}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries arg}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a0147b280486ae5e9f28cfb8c4eb3ff36}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a0147b280486ae5e9f28cfb8c4eb3ff36}
+{\bfseries hub\+ID}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a13968444b5703f3c8f30c7bf14de21a8}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a13968444b5703f3c8f30c7bf14de21a8}
+
+\item 
+{\bfseries app\+ID}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a6c765d09ff060cf4a06e5f4465937b52}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a6c765d09ff060cf4a06e5f4465937b52}
+
+\item 
+{\bfseries stream}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_afc660542885ce7717ef17d4ddb4f9b76}{}\label{classhub_para_firebase_1_1_hub_para_firebase_afc660542885ce7717ef17d4ddb4f9b76}
 
 \end{DoxyCompactItemize}
 \subsection*{Atributos Públicos Estáticos}
 \begin{DoxyCompactItemize}
 \item 
-string {\bfseries status} = \char`\"{}\char`\"{}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a6b6f79dc520a7a81953e40dc524fd739}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a6b6f79dc520a7a81953e40dc524fd739}
+string {\bfseries hub\+ID} = \char`\"{}\char`\"{}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a877a7af6deac7745ca493313cc812936}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a877a7af6deac7745ca493313cc812936}
+
+\item 
+string {\bfseries app\+ID} = \char`\"{}\char`\"{}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a1151963c2e4dea5ea944b2082a629a07}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a1151963c2e4dea5ea944b2082a629a07}
+
+\item 
+{\bfseries firebase} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_aaa1bce183719a2446b9b697db2ccb45a}{}\label{classhub_para_firebase_1_1_hub_para_firebase_aaa1bce183719a2446b9b697db2ccb45a}
+
+\item 
+{\bfseries database} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_ad897e9d2142426f09b8154ae0e0ab374}{}\label{classhub_para_firebase_1_1_hub_para_firebase_ad897e9d2142426f09b8154ae0e0ab374}
+
+\item 
+{\bfseries gerenciador\+Mensagens\+Recebidas} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_ae5cbb5c32dda53f7f6a6c1b5685d2815}{}\label{classhub_para_firebase_1_1_hub_para_firebase_ae5cbb5c32dda53f7f6a6c1b5685d2815}
+
+\item 
+{\bfseries mensagens\+Recebidas} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_aed56c55b4e098c7c77ffee2759801901}{}\label{classhub_para_firebase_1_1_hub_para_firebase_aed56c55b4e098c7c77ffee2759801901}
 
 \end{DoxyCompactItemize}
 
 
 \subsection{Descrição detalhada}
-Class for hub para firebase. 
+Esta classe é responsável pela comunicação entre o H\+UB e o banco de dados firebase. 
+
+Este módulo provem funções básicas de comunição, entretando não é responsável pela lógica usada de acordo com as mensagens.
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em status} & The status \\
+{\em hub\+ID} & O id do hub cadastrado no banco de dados firebase \\
+\hline
+{\em app\+ID} & O id do app / do usuário do app no banco de dados firebase \\
+\hline
+{\em firebase} & Objeto da classe pyrebase, responsável pela conexão com o servidor \\
+\hline
+{\em database} & Objeto da classe pyrebase, responsável por recuperar dados do banco de dados firebase. \\
+\hline
+{\em mensagens\+Recebidas} & As mensagens recebidas pelo módulo, guardadas como uma lista ordenada. \\
 \hline
 \end{DoxyParams}
 
@@ -49,12 +86,13 @@ Class for hub para firebase.
 \subsection{Documentação dos Construtores \& Destrutor}
 \index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
 \index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+(self, arg)}{__init__(self, arg)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+\_\+\+\_\+init\+\_\+\+\_\+ (
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+(self, hub\+I\+D, app\+I\+D)}{__init__(self, hubID, appID)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+\_\+\+\_\+init\+\_\+\+\_\+ (
 \begin{DoxyParamCaption}
 \item[{}]{self, }
-\item[{}]{arg}
+\item[{}]{hub\+ID, }
+\item[{}]{app\+ID}
 \end{DoxyParamCaption}
-)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a2125568a783092a9463703c03cbfe9d6}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a2125568a783092a9463703c03cbfe9d6}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a2c9535c4753cd92950dab73023519e0c}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a2c9535c4753cd92950dab73023519e0c}
 
 
 Constructs the object. 
@@ -63,40 +101,113 @@ Constructs the object.
 \begin{DoxyParams}{Parâmetros}
 {\em self} & The object \\
 \hline
-{\em arg} & The argument \\
+{\em hub\+ID} & The hub id \\
+\hline
+{\em app\+ID} & The application id \\
 \hline
 \end{DoxyParams}
 
 
 \subsection{Documentação dos métodos}
-\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!conectar\+Firebase@{conectar\+Firebase}}
-\index{conectar\+Firebase@{conectar\+Firebase}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
-\subsubsection[{\texorpdfstring{conectar\+Firebase()}{conectarFirebase()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+conectar\+Firebase (
+\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!apagar\+Mensagens\+Hub@{apagar\+Mensagens\+Hub}}
+\index{apagar\+Mensagens\+Hub@{apagar\+Mensagens\+Hub}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
+\subsubsection[{\texorpdfstring{apagar\+Mensagens\+Hub(self)}{apagarMensagensHub(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+apagar\+Mensagens\+Hub (
 \begin{DoxyParamCaption}
-{}
+\item[{}]{self}
 \end{DoxyParamCaption}
-)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_ad8ec2f4305787c63c27cab2822ddfd03}{}\label{classhub_para_firebase_1_1_hub_para_firebase_ad8ec2f4305787c63c27cab2822ddfd03}
-
-
-\{ function\+\_\+description \} 
-
-\begin{DoxyReturn}{Retorna}
-\{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
-\end{DoxyReturn}
-\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!mandar\+Firebase@{mandar\+Firebase}}
-\index{mandar\+Firebase@{mandar\+Firebase}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
-\subsubsection[{\texorpdfstring{mandar\+Firebase(mensagem)}{mandarFirebase(mensagem)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+mandar\+Firebase (
-\begin{DoxyParamCaption}
-\item[{}]{mensagem}
-\end{DoxyParamCaption}
-)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a45da9f7fe0cd5f3feef0c44ae10523c1}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a45da9f7fe0cd5f3feef0c44ae10523c1}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a434ba152fb00900dddfaf2f61e5d78b6}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a434ba152fb00900dddfaf2f61e5d78b6}
 
 
 \{ function\+\_\+description \} 
 
 
 \begin{DoxyParams}{Parâmetros}
-{\em message} & The message\\
+{\em self} & The object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+\{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
+\end{DoxyReturn}
+\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!desconectar\+Firebase@{desconectar\+Firebase}}
+\index{desconectar\+Firebase@{desconectar\+Firebase}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
+\subsubsection[{\texorpdfstring{desconectar\+Firebase(self)}{desconectarFirebase(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+desconectar\+Firebase (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a8867ea8f38db645837f1c0ab0a4b207e}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a8867ea8f38db645837f1c0ab0a4b207e}
+
+
+\{ function\+\_\+description \} 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em self} & The object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+\{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
+\end{DoxyReturn}
+\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!get\+Ultima\+Mensagem@{get\+Ultima\+Mensagem}}
+\index{get\+Ultima\+Mensagem@{get\+Ultima\+Mensagem}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
+\subsubsection[{\texorpdfstring{get\+Ultima\+Mensagem(self)}{getUltimaMensagem(self)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+get\+Ultima\+Mensagem (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a8c00d07d181c47e4567b602947466abe}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a8c00d07d181c47e4567b602947466abe}
+
+
+Gets the ultima mensagem. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em self} & The object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+The ultima mensagem. 
+\end{DoxyReturn}
+\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!mensagem\+Alarme@{mensagem\+Alarme}}
+\index{mensagem\+Alarme@{mensagem\+Alarme}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
+\subsubsection[{\texorpdfstring{mensagem\+Alarme(self, modulo\+I\+D, mensagem)}{mensagemAlarme(self, moduloID, mensagem)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+mensagem\+Alarme (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{modulo\+ID, }
+\item[{}]{mensagem}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_aec0b9ed7691e78978716075fe999019a}{}\label{classhub_para_firebase_1_1_hub_para_firebase_aec0b9ed7691e78978716075fe999019a}
+
+
+\{ function\+\_\+description \} 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em self} & The object \\
+\hline
+{\em modulo\+ID} & The modulo id \\
+\hline
+{\em mensagem} & The mensagem\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+\{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
+\end{DoxyReturn}
+\index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!mensagem\+Modulo\+ON@{mensagem\+Modulo\+ON}}
+\index{mensagem\+Modulo\+ON@{mensagem\+Modulo\+ON}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
+\subsubsection[{\texorpdfstring{mensagem\+Modulo\+O\+N(self, modulo\+I\+D)}{mensagemModuloON(self, moduloID)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+mensagem\+Modulo\+ON (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{modulo\+ID}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a269bab1a9f98ad3ef1ac4a0f31a59a57}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a269bab1a9f98ad3ef1ac4a0f31a59a57}
+
+
+\{ function\+\_\+description \} 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em self} & The object \\
+\hline
+{\em modulo\+ID} & The modulo id\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Retorna}
@@ -104,15 +215,23 @@ Constructs the object.
 \end{DoxyReturn}
 \index{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}!receber\+Firebase@{receber\+Firebase}}
 \index{receber\+Firebase@{receber\+Firebase}!hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase@{hub\+Para\+Firebase\+::\+Hub\+Para\+Firebase}}
-\subsubsection[{\texorpdfstring{receber\+Firebase()}{receberFirebase()}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+receber\+Firebase (
+\subsubsection[{\texorpdfstring{receber\+Firebase(self, mensagem)}{receberFirebase(self, mensagem)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Firebase.\+Hub\+Para\+Firebase.\+receber\+Firebase (
 \begin{DoxyParamCaption}
-{}
+\item[{}]{self, }
+\item[{}]{mensagem}
 \end{DoxyParamCaption}
-)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_adc3d6a4b1544ed5ae5caf1deb28cd296}{}\label{classhub_para_firebase_1_1_hub_para_firebase_adc3d6a4b1544ed5ae5caf1deb28cd296}
+)}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_aab4023d0316ce43f1ed743aa6d02064e}{}\label{classhub_para_firebase_1_1_hub_para_firebase_aab4023d0316ce43f1ed743aa6d02064e}
 
 
 \{ function\+\_\+description \} 
 
+
+\begin{DoxyParams}{Parâmetros}
+{\em self} & The object \\
+\hline
+{\em mensagem} & The mensagem\\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Retorna}
 \{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
 \end{DoxyReturn}

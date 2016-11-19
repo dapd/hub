@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 </div><!--header-->
 <div class="contents">
 
-<p>Class for hub para firebase.  
+<p>Esta classe é responsável pela comunicação entre o HUB e o banco de dados firebase.  
  <a href="classhub_para_firebase_1_1_hub_para_firebase.html#details">Mais...</a></p>
 <div class="dynheader">
 Diagrama de heranças da classe hubParaFirebase.HubParaFirebase</div>
@@ -110,41 +110,76 @@ Diagrama de heranças da classe hubParaFirebase.HubParaFirebase</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Membros públicos</h2></td></tr>
-<tr class="memitem:a2125568a783092a9463703c03cbfe9d6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a2125568a783092a9463703c03cbfe9d6">__init__</a> (self, arg)</td></tr>
-<tr class="memdesc:a2125568a783092a9463703c03cbfe9d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the object.  <a href="#a2125568a783092a9463703c03cbfe9d6">Mais...</a><br /></td></tr>
-<tr class="separator:a2125568a783092a9463703c03cbfe9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc3d6a4b1544ed5ae5caf1deb28cd296"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#adc3d6a4b1544ed5ae5caf1deb28cd296">receberFirebase</a> ()</td></tr>
-<tr class="memdesc:adc3d6a4b1544ed5ae5caf1deb28cd296"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#adc3d6a4b1544ed5ae5caf1deb28cd296">Mais...</a><br /></td></tr>
-<tr class="separator:adc3d6a4b1544ed5ae5caf1deb28cd296"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45da9f7fe0cd5f3feef0c44ae10523c1"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a45da9f7fe0cd5f3feef0c44ae10523c1">mandarFirebase</a> (mensagem)</td></tr>
-<tr class="memdesc:a45da9f7fe0cd5f3feef0c44ae10523c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a45da9f7fe0cd5f3feef0c44ae10523c1">Mais...</a><br /></td></tr>
-<tr class="separator:a45da9f7fe0cd5f3feef0c44ae10523c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8ec2f4305787c63c27cab2822ddfd03"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#ad8ec2f4305787c63c27cab2822ddfd03">conectarFirebase</a> ()</td></tr>
-<tr class="memdesc:ad8ec2f4305787c63c27cab2822ddfd03"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#ad8ec2f4305787c63c27cab2822ddfd03">Mais...</a><br /></td></tr>
-<tr class="separator:ad8ec2f4305787c63c27cab2822ddfd03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9535c4753cd92950dab73023519e0c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a2c9535c4753cd92950dab73023519e0c">__init__</a> (self, hubID, appID)</td></tr>
+<tr class="memdesc:a2c9535c4753cd92950dab73023519e0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the object.  <a href="#a2c9535c4753cd92950dab73023519e0c">Mais...</a><br /></td></tr>
+<tr class="separator:a2c9535c4753cd92950dab73023519e0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8867ea8f38db645837f1c0ab0a4b207e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a8867ea8f38db645837f1c0ab0a4b207e">desconectarFirebase</a> (self)</td></tr>
+<tr class="memdesc:a8867ea8f38db645837f1c0ab0a4b207e"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a8867ea8f38db645837f1c0ab0a4b207e">Mais...</a><br /></td></tr>
+<tr class="separator:a8867ea8f38db645837f1c0ab0a4b207e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0b9ed7691e78978716075fe999019a"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#aec0b9ed7691e78978716075fe999019a">mensagemAlarme</a> (self, moduloID, mensagem)</td></tr>
+<tr class="memdesc:aec0b9ed7691e78978716075fe999019a"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#aec0b9ed7691e78978716075fe999019a">Mais...</a><br /></td></tr>
+<tr class="separator:aec0b9ed7691e78978716075fe999019a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a269bab1a9f98ad3ef1ac4a0f31a59a57"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a269bab1a9f98ad3ef1ac4a0f31a59a57">mensagemModuloON</a> (self, moduloID)</td></tr>
+<tr class="memdesc:a269bab1a9f98ad3ef1ac4a0f31a59a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a269bab1a9f98ad3ef1ac4a0f31a59a57">Mais...</a><br /></td></tr>
+<tr class="separator:a269bab1a9f98ad3ef1ac4a0f31a59a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab4023d0316ce43f1ed743aa6d02064e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#aab4023d0316ce43f1ed743aa6d02064e">receberFirebase</a> (self, mensagem)</td></tr>
+<tr class="memdesc:aab4023d0316ce43f1ed743aa6d02064e"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#aab4023d0316ce43f1ed743aa6d02064e">Mais...</a><br /></td></tr>
+<tr class="separator:aab4023d0316ce43f1ed743aa6d02064e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c00d07d181c47e4567b602947466abe"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a8c00d07d181c47e4567b602947466abe">getUltimaMensagem</a> (self)</td></tr>
+<tr class="memdesc:a8c00d07d181c47e4567b602947466abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the ultima mensagem.  <a href="#a8c00d07d181c47e4567b602947466abe">Mais...</a><br /></td></tr>
+<tr class="separator:a8c00d07d181c47e4567b602947466abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a434ba152fb00900dddfaf2f61e5d78b6"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a434ba152fb00900dddfaf2f61e5d78b6">apagarMensagensHub</a> (self)</td></tr>
+<tr class="memdesc:a434ba152fb00900dddfaf2f61e5d78b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a434ba152fb00900dddfaf2f61e5d78b6">Mais...</a><br /></td></tr>
+<tr class="separator:a434ba152fb00900dddfaf2f61e5d78b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Atributos Públicos</h2></td></tr>
-<tr class="memitem:a0147b280486ae5e9f28cfb8c4eb3ff36"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0147b280486ae5e9f28cfb8c4eb3ff36"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>arg</b></td></tr>
-<tr class="separator:a0147b280486ae5e9f28cfb8c4eb3ff36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13968444b5703f3c8f30c7bf14de21a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13968444b5703f3c8f30c7bf14de21a8"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>hubID</b></td></tr>
+<tr class="separator:a13968444b5703f3c8f30c7bf14de21a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c765d09ff060cf4a06e5f4465937b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c765d09ff060cf4a06e5f4465937b52"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b></td></tr>
+<tr class="separator:a6c765d09ff060cf4a06e5f4465937b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc660542885ce7717ef17d4ddb4f9b76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc660542885ce7717ef17d4ddb4f9b76"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>stream</b></td></tr>
+<tr class="separator:afc660542885ce7717ef17d4ddb4f9b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Atributos Públicos Estáticos</h2></td></tr>
-<tr class="memitem:a6b6f79dc520a7a81953e40dc524fd739"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b6f79dc520a7a81953e40dc524fd739"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;&quot;</td></tr>
-<tr class="separator:a6b6f79dc520a7a81953e40dc524fd739"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a877a7af6deac7745ca493313cc812936"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a877a7af6deac7745ca493313cc812936"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>hubID</b> = &quot;&quot;</td></tr>
+<tr class="separator:a877a7af6deac7745ca493313cc812936"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1151963c2e4dea5ea944b2082a629a07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1151963c2e4dea5ea944b2082a629a07"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&quot;</td></tr>
+<tr class="separator:a1151963c2e4dea5ea944b2082a629a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1bce183719a2446b9b697db2ccb45a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa1bce183719a2446b9b697db2ccb45a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>firebase</b> = None</td></tr>
+<tr class="separator:aaa1bce183719a2446b9b697db2ccb45a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad897e9d2142426f09b8154ae0e0ab374"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad897e9d2142426f09b8154ae0e0ab374"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>database</b> = None</td></tr>
+<tr class="separator:ad897e9d2142426f09b8154ae0e0ab374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5cbb5c32dda53f7f6a6c1b5685d2815"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5cbb5c32dda53f7f6a6c1b5685d2815"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>gerenciadorMensagensRecebidas</b> = None</td></tr>
+<tr class="separator:ae5cbb5c32dda53f7f6a6c1b5685d2815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed56c55b4e098c7c77ffee2759801901"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed56c55b4e098c7c77ffee2759801901"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>mensagensRecebidas</b> = None</td></tr>
+<tr class="separator:aed56c55b4e098c7c77ffee2759801901"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
-<div class="textblock"><p>Class for hub para firebase. </p>
+<div class="textblock"><p>Esta classe é responsável pela comunicação entre o HUB e o banco de dados firebase. </p>
+<p>Este módulo provem funções básicas de comunição, entretando não é responsável pela lógica usada de acordo com as mensagens.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">status</td><td>The status </td></tr>
+    <tr><td class="paramname">hubID</td><td>O id do hub cadastrado no banco de dados firebase </td></tr>
+    <tr><td class="paramname">appID</td><td>O id do app / do usuário do app no banco de dados firebase </td></tr>
+    <tr><td class="paramname">firebase</td><td>Objeto da classe pyrebase, responsável pela conexão com o servidor </td></tr>
+    <tr><td class="paramname">database</td><td>Objeto da classe pyrebase, responsável por recuperar dados do banco de dados firebase. </td></tr>
+    <tr><td class="paramname">mensagensRecebidas</td><td>As mensagens recebidas pelo módulo, guardadas como uma lista ordenada. </td></tr>
   </table>
   </dd>
 </dl>
 </div><h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
-<a class="anchor" id="a2125568a783092a9463703c03cbfe9d6"></a>
+<a class="anchor" id="a2c9535c4753cd92950dab73023519e0c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -158,7 +193,13 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>arg</em>&#160;</td>
+          <td class="paramname"><em>hubID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>appID</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -172,7 +213,8 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">self</td><td>The object </td></tr>
-    <tr><td class="paramname">arg</td><td>The argument </td></tr>
+    <tr><td class="paramname">hubID</td><td>The hub id </td></tr>
+    <tr><td class="paramname">appID</td><td>The application id </td></tr>
   </table>
   </dd>
 </dl>
@@ -180,33 +222,15 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
 </div>
 </div>
 <h2 class="groupheader">Documentação dos métodos</h2>
-<a class="anchor" id="ad8ec2f4305787c63c27cab2822ddfd03"></a>
+<a class="anchor" id="a434ba152fb00900dddfaf2f61e5d78b6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def hubParaFirebase.HubParaFirebase.conectarFirebase </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>{ function_description } </p>
-<dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a45da9f7fe0cd5f3feef0c44ae10523c1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def hubParaFirebase.HubParaFirebase.mandarFirebase </td>
+          <td class="memname">def hubParaFirebase.HubParaFirebase.apagarMensagensHub </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>mensagem</em></td><td>)</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -215,7 +239,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
 <p>{ function_description } </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>The message</td></tr>
+    <tr><td class="paramname">self</td><td>The object</td></tr>
   </table>
   </dd>
 </dl>
@@ -223,20 +247,167 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
 
 </div>
 </div>
-<a class="anchor" id="adc3d6a4b1544ed5ae5caf1deb28cd296"></a>
+<a class="anchor" id="a8867ea8f38db645837f1c0ab0a4b207e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">def hubParaFirebase.HubParaFirebase.receberFirebase </td>
+          <td class="memname">def hubParaFirebase.HubParaFirebase.desconectarFirebase </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>{ function_description } </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>The object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8c00d07d181c47e4567b602947466abe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def hubParaFirebase.HubParaFirebase.getUltimaMensagem </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the ultima mensagem. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>The object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>The ultima mensagem. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aec0b9ed7691e78978716075fe999019a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def hubParaFirebase.HubParaFirebase.mensagemAlarme </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>moduloID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mensagem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>{ function_description } </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>The object </td></tr>
+    <tr><td class="paramname">moduloID</td><td>The modulo id </td></tr>
+    <tr><td class="paramname">mensagem</td><td>The mensagem</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a269bab1a9f98ad3ef1ac4a0f31a59a57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def hubParaFirebase.HubParaFirebase.mensagemModuloON </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>moduloID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>{ function_description } </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>The object </td></tr>
+    <tr><td class="paramname">moduloID</td><td>The modulo id</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aab4023d0316ce43f1ed743aa6d02064e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def hubParaFirebase.HubParaFirebase.receberFirebase </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mensagem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>{ function_description } </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">self</td><td>The object </td></tr>
+    <tr><td class="paramname">mensagem</td><td>The mensagem</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
 
 </div>
