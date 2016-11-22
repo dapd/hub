@@ -13,7 +13,23 @@
 ##             necessárias para de fato acionar o led em hardware, e inicializar
 ##             os mesmos em init. 
 
-import RGB
+pinoLedRed=0
+pinoLedGreen=0
+pinoLedBlue=0
+
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(pinoLedRed, GPIO.OUT)
+GPIO.setup(pinoLedGreen, GPIO.OUT)
+GPIO.setup(pinoLedBlue, GPIO.OUT)
+LedRed= GPIO.PWM(pinoLedRed,frequencia)
+LedGreen= GPIO.PWM(pinoLedGreen,frequencia)
+LedBlue= GPIO.PWM(pinoLedBlue,frequencia)
+
+LedRed.start(0)
+LedGreen.start(0)
+LedBlue.start(0)
+
 
 class LedManager(object):
 
@@ -58,7 +74,7 @@ class LedManager(object):
 			for objetoRGB in self.dicionario:
 				#print (objetoRGB.Status)
 				#print (objetoRGB.Status==status)
-				if objetoRGB.Status==status:
+				if objetoRGB.status==status:
 					#print(status)
 					self.ligarLed((objetoRGB.red,objetoRGB.green,objetoRGB.blue))
 					return 1
@@ -81,8 +97,10 @@ class LedManager(object):
 	##
 	## @return     O valor de retorno sempre será @c NULL.
 	##
-	def ligarLed(rgb):
-		raise NotImplementedError(" Favor implementar esse metodo. ")
+	def ligarLed(self,red,green,blue):
+		LedRed.ChangeDutyCycle ((1-red/255.0)*100)
+		LedGreen.ChangeDutyCycle ((1-green/255.0)*100)
+		LedBlue.ChangeDutyCycle ((1-blue/255.0)*100)
 
 	#------------------------------------------------------------------------------
 	## @brief      Desliga o led. Simples assim.
@@ -92,8 +110,12 @@ class LedManager(object):
 	##
 	## @return     O valor de retorno sempre será @c NULL.
 	##
-	def desligarLed():
-		raise NotImplementedError(" Favor implementar esse metodo. ")
+	def desligarLed(self):
+		LedRed.ChangeDutyCycle(100)
+		LedGreen.ChangeDutyCycle(100)
+		LedBlue.ChangeDutyCycle(100)
+		
+		
 
 #-------------------------------------------------------------------------------
 ## @brief      Classe para rgb.
@@ -126,4 +148,4 @@ class RGB(object):
 		self.red = red
 		self.green = green
 		self.blue = blue
-		self.Status = status
+		self.status = status
