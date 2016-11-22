@@ -241,6 +241,7 @@ class HubParaFirebase(object):
 	__config = None
 	__firebase = None
 	database = None
+	stream = None
 	gerenciadorMensagensRecebidas = None
 	mensagensRecebidas = None
 
@@ -339,11 +340,12 @@ class HubParaFirebase(object):
 			self.database.child("hubs").child(self.hubID).child("modulos").update({modulo.key() : "DISCONECTED"})
 		self.database.child("hubs").child(self.hubID).update({"status" : "OFF"})
 		
-		try:
-			self.stream.close()
-		except AttributeError as e:
-			raise e
-			print(" Erro ao se desconectar do firebase. Favor, reportar issue")
+		if self.appID != None and self.stream != None:
+			try:
+				self.stream.close()
+			except AttributeError as e:
+				raise e
+				print(" Erro ao se desconectar do firebase. Favor, reportar issue")
 
 	##
 	## @brief      { function_description }
@@ -584,12 +586,10 @@ class HubParaFirebase(object):
 asd = HubParaFirebase("auhdasudad")
 asd.mensagemModuloStatus("objetos")
 asd.mensagemModuloStatus("gas")
+while not asd.haDono:
+	asd.atualizarDono()
 asd.mensagemAlarme("objetos", "Objeto 'celular' esta faltando.")
 asd.apagarMensagensHub()
-if not asd.haDono:
-	asd.atualizarDono()
 msg = asd.getUltimaMensagem()
-while msg != None:
-	print(msg)
-	msg = asd.getUltimaMensagem()
+print(msg)
 asd.desconectarFirebase()
