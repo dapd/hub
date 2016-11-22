@@ -344,8 +344,8 @@ class HubParaFirebase(object):
 			try:
 				self.stream.close()
 			except AttributeError as e:
-				raise e
 				print(" Erro ao se desconectar do firebase. Favor, reportar issue")
+				raise e
 
 	##
 	## @brief      { function_description }
