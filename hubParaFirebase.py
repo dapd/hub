@@ -342,7 +342,7 @@ class HubParaFirebase(object):
 		
 		if self.appID != None and self.stream != None:
 			try:
-				self.stream.close()
+				self.stream.sse.resp.close()
 			except AttributeError as e:
 				print(" Erro ao se desconectar do firebase. Favor, reportar issue")
 				raise e
