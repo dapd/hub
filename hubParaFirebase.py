@@ -549,7 +549,7 @@ class HubParaFirebase(object):
 				query = self.database.child("hubs").get()
 			hubs = query.val()
 			hubAtual = hubs[self.hubID]
-
+			print(hubAtual.keys())
 			if "dono" in hubAtual.keys():
 				self.appID = hubAtual["dono"]
 			else:
