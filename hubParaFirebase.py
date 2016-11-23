@@ -617,7 +617,7 @@ while msg != "sair":
 	if asd.appID == None:
 		asd.atualizarDono()
 
-	if random.uniform(0,1) > 0.99:
+	if random.uniform(0,1) > 0.50:
 		if random.uniform(0,1) > 0.7 and alarm1 != 1:	
 			asd.mensagemAlarme("gas", "Há gás no ambiente")
 			alarm1 = 1
