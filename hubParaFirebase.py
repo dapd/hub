@@ -608,7 +608,8 @@ alarm7 = 0
 led.ligarLed(0,0,255)
 
 while msg != "sair":
-	led.ligarLed(255,100,0)
+	if not asd.haDono():
+		led.ligarLed(255,150,0)
 	while not asd.haDono():
 		print("Esperando dono do hub ser definido..")
 
