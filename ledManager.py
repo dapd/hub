@@ -13,9 +13,10 @@
 ##             necessárias para de fato acionar o led em hardware, e inicializar
 ##             os mesmos em init. 
 
-pinoLedRed=0
-pinoLedGreen=0
-pinoLedBlue=0
+pinoLedRed=3
+pinoLedGreen=5
+pinoLedBlue=7
+frequencia=50
 
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
@@ -58,9 +59,9 @@ class LedManager(object):
 	## @warning    Possível melhoria: pegar cores de arquivo de configuração.
 	##
 	def adicionarRGBsemInteracao(self,status,red,green,blue):
-	if self.procurarSignificado(status)==0:
-		objetoRGB= RGB.RGB(status,red,green,blue)
-		self.dicionario.append(objetoRGB)
+		if self.procurarSignificado(status)==0:
+			objetoRGB= RGB(status,red,green,blue)
+			self.dicionario.append(objetoRGB)
 	#------------------------------------------------------------------------------
 	## @brief      Dado um @c status, método acende led com cor especificada anteriormente
 	##
