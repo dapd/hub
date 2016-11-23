@@ -586,9 +586,9 @@ class HubParaFirebase(object):
 		else:
 			return False
 
-led.ligarLed(255,255,0)		
-asd = HubParaFirebase("auhdasudad")
 led = LedManager()
+led.ligarLed(255,255,0)	
+asd = HubParaFirebase("auhdasudad")
 asd.mensagemModuloStatus("objetos")
 asd.mensagemModuloStatus("gas")
 
