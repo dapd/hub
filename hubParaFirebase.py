@@ -6,6 +6,7 @@ import urllib.error
 import collections
 from socket import gaierror
 from httplib2 import ServerNotFoundError
+import random
 
 ##
 ## @brief      Esta classe é responsável pela comunicação entre o HUB e o banco
@@ -476,6 +477,7 @@ class HubParaFirebase(object):
 	##             pela classe.
 	##
 	def __receberFirebase(self, mensagem):
+		print("Recebendo mensagens..")
 		if mensagem == None:
 			raise ValueError(" Erro inesperado ao receber mensagem do stream de dados")
 		else:
@@ -536,7 +538,7 @@ class HubParaFirebase(object):
 	## @return     { description_of_the_return_value }
 	##
 	def atualizarDono(self):
-		if self.appID != "":
+		if self.appID != None:
 			print(" #Warning: Dono ja foi definido")
 		else:
 			try:
@@ -545,7 +547,7 @@ class HubParaFirebase(object):
 				self.__reconectar()
 				query = self.database.child("hubs").get()
 			hubs = query.val()
-			hubAtual = hubs[hubID]
+			hubAtual = hubs[self.hubID]
 
 			if "dono" in hubAtual.keys():
 				self.appID = hubAtual["dono"]
@@ -576,7 +578,7 @@ class HubParaFirebase(object):
 			self.__reconectar()
 			query = self.database.child("hubs").get()
 		hubs = query.val()
-		hubAtual = hubs[hubID]
+		hubAtual = hubs[self.hubID]
 
 		if "dono" in hubAtual.keys():
 			return True
@@ -586,10 +588,38 @@ class HubParaFirebase(object):
 asd = HubParaFirebase("auhdasudad")
 asd.mensagemModuloStatus("objetos")
 asd.mensagemModuloStatus("gas")
-while not asd.haDono:
-	asd.atualizarDono()
-asd.mensagemAlarme("objetos", "Objeto 'celular' esta faltando.")
-asd.apagarMensagensHub()
-msg = asd.getUltimaMensagem()
-print(msg)
+
+msg = ""
+
+while msg != "sair":
+	while not asd.haDono():
+		print("Esperando dono do hub ser definido..")
+	
+	if asd.appID == None:
+		asd.atualizarDono()
+
+	if random.uniform(0,1) > 0.96:
+		if random.uniform(0,1) > 0.5:	
+			asd.mensagemAlarme("gas", "Há gás no ambiente")
+
+		if random.uniform(0,1) > 0.7:	
+			asd.mensagemAlarme("gas", "Gás perto de valor crítico.")
+
+		if random.uniform(0,1) > 0.9:	
+			asd.mensagemAlarme("gas", "Gás acima do valor crítico.")
+
+		if random.uniform(0,1) > 0.8:
+			asd.mensagemAlarme("objetos", "Objeto 'Chaves' foi esquecido.")
+
+		if random.uniform(0,1) > 0.6:
+			asd.mensagemAlarme("objetos", "Objeto 'Cartão do CIn' foi esquecido.")
+
+		if random.uniform(0,1) > 0.7:
+			asd.mensagemAlarme("objetos", "Objeto 'Dinheiro' foi esquecido.")
+
+		if random.uniform(0,1) > 0.6:
+			asd.mensagemAlarme("objetos", "Objeto 'Dinheiro' foi esquecido.")
+
+	msg = asd.getUltimaMensagem()
+	print(msg)
 asd.desconectarFirebase()

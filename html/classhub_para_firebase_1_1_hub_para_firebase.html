@@ -111,7 +111,7 @@ Diagrama de heranças da classe hubParaFirebase.HubParaFirebase</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Membros públicos</h2></td></tr>
 <tr class="memitem:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a8553e4a8f4a5564e69a1ebac33e255b3">__init__</a> (self, hubID)</td></tr>
-<tr class="memdesc:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the object.  <a href="#a8553e4a8f4a5564e69a1ebac33e255b3">Mais...</a><br /></td></tr>
+<tr class="memdesc:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa a instância da classe e se conecta ao firebase.  <a href="#a8553e4a8f4a5564e69a1ebac33e255b3">Mais...</a><br /></td></tr>
 <tr class="separator:a8553e4a8f4a5564e69a1ebac33e255b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8867ea8f38db645837f1c0ab0a4b207e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html#a8867ea8f38db645837f1c0ab0a4b207e">desconectarFirebase</a> (self)</td></tr>
 <tr class="memdesc:a8867ea8f38db645837f1c0ab0a4b207e"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a8867ea8f38db645837f1c0ab0a4b207e">Mais...</a><br /></td></tr>
@@ -143,9 +143,6 @@ Atributos Públicos</h2></td></tr>
 <tr class="memitem:a6c765d09ff060cf4a06e5f4465937b52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c765d09ff060cf4a06e5f4465937b52"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>appID</b></td></tr>
 <tr class="separator:a6c765d09ff060cf4a06e5f4465937b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc660542885ce7717ef17d4ddb4f9b76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc660542885ce7717ef17d4ddb4f9b76"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>stream</b></td></tr>
-<tr class="separator:afc660542885ce7717ef17d4ddb4f9b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Atributos Públicos Estáticos</h2></td></tr>
@@ -158,6 +155,9 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&
 <tr class="memitem:ad897e9d2142426f09b8154ae0e0ab374"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad897e9d2142426f09b8154ae0e0ab374"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>database</b> = None</td></tr>
 <tr class="separator:ad897e9d2142426f09b8154ae0e0ab374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc660542885ce7717ef17d4ddb4f9b76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc660542885ce7717ef17d4ddb4f9b76"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>stream</b> = None</td></tr>
+<tr class="separator:afc660542885ce7717ef17d4ddb4f9b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5cbb5c32dda53f7f6a6c1b5685d2815"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae5cbb5c32dda53f7f6a6c1b5685d2815"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>gerenciadorMensagensRecebidas</b> = None</td></tr>
 <tr class="separator:ae5cbb5c32dda53f7f6a6c1b5685d2815"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,11 +219,13 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>appID</b> = &quot;&
       </table>
 </div><div class="memdoc">
 
-<p>Constructs the object. </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
+<p>Inicializa a instância da classe e se conecta ao firebase. </p>
+<p>Altere a inicialização self.__config apropriadamente. Esse método conecta-se com o firebase, seta o status do hub atual para ON, e, caso o hub já tenha um dono, começa a escutar as mensagens do app.</p>
+<p>Exemplo de uso:</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;foo = HubParaFirebase(<span class="stringliteral">&quot;kasldjlasjdl&quot;</span>)</div></div><!-- fragment --><dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">self</td><td>O objeto </td></tr>
-    <tr><td class="paramname">hubID</td><td>The hub id </td></tr>
+    <tr><td class="paramname">hubID</td><td>O id do hub. É esperado que seja válido. Ver <a class="el" href="classhub_para_firebase_1_1_hub_para_firebase.html" title="Esta classe é responsável pela comunicação entre o HUB e o banco de dados firebase. ">HubParaFirebase</a> para mais detalhes. </td></tr>
   </table>
   </dd>
 </dl>

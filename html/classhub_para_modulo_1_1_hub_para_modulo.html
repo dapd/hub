@@ -96,9 +96,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
 <div class="title">Referência à classe hubParaModulo.HubParaModulo</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Class for hub para modulo.  
- <a href="classhub_para_modulo_1_1_hub_para_modulo.html#details">Mais...</a></p>
 <div class="dynheader">
 Diagrama de heranças da classe hubParaModulo.HubParaModulo</div>
 <div class="dyncontent">
@@ -113,8 +110,11 @@ Membros públicos</h2></td></tr>
 <tr class="memitem:abf63ddad3857ffe2c53bfa707a149c75"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_modulo_1_1_hub_para_modulo.html#abf63ddad3857ffe2c53bfa707a149c75">__init__</a> (self, arg)</td></tr>
 <tr class="memdesc:abf63ddad3857ffe2c53bfa707a149c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the object.  <a href="#abf63ddad3857ffe2c53bfa707a149c75">Mais...</a><br /></td></tr>
 <tr class="separator:abf63ddad3857ffe2c53bfa707a149c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a900479a98a6654264db5ae768070c57d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_modulo_1_1_hub_para_modulo.html#a900479a98a6654264db5ae768070c57d">conectarModulo</a> (modulo)</td></tr>
-<tr class="memdesc:a900479a98a6654264db5ae768070c57d"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a900479a98a6654264db5ae768070c57d">Mais...</a><br /></td></tr>
+<tr class="memitem:a9606d191b7c3ef186a3d9ce851cface7"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_modulo_1_1_hub_para_modulo.html#a9606d191b7c3ef186a3d9ce851cface7">parear</a> (self, idt, pin)</td></tr>
+<tr class="memdesc:a9606d191b7c3ef186a3d9ce851cface7"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#a9606d191b7c3ef186a3d9ce851cface7">Mais...</a><br /></td></tr>
+<tr class="separator:a9606d191b7c3ef186a3d9ce851cface7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a900479a98a6654264db5ae768070c57d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a900479a98a6654264db5ae768070c57d"></a>
+def&#160;</td><td class="memItemRight" valign="bottom"><b>conectarModulo</b> (modulo)</td></tr>
 <tr class="separator:a900479a98a6654264db5ae768070c57d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af13d34db03264f5039697c7ca64c5d48"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhub_para_modulo_1_1_hub_para_modulo.html#af13d34db03264f5039697c7ca64c5d48">receberModulo</a> ()</td></tr>
 <tr class="memdesc:af13d34db03264f5039697c7ca64c5d48"><td class="mdescLeft">&#160;</td><td class="mdescRight">{ function_description }  <a href="#af13d34db03264f5039697c7ca64c5d48">Mais...</a><br /></td></tr>
@@ -134,10 +134,11 @@ Atributos Públicos Estáticos</h2></td></tr>
 <tr class="memitem:a7a8bff160bc6b23b0da8fa60f41f7567"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a8bff160bc6b23b0da8fa60f41f7567"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;&quot;</td></tr>
 <tr class="separator:a7a8bff160bc6b23b0da8fa60f41f7567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad87784746e2b4c1379f9eb54f5247cbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad87784746e2b4c1379f9eb54f5247cbc"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>ok</b> = 'OK\r\n'</td></tr>
+<tr class="separator:ad87784746e2b4c1379f9eb54f5247cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
-<div class="textblock"><p>Class for hub para modulo. </p>
-</div><h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
+<h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
 <a class="anchor" id="abf63ddad3857ffe2c53bfa707a149c75"></a>
 <div class="memitem">
 <div class="memproto">
@@ -174,31 +175,6 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
 </div>
 </div>
 <h2 class="groupheader">Documentação dos métodos</h2>
-<a class="anchor" id="a900479a98a6654264db5ae768070c57d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">def hubParaModulo.HubParaModulo.conectarModulo </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>modulo</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>{ function_description } </p>
-<dl class="params"><dt>Parâmetros</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">modulo</td><td>The modulo</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a3b77e329ad83e2a107f0125332d92486"></a>
 <div class="memitem">
 <div class="memproto">
@@ -217,6 +193,47 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>status</b> = &quot;
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
     <tr><td class="paramname">mensagem</td><td>The mensagem</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>{ description_of_the_return_value } </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9606d191b7c3ef186a3d9ce851cface7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def hubParaModulo.HubParaModulo.parear </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>idt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>pin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>{ function_description } </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modulo</td><td>The modulo</td></tr>
   </table>
   </dd>
 </dl>

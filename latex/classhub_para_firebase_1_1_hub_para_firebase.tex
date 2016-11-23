@@ -15,7 +15,7 @@ Diagrama de heranças da classe hub\+Para\+Firebase.\+Hub\+Para\+Firebase\begin{
 \begin{DoxyCompactItemize}
 \item 
 def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a8553e4a8f4a5564e69a1ebac33e255b3}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, hub\+ID)
-\begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Inicializa a instância da classe e se conecta ao firebase. \end{DoxyCompactList}\item 
 def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a8867ea8f38db645837f1c0ab0a4b207e}{desconectar\+Firebase} (self)
 \begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
 def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_aec0b9ed7691e78978716075fe999019a}{mensagem\+Alarme} (self, modulo\+ID, mensagem)
@@ -38,9 +38,6 @@ def \hyperlink{classhub_para_firebase_1_1_hub_para_firebase_a0027a886a16cf88d366
 \item 
 {\bfseries app\+ID}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a6c765d09ff060cf4a06e5f4465937b52}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a6c765d09ff060cf4a06e5f4465937b52}
 
-\item 
-{\bfseries stream}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_afc660542885ce7717ef17d4ddb4f9b76}{}\label{classhub_para_firebase_1_1_hub_para_firebase_afc660542885ce7717ef17d4ddb4f9b76}
-
 \end{DoxyCompactItemize}
 \subsection*{Atributos Públicos Estáticos}
 \begin{DoxyCompactItemize}
@@ -52,6 +49,9 @@ string {\bfseries app\+ID} = \char`\"{}\char`\"{}\hypertarget{classhub_para_fire
 
 \item 
 {\bfseries database} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_ad897e9d2142426f09b8154ae0e0ab374}{}\label{classhub_para_firebase_1_1_hub_para_firebase_ad897e9d2142426f09b8154ae0e0ab374}
+
+\item 
+{\bfseries stream} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_afc660542885ce7717ef17d4ddb4f9b76}{}\label{classhub_para_firebase_1_1_hub_para_firebase_afc660542885ce7717ef17d4ddb4f9b76}
 
 \item 
 {\bfseries gerenciador\+Mensagens\+Recebidas} = None\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_ae5cbb5c32dda53f7f6a6c1b5685d2815}{}\label{classhub_para_firebase_1_1_hub_para_firebase_ae5cbb5c32dda53f7f6a6c1b5685d2815}
@@ -277,13 +277,23 @@ Na primeira conexão, uma instância dessa classe será criada e um warning info
 )}\hypertarget{classhub_para_firebase_1_1_hub_para_firebase_a8553e4a8f4a5564e69a1ebac33e255b3}{}\label{classhub_para_firebase_1_1_hub_para_firebase_a8553e4a8f4a5564e69a1ebac33e255b3}
 
 
-Constructs the object. 
+Inicializa a instância da classe e se conecta ao firebase. 
+
+Altere a inicialização self.\+\_\+\+\_\+config apropriadamente. Esse método conecta-\/se com o firebase, seta o status do hub atual para ON, e, caso o hub já tenha um dono, começa a escutar as mensagens do app.
+
+Exemplo de uso\+:
+
+
+\begin{DoxyCode}
+1 foo = HubParaFirebase(\textcolor{stringliteral}{"kasldjlasjdl"})
+\end{DoxyCode}
+
 
 
 \begin{DoxyParams}{Parâmetros}
 {\em self} & O objeto \\
 \hline
-{\em hub\+ID} & The hub id \\
+{\em hub\+ID} & O id do hub. É esperado que seja válido. Ver \hyperlink{classhub_para_firebase_1_1_hub_para_firebase}{Hub\+Para\+Firebase} para mais detalhes. \\
 \hline
 \end{DoxyParams}
 

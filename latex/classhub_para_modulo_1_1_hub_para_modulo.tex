@@ -1,10 +1,5 @@
 \hypertarget{classhub_para_modulo_1_1_hub_para_modulo}{}\section{Referência à classe hub\+Para\+Modulo.\+Hub\+Para\+Modulo}
 \label{classhub_para_modulo_1_1_hub_para_modulo}\index{hub\+Para\+Modulo.\+Hub\+Para\+Modulo@{hub\+Para\+Modulo.\+Hub\+Para\+Modulo}}
-
-
-Class for hub para modulo.  
-
-
 Diagrama de heranças da classe hub\+Para\+Modulo.\+Hub\+Para\+Modulo\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -16,8 +11,11 @@ Diagrama de heranças da classe hub\+Para\+Modulo.\+Hub\+Para\+Modulo\begin{figu
 \item 
 def \hyperlink{classhub_para_modulo_1_1_hub_para_modulo_abf63ddad3857ffe2c53bfa707a149c75}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, arg)
 \begin{DoxyCompactList}\small\item\em Constructs the object. \end{DoxyCompactList}\item 
-def \hyperlink{classhub_para_modulo_1_1_hub_para_modulo_a900479a98a6654264db5ae768070c57d}{conectar\+Modulo} (modulo)
+def \hyperlink{classhub_para_modulo_1_1_hub_para_modulo_a9606d191b7c3ef186a3d9ce851cface7}{parear} (self, idt, pin)
 \begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
+def {\bfseries conectar\+Modulo} (modulo)\hypertarget{classhub_para_modulo_1_1_hub_para_modulo_a900479a98a6654264db5ae768070c57d}{}\label{classhub_para_modulo_1_1_hub_para_modulo_a900479a98a6654264db5ae768070c57d}
+
+\item 
 def \hyperlink{classhub_para_modulo_1_1_hub_para_modulo_af13d34db03264f5039697c7ca64c5d48}{receber\+Modulo} ()
 \begin{DoxyCompactList}\small\item\em \{ function\+\_\+description \} \end{DoxyCompactList}\item 
 def \hyperlink{classhub_para_modulo_1_1_hub_para_modulo_a3b77e329ad83e2a107f0125332d92486}{mandar\+Modulo} (mensagem)
@@ -33,11 +31,11 @@ def \hyperlink{classhub_para_modulo_1_1_hub_para_modulo_a3b77e329ad83e2a107f0125
 \item 
 string {\bfseries status} = \char`\"{}\char`\"{}\hypertarget{classhub_para_modulo_1_1_hub_para_modulo_a7a8bff160bc6b23b0da8fa60f41f7567}{}\label{classhub_para_modulo_1_1_hub_para_modulo_a7a8bff160bc6b23b0da8fa60f41f7567}
 
+\item 
+string {\bfseries ok} = \textquotesingle{}O\+K\textbackslash{}r\textbackslash{}n\textquotesingle{}\hypertarget{classhub_para_modulo_1_1_hub_para_modulo_ad87784746e2b4c1379f9eb54f5247cbc}{}\label{classhub_para_modulo_1_1_hub_para_modulo_ad87784746e2b4c1379f9eb54f5247cbc}
+
 \end{DoxyCompactItemize}
 
-
-\subsection{Descrição detalhada}
-Class for hub para modulo. 
 
 \subsection{Documentação dos Construtores \& Destrutor}
 \index{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
@@ -62,25 +60,6 @@ Constructs the object.
 
 
 \subsection{Documentação dos métodos}
-\index{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}!conectar\+Modulo@{conectar\+Modulo}}
-\index{conectar\+Modulo@{conectar\+Modulo}!hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}}
-\subsubsection[{\texorpdfstring{conectar\+Modulo(modulo)}{conectarModulo(modulo)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Modulo.\+Hub\+Para\+Modulo.\+conectar\+Modulo (
-\begin{DoxyParamCaption}
-\item[{}]{modulo}
-\end{DoxyParamCaption}
-)}\hypertarget{classhub_para_modulo_1_1_hub_para_modulo_a900479a98a6654264db5ae768070c57d}{}\label{classhub_para_modulo_1_1_hub_para_modulo_a900479a98a6654264db5ae768070c57d}
-
-
-\{ function\+\_\+description \} 
-
-
-\begin{DoxyParams}{Parâmetros}
-{\em modulo} & The modulo\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Retorna}
-\{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
-\end{DoxyReturn}
 \index{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}!mandar\+Modulo@{mandar\+Modulo}}
 \index{mandar\+Modulo@{mandar\+Modulo}!hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}}
 \subsubsection[{\texorpdfstring{mandar\+Modulo(mensagem)}{mandarModulo(mensagem)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Modulo.\+Hub\+Para\+Modulo.\+mandar\+Modulo (
@@ -95,6 +74,27 @@ Constructs the object.
 
 \begin{DoxyParams}{Parâmetros}
 {\em mensagem} & The mensagem\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+\{ description\+\_\+of\+\_\+the\+\_\+return\+\_\+value \} 
+\end{DoxyReturn}
+\index{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}!parear@{parear}}
+\index{parear@{parear}!hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo@{hub\+Para\+Modulo\+::\+Hub\+Para\+Modulo}}
+\subsubsection[{\texorpdfstring{parear(self, idt, pin)}{parear(self, idt, pin)}}]{\setlength{\rightskip}{0pt plus 5cm}def hub\+Para\+Modulo.\+Hub\+Para\+Modulo.\+parear (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{idt, }
+\item[{}]{pin}
+\end{DoxyParamCaption}
+)}\hypertarget{classhub_para_modulo_1_1_hub_para_modulo_a9606d191b7c3ef186a3d9ce851cface7}{}\label{classhub_para_modulo_1_1_hub_para_modulo_a9606d191b7c3ef186a3d9ce851cface7}
+
+
+\{ function\+\_\+description \} 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em modulo} & The modulo\\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Retorna}
