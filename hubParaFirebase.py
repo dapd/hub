@@ -665,5 +665,7 @@ while msg != "sair":
 
 	msg = asd.getUltimaMensagem()
 	print(msg)
+led.desligarLed()
+GPIO.output(buz_pin,0)
 asd.desconectarFirebase()
 led.desligarLed()
