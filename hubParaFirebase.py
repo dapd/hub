@@ -611,8 +611,6 @@ while msg != "sair":
 	led.ligarLed(255,100,0)
 	while not asd.haDono():
 		print("Esperando dono do hub ser definido..")
-	
-	led.ligarLed(0,255,0)
 
 	if asd.appID == None:
 		asd.atualizarDono()
@@ -662,6 +660,7 @@ while msg != "sair":
 	
 	if GPIO.input(but_pin) == GPIO.LOW:
 		GPIO.output(buz_pin,0)
+		led.ligarLed(0,255,0)
 
 	msg = asd.getUltimaMensagem()
 	print(msg)
