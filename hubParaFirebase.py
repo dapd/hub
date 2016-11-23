@@ -587,6 +587,10 @@ class HubParaFirebase(object):
 			return False
 
 led = LedManager()
+but_pin=11
+buz_pin=13
+GPIO.setup(but_pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+GPIO.setup(buz_pin,GPIO.OUT)
 led.ligarLed(255,255,0)	
 asd = HubParaFirebase("auhdasudad")
 asd.mensagemModuloStatus("objetos")
@@ -618,36 +622,46 @@ while msg != "sair":
 			asd.mensagemAlarme("gas", "Há gás no ambiente")
 			alarm1 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
 
 		if random.uniform(0,1) > 0.8 and alarm2 != 1:	
 			asd.mensagemAlarme("gas", "Gás perto de valor crítico.")
 			alarm2 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
 
 		if random.uniform(0,1) > 0.95 and alarm3 != 1:	
 			asd.mensagemAlarme("gas", "Gás acima do valor crítico.")
 			alarm3 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
 
 		if random.uniform(0,1) > 0.99 and alarm4 != 1:	
 			asd.mensagemAlarme("gas", "Risco de explosão.")
 			alarm4 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
 
 		if random.uniform(0,1) > 0.92 and alarm5 != 1:
 			asd.mensagemAlarme("objetos", "Objeto 'Chaves' foi esquecido.")
 			alarm5 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
 
 		if random.uniform(0,1) > 0.6 and alarm6 != 1:
 			asd.mensagemAlarme("objetos", "Objeto 'Cartão do CIn' foi esquecido.")
 			alarm6 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
 
 		if random.uniform(0,1) > 0.7 and alarm7 != 1:
 			asd.mensagemAlarme("objetos", "Objeto 'Dinheiro' foi esquecido.")
 			alarm7 = 1
 			led.ligarLed(255,0,0)
+			GPIO.output(buz_pin,1)
+	
+	if GPIO.input(but_pin) == GPIO.LOW:
+		GPIO.output(buz_pin,0)
 
 	msg = asd.getUltimaMensagem()
 	print(msg)
