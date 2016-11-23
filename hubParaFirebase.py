@@ -7,6 +7,7 @@ import collections
 from socket import gaierror
 from httplib2 import ServerNotFoundError
 import random
+from ledManager import *
 
 ##
 ## @brief      Esta classe é responsável pela comunicação entre o HUB e o banco
@@ -584,42 +585,71 @@ class HubParaFirebase(object):
 			return True
 		else:
 			return False
-			
+
+led.ligarLed(255,255,0)		
 asd = HubParaFirebase("auhdasudad")
+led = LedManager()
 asd.mensagemModuloStatus("objetos")
 asd.mensagemModuloStatus("gas")
 
 msg = ""
+alarm1 = 0
+alarm2 = 0
+alarm3 = 0
+alarm4 = 0
+alarm5 = 0
+alarm6 = 0
+alarm7 = 0
+
+led.ligarLed(0,0,255)
 
 while msg != "sair":
 	while not asd.haDono():
 		print("Esperando dono do hub ser definido..")
+		led.ligarLed(255,100,0)
 	
+	led.ligarLed(0,255,0)
+
 	if asd.appID == None:
 		asd.atualizarDono()
 
-	if random.uniform(0,1) > 0.96:
-		if random.uniform(0,1) > 0.5:	
+	if random.uniform(0,1) > 0.99:
+		if random.uniform(0,1) > 0.7 and alarm1 != 1:	
 			asd.mensagemAlarme("gas", "Há gás no ambiente")
+			alarm1 = 1
+			led.ligarLed(255,0,0)
 
-		if random.uniform(0,1) > 0.7:	
+		if random.uniform(0,1) > 0.8 and alarm2 != 1:	
 			asd.mensagemAlarme("gas", "Gás perto de valor crítico.")
+			alarm2 = 1
+			led.ligarLed(255,0,0)
 
-		if random.uniform(0,1) > 0.9:	
+		if random.uniform(0,1) > 0.95 and alarm3 != 1:	
 			asd.mensagemAlarme("gas", "Gás acima do valor crítico.")
+			alarm3 = 1
+			led.ligarLed(255,0,0)
 
-		if random.uniform(0,1) > 0.8:
+		if random.uniform(0,1) > 0.99 and alarm4 != 1:	
+			asd.mensagemAlarme("gas", "Risco de explosão.")
+			alarm4 = 1
+			led.ligarLed(255,0,0)
+
+		if random.uniform(0,1) > 0.92 and alarm5 != 1:
 			asd.mensagemAlarme("objetos", "Objeto 'Chaves' foi esquecido.")
+			alarm5 = 1
+			led.ligarLed(255,0,0)
 
-		if random.uniform(0,1) > 0.6:
+		if random.uniform(0,1) > 0.6 and alarm6 != 1:
 			asd.mensagemAlarme("objetos", "Objeto 'Cartão do CIn' foi esquecido.")
+			alarm6 = 1
+			led.ligarLed(255,0,0)
 
-		if random.uniform(0,1) > 0.7:
+		if random.uniform(0,1) > 0.7 and alarm7 != 1:
 			asd.mensagemAlarme("objetos", "Objeto 'Dinheiro' foi esquecido.")
-
-		if random.uniform(0,1) > 0.6:
-			asd.mensagemAlarme("objetos", "Objeto 'Dinheiro' foi esquecido.")
+			alarm7 = 1
+			led.ligarLed(255,0,0)
 
 	msg = asd.getUltimaMensagem()
 	print(msg)
 asd.desconectarFirebase()
+led.desligarLed()
