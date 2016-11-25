@@ -1,39 +1,17 @@
 # -*- coding: UTF-8 -*-
 
-from ledManager import *
+import gerenciadorIO
 import hubParaFirebase
 
 #-------------------------------------------------------------------------------
 ## @brief      Classe para o HUB.
 ##
-##              Nesta classe, espera-se que todos os métodos principais do HUB
-##             sejam devidamente escritos. O comportamento do HUB por enquanto
-##             se limita a um método que fica rodando em loop infinito, e de
-##             acordo com os estímulos recebidos das threads de *escutar*, 
-##             executa ações, ou seja, é uma máquina de estados.
-##              É importante que os métodos de escutar das instâncias
-##             @c hubParaMódulo e @c hubParaFirebase rodem em paralelo como
-##             threads, e que haja um comportamento de produtor-consumidor
-##             quanto às informações obtidas e enviadas.
-##             
-##             A convenção será: nome minúsculo para instâncias, variáveis e
-##             métodos, e nome maiúsculo para classes.
-##             
-##             @warning Colocar verificações e erros caso algo aconteça, mas
-##             nunca paralizar ou fechar o programa. É importante que os erros
-##             sejam tratados.
-##             
-##             @param status              O status do HUB. Uma string pré-definida.
-##             @param UID                 O ID do usuário que cadastrou o HUB. Uma String.
-##             @param ledManager          Instância da classe LedManager.
-##             @param hubParaModulo       Instância da classe HubParaModulo.
-##             @param hubParaFirebase     Instância da classe HubParaFirebase.
-##             @param adaptadorBluetooth  Instância da classe AdaptadorBluetooth.
+##
 ##
 class Hub(object):
 
 	status = ""
-	UID = ""
+	factoryID = ""
 	ledManager = None
 	hubParaModulo = None
 	hubParaFirebase = None
@@ -42,54 +20,20 @@ class Hub(object):
 	#------------------------------------------------------------------------------
 	## @brief      Método de inicialização para o HUB.
 	##
-	##             O método de inicialização para o HUB recebe como entrada o
-	##             valor inicial do status do HUB e retorna um booleano, que
-	##             informa se a operação foi concluída com sucesso. Espera-se
-	##             que após chamar essa função, todos os parâmetros do HUB
-	##             estejam devidamente inicializados. Isso inclui parâmetros
-	##             adicionados posteriormente por necessidade, ou seja,
-	##             parâmetros auxiliares.
+	##             
 	##
-	##             Para adicionar parâmetros auxiliares, adicione o mesmo em:
-	##
-	## @code
-	##  def __init__(self, status):
-	## @endcode
-	##
-    ##  Por exemplo, para adicionar o parâmetro aux (cujo nome não é
-    ## recomendável de ser usado), deve-se fazer o seguinte:
-	##
-	## @code
-	##  def __init__(self, status, aux):
-	##   super(Hub, self).__init__()
-	##   self.status = status
-	##   self.aux = xpto
-	## @endcode
-	##
-	## Onde xpto é o valor inicial desejado.
-	##
-	## @warning    Inicializar instâncias de classes depois.
-	##
-	## @param      self    O objeto
-	## @param      status  O status do HUB. Uma string pré-definida.
-	##
-	def __init__(self, status):
+	def __init__(self):
 		super(Hub, self).__init__()
-		self.status = status
-		self.ledManager = LedManager()
-		self.hubParaFirebase = HubParaFirebase()
+		self.status = "STARTING"
+		self.factoryID = "C0Oj2DnuuU2Y"
+		self.gerenciadorIO = GerenciadorIO()
+		self.hubParaFirebase = HubParaFirebase(self.factoryID)
 
 	#------------------------------------------------------------------------------
 	## @brief      Esse é o loop principal do HUB, onde será implementada sua 
 	##  máquina de estados. 
 	##
-	##  Este será o segundo método a ser chamado do HUB. Ele deverá ficar em
-	## loop e se comportar como uma máquina de estados, chamando os outros métodos
-	## de acordo com a situação.
-	## 
-	## @warning É possível adicionar o comportamento de parar como uma feature: botão
-	## de desligar.
-	## @return     Essa função nunca para.
+	##
 	##
 	def loopPrincipal(self):
 		raise NotImplementedError(" Favor implementar esse metodo. ")
