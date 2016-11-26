@@ -32,7 +32,7 @@ class GerenciadorIO(object):
 		super(GerenciadorIO, self).__init__()
 		
 		self.mutexBotao = Lock()
-		self.threadBotao = Thread(name="Botao", target=self.setBotao)
+		self.threadBotao = Thread(name="Botao", target=self.___setBotao)
 
 		self.pinoLedRed = pinoLedRed
 		self.pinoLedGreen = pinoLedGreen
@@ -58,7 +58,7 @@ class GerenciadorIO(object):
 		self.ledBlue.start(0)
 		self.threadBotao.start()
 
-	def setBotao(self):
+	def ___setBotao(self):
 		while True:
 			self.mutexBotao.acquire()
 			try:
@@ -86,9 +86,9 @@ class GerenciadorIO(object):
 		info = self.informacaoVisual[status]
 
 		if info["ledLigado"] != False:
-			self.ligarLed(info["red"], info["green"], infor["blue"])
+			self.___ligarLed(info["red"], info["green"], infor["blue"])
 		else:
-			self.desligarLed()
+			self.___desligarLed()
 
 		if info["buzzerLigado"] != False:
 			GPIO.output(self.pinoBuzzer,1)
@@ -111,12 +111,12 @@ class GerenciadorIO(object):
 
 		self.informacaoVisual[staus] = temp
 
-	def ligarLed(self,red,green,blue):
+	def ___ligarLed(self,red,green,blue):
 		self.LedRed.ChangeDutyCycle ((1-red/255.0)*100)
 		self.LedGreen.ChangeDutyCycle ((1-green/255.0)*100)
 		self.LedBlue.ChangeDutyCycle ((1-blue/255.0)*100)
 
-	def desligarLed(self):
+	def ___desligarLed(self):
 		self.LedRed.ChangeDutyCycle(100)
 		self.LedGreen.ChangeDutyCycle(100)
 		self.LedBlue.ChangeDutyCycle(100)
