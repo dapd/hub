@@ -17,6 +17,12 @@ class Hub(object):
 	hubParaFirebase = None
 	adaptadorBluetooth = None
 
+	pinoLedRed=3
+	pinoLedGreen=5
+	pinoLedBlue=7
+	pinoBuzzer=0
+	pinoBotao=0
+
 	#------------------------------------------------------------------------------
 	## @brief      Método de inicialização para o HUB.
 	##
@@ -26,7 +32,8 @@ class Hub(object):
 		super(Hub, self).__init__()
 		self.status = "STARTING"
 		self.factoryID = "C0Oj2DnuuU2Y"
-		self.gerenciadorIO = GerenciadorIO()
+		self.gerenciadorIO = GerenciadorIO(self.pinoLedRed, self.pinoLedGreen, self.pinoLedBlue, self.pinoBuzzer, self.pinoBotao)
+		self.hubParaModulo = HubParaModulo()
 		self.hubParaFirebase = HubParaFirebase(self.factoryID)
 
 	#------------------------------------------------------------------------------
@@ -36,23 +43,13 @@ class Hub(object):
 	##
 	##
 	def loopPrincipal(self):
-		raise NotImplementedError(" Favor implementar esse metodo. ")
+		
 
 
 	#------------------------------------------------------------------------------
 	## @brief      Método configura o HUB no primeiro acesso.
 	##
-	##             No primeiro acesso ao HUB, o mesmo não estará cadastrado no
-	##             servidor e, portanto, não estará anexado ao usuário.
-	##             Espera-se que esse método realize uma coneção com o firebase,
-	##             sem utilizar o respectivo objeto de coneção ao firebase. Ou
-	##             seja, uma conexão simples ao firebase é realizada aqui.
-	##             Espera-se receber através dessa conexão o UID do usuário que
-	##             adicionou este HUB.
 	##
-	## @return     UID do usuário que adicionou este HUB.
-	## @warning    Modificar diagrama de blocos para que demonstre o que é
-	##             retornado aqui.
 	##
 	def configurarPrimeiraVez(self):
 		raise NotImplementedError(" Favor implementar esse metodo. ")
