@@ -12,6 +12,7 @@ class Hub(object):
 
 	status = ""
 	factoryID = ""
+	pareados = []
 	ledManager = None
 	hubParaModulo = None
 	hubParaFirebase = None
@@ -36,6 +37,17 @@ class Hub(object):
 		self.hubParaModulo = HubParaModulo()
 		self.hubParaFirebase = HubParaFirebase(self.factoryID)
 
+		self.hubParaFirebase.getIDBluetooth()
+		for modulos in self.hubParaFirebase.idsBluetooth:
+			if self.hubParaModulo.parear(modulos[2]) != False:
+				self.pareados.append(modulos)
+				self.hubParaFirebase.mensagemModuloStatus(modulos[0])
+			else:
+				self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
+
+		self.gerenciadorIO.novoStatus("alarme", 255, 0, 0, True)
+		self.gerenciadorIO.novoStatus("normal", 0, 255, 0)
+		self.gerenciadorIO.novoStatus("sem dono", 255, 255, 0)
 	#------------------------------------------------------------------------------
 	## @brief      Esse é o loop principal do HUB, onde será implementada sua 
 	##  máquina de estados. 
@@ -43,49 +55,43 @@ class Hub(object):
 	##
 	##
 	def loopPrincipal(self):
-		
+		if not self.hubParaFirebase.haDono():
+			self.hubParaFirebase.atualizarDono()
+			self.gerenciadorIO.mudarStatus("sem dono")
+			self.status = "sem dono"
+		else:
+			if self.status != "alarme":
+				self.status = "normal"
+				self.gerenciadorIO.mudarStatus("normal")
+			else:
+				if self.gerenciadorIO.getBotao == True:
+					self.gerenciadorIO.mudarStatus("normal")
+
+			# Verifica a coneccao dos modulos
+			self.hubParaFirebase.getIDBluetooth()
+			for modulos in self.hubParaFirebase.idsBluetooth:
+				if self.hubParaModulo.parear(modulos[2]) != False and not modulos in self.pareados:
+					self.pareados.append(modulos)
+					self.hubParaFirebase.mensagemModuloStatus(modulos[0])
+				else:
+					if modulos in self.pareados:
+						self.pareados.pop(modulos)
+					self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
+
+			# recebe e trata as mensagens
+			for modulo in self.pareados:
+				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
+					(msg, x) = self.hubParaModulo.receberModulo()
+					if not x:
+						self.hubParaModulo.mandarModulo("falha\r\n")
+					else:
+						mensagem = msg.split(":")
+						if msg[0] == "alarme":
+							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
+							self.gerenciadorIO.mudarStatus("alarme")
+							self.status = "alarme"
 
 
-	#------------------------------------------------------------------------------
-	## @brief      Método configura o HUB no primeiro acesso.
-	##
-	##
-	##
-	def configurarPrimeiraVez(self):
-		raise NotImplementedError(" Favor implementar esse metodo. ")
-	#------------------------------------------------------------------------------
-	## @brief      Método aciona o Buzzer.
-	##
-	##             Espera-se que ao chamar esse método, caso o estado atual @c
-	##             status da classe atual remeta à ideia de @c alerta, ou seja,
-	##             caso seja necessário sinalizar algo para o usuário, ao chamar
-	##             essa função, o buzzer irá ser acionado em volume máximo. Caso
-	##             o buzzer esteja acionado e o estado atual @c status da classe
-	##             atual remeta à ideia de que não há alerta, ou seja, caso o @c
-	##             status seja normal, ao chamar essa função, o buzzer será
-	##             desligado. De forma simples, essa função funciona como um
-	##             interruptor e acessa o parâmetro da própria classe @c status
-	##             para decidir o que fazer.
-	##
-	## @return     O valor de retorno sempre será @c NULL.
-	##
-	def tocarBuzzer(self):
-		raise NotImplementedError(" Favor implementar esse metodo. ")
-
-	#------------------------------------------------------------------------------
-	## @brief      Método aciona o Led.
-	##
-	##             Este método utiliza a instância @c ledManager que é atributo
-	##             desta classe, e deve se comportar, utilizando o atributo @c
-	##             status e chamando os métodos de ligarLed, desligarLed e
-	##             procurarSignificado da classe ledManager. Em resumo, ao
-	##             chamar essa classe, é esperado que ela atualize o
-	##             comportamento do led de acordo com o status atual.
-	##
-	## @return     O valor de retorno sempre será @c NULL.
-	##
-	def acionarLed(self):
-		raise NotImplementedError(" Favor implementar esse metodo. ")
 
 hubs = Hub("normal")
 hubs.loopPrincipal()

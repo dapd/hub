@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from pyrebase import *
+from copy import deepcopy
 from threading import Lock
 import urllib.request
 import urllib.error
@@ -236,6 +237,7 @@ import collections
 class HubParaFirebase(object):
 	hubID = ""
 	appID = ""
+	idsBluetooth = []
 	__config = None
 	__firebase = None
 	database = None
@@ -325,6 +327,9 @@ class HubParaFirebase(object):
 		except:
 			self.__reconectar()
 			self.database.child("hubs").child(self.hubID).update({"status" : "ON"})
+		
+		self.getIDBluetooth()
+
 	##
 	## @brief      { function_description }
 	##
@@ -580,3 +585,28 @@ class HubParaFirebase(object):
 			return True
 		else:
 			return False
+
+	def getModulos(self):
+		try:
+			query = self.database.child("hubs").child(self.hubID).child("modulos").get()
+		except:
+			self.__reconectar()
+			query = self.database.child("hubs").child(self.hubID).child("modulos").get()
+		return query.val()
+
+
+	def getIDBluetooth(self):
+		
+		listaModulos = []
+		modulos = self.getModulos()
+		for modulo in modulos.keys():
+			try:
+				query = self.database.child("modulos").child(modulo).get()
+			except:
+				self.__reconectar()
+				query = self.database.child("modulos").child(modulo).get()
+
+			lista = query.val()
+			listaModulos.append((modulo, lista["tipo"], lista["idBluetooth"]))
+
+		self.idsBluetooth = deepcopy(listaModulos)
