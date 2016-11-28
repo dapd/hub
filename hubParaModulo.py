@@ -12,7 +12,7 @@ class HubParaModulo(object):
 		super(HubParaModulo, self).__init__()
 		self.serialConnection = serial.Serial(
 		  port='/dev/ttyAMA0',
-		  baudrate=9600,
+		  baudrate=38400,
 		  parity=serial.PARITY_NONE,
 		  stopbits=serial.STOPBITS_ONE,
 		  bytesize=serial.EIGHTBITS,
@@ -20,7 +20,7 @@ class HubParaModulo(object):
 		)
 	
 
-	def parear(self,idt,pin):
+	def parear(self,idt,pin=1234):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
 		
