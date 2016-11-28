@@ -8,9 +8,9 @@ class HubParaModulo(object):
 	serialConnection = None
 	ok='ok\r\n'
 
-	def __init__(self, arg):
+	def __init__(self):
 		super(HubParaModulo, self).__init__()
-		self.self.serialConnection = serial.Serial(
+		self.serialConnection = serial.Serial(
 		  port='/dev/ttyAMA0',
 		  baudrate=9600,
 		  parity=serial.PARITY_NONE,
@@ -46,7 +46,7 @@ class HubParaModulo(object):
 		#print(x)
 		
 		self.serialConnection.write('AT+PAIR=%s,10\r\n'%(idt))  #PAREAR COM O DISPOSITIVO
-		time.sleep(5)
+		#time.sleep(5)
 		x=self.serialConnection.readline()
 		#print(x)
 		
@@ -61,12 +61,12 @@ class HubParaModulo(object):
 			return False
 		#print(x)
 		
-		self.serialConnection.write('ok')
+		self.serialConnection.write('OK\r\n')
 		time.sleep(1)
-		x=self.serialConnection.readline()
-		if(x!=self.ok):
-			print('Pareamento falhou')
-			return False
+		#x=self.serialConnection.readline()
+		#if(x!=self.ok):
+			#print('Pareamento falhou')
+			#return False
 		
 		return True
 	
@@ -88,6 +88,7 @@ class HubParaModulo(object):
 
 	def receberModulo():
 		x=self.serialConnection.readline()
+		#return x
 		if(x[0]!=48 | x[0]!=49):
 			return (False,x)
 		else:
