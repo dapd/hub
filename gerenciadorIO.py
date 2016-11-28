@@ -112,11 +112,11 @@ class GerenciadorIO(object):
 		self.informacaoVisual[status] = temp
 
 	def ___ligarLed(self,red,green,blue):
-		self.LedRed.ChangeDutyCycle ((1-red/255.0)*100)
-		self.LedGreen.ChangeDutyCycle ((1-green/255.0)*100)
-		self.LedBlue.ChangeDutyCycle ((1-blue/255.0)*100)
+		self.ledRed.ChangeDutyCycle ((1-red/255.0)*100)
+		self.ledGreen.ChangeDutyCycle ((1-green/255.0)*100)
+		self.ledBlue.ChangeDutyCycle ((1-blue/255.0)*100)
 
 	def ___desligarLed(self):
-		self.LedRed.ChangeDutyCycle(100)
-		self.LedGreen.ChangeDutyCycle(100)
-		self.LedBlue.ChangeDutyCycle(100)
+		self.ledRed.ChangeDutyCycle(100)
+		self.ledGreen.ChangeDutyCycle(100)
+		self.ledBlue.ChangeDutyCycle(100)
