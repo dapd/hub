@@ -27,21 +27,21 @@ class HubParaModulo(object):
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 1')
 			return False
 		#print(x)
 		
 		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 2')
 			return False
 		#print(x)
 		
 		self.serialConnection.write(b'AT+PSWD=%d\r\n'%(pin))  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 3')
 			return False
 		#print(x)
 		
@@ -57,7 +57,7 @@ class HubParaModulo(object):
 		self.serialConnection.write(b'AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 4')
 			return False
 		#print(x)
 		
@@ -74,7 +74,7 @@ class HubParaModulo(object):
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 5')
 			return False
 		
 		self.serialConnection.write(b'AT+LINK=%s\r\n'%(modulo))  #CONECTAR AO DISPOSITIVO
@@ -82,7 +82,7 @@ class HubParaModulo(object):
 		self.serialConnection.write(b'AT+ROLE=0\r\n')
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 6')
 			return False
 		return True
 
@@ -98,6 +98,6 @@ class HubParaModulo(object):
 		self.serialConnection.write(b'%s'%(mensagem))
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
-			print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou 7')
 			return False
 		return True
