@@ -74,10 +74,10 @@ class GerenciadorIO(object):
 		botao = False
 
 		self.mutexBotao.acquire()
-			try:
-				botao = self.botaoClicked
-			finally:
-				self.mutexBotao.release()
+		try:
+			botao = self.botaoClicked
+		finally:
+			self.mutexBotao.release()
 
 		return botao
 
