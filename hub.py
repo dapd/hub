@@ -17,6 +17,7 @@ class Hub(object):
 	hubParaModulo = None
 	hubParaFirebase = None
 	adaptadorBluetooth = None
+	gerenciadorIO = None
 
 	pinoLedRed=3
 	pinoLedGreen=5
