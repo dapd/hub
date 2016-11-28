@@ -41,6 +41,7 @@ class Hub(object):
 
 		self.hubParaFirebase.getIDBluetooth()
 		for modulos in self.hubParaFirebase.idsBluetooth:
+			print(modulos[2])
 			if self.hubParaModulo.parear(modulos[2]) != False:
 				self.pareados.append(modulos)
 				self.hubParaFirebase.mensagemModuloStatus(modulos[0])
@@ -72,7 +73,7 @@ class Hub(object):
 			# Verifica a coneccao dos modulos
 			self.hubParaFirebase.getIDBluetooth()
 			for modulos in self.hubParaFirebase.idsBluetooth:
-				print (modulos[2])
+				#print (modulos[2])
 				if self.hubParaModulo.parear(modulos[2]) != False and not modulos in self.pareados:
 					self.pareados.append(modulos)
 					self.hubParaFirebase.mensagemModuloStatus(modulos[0])
