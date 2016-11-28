@@ -26,7 +26,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write('AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
-		if(x!=selfok):
+		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
 		#print(x)
