@@ -86,7 +86,7 @@ class GerenciadorIO(object):
 		info = self.informacaoVisual[status]
 
 		if info["ledLigado"] != False:
-			self.___ligarLed(info["red"], info["green"], infor["blue"])
+			self.___ligarLed(info["red"], info["green"], info["blue"])
 		else:
 			self.___desligarLed()
 
