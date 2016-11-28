@@ -62,7 +62,7 @@ class GerenciadorIO(object):
 		while True:
 			self.mutexBotao.acquire()
 			try:
-				if GPIO.input(but_pin) == GPIO.HIGH:
+				if GPIO.input(self.pinoBotao) == GPIO.HIGH:
 					self.botaoClicked = True
 				else: 
 					self.botaoClicked = False
