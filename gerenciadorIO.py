@@ -64,7 +64,7 @@ class GerenciadorIO(object):
 			try:
 				if GPIO.input(but_pin) == GPIO.HIGH:
 					self.botaoClicked = True
-				else if 
+				else: 
 					self.botaoClicked = False
 			finally:
 				self.mutexBotao.release()
