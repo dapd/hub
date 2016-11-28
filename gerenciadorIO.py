@@ -46,8 +46,8 @@ class GerenciadorIO(object):
 		GPIO.setup(self.pinoLedRed, GPIO.OUT)
 		GPIO.setup(self.pinoLedGreen, GPIO.OUT)
 		GPIO.setup(self.pinoLedBlue, GPIO.OUT)
-		GPIO.setup(self.pinoBuzzer,GPIO.IN,pull_up_down=GPIO.PUD_UP)
-		GPIO.setup(self.pinoBotao,GPIO.OUT)
+		GPIO.setup(self.pinoBuzzer,GPIO.OUT)
+		GPIO.setup(self.pinoBotao,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 		
 		self.ledRed= GPIO.PWM(self.pinoLedRed,self.frequencia)
 		self.ledGreen= GPIO.PWM(self.pinoLedGreen,self.frequencia)
