@@ -24,44 +24,44 @@ class HubParaModulo(object):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
 		
-		self.serialConnection.write('AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
+		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
 		#print(x)
 		
-		self.serialConnection.write('AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
+		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
 		#print(x)
 		
-		self.serialConnection.write('AT+PSWD=%d\r\n'%(pin))  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
+		self.serialConnection.write(b'AT+PSWD=%d\r\n'%(pin))  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
 		#print(x)
 		
-		self.serialConnection.write('AT+PAIR=%s,10\r\n'%(idt))  #PAREAR COM O DISPOSITIVO
+		self.serialConnection.write(b'AT+PAIR=%s,10\r\n'%(idt))  #PAREAR COM O DISPOSITIVO
 		#time.sleep(5)
 		x=self.serialConnection.readline()
 		#print(x)
 		
-		self.serialConnection.write('AT+LINK=%s\r\n'%(idt))  #CONECTAR AO DISPOSITIVO
+		self.serialConnection.write(b'AT+LINK=%s\r\n'%(idt))  #CONECTAR AO DISPOSITIVO
 		x=self.serialConnection.readline()
 		#print(x)
 		
-		self.serialConnection.write('AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
+		self.serialConnection.write(b'AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
 		#print(x)
 		
-		self.serialConnection.write('OK\r\n')
+		self.serialConnection.write(b'OK\r\n')
 		time.sleep(1)
 		#x=self.serialConnection.readline()
 		#if(x!=self.ok):
@@ -71,15 +71,15 @@ class HubParaModulo(object):
 		return True
 	
 	def conectarModulo(modulo):
-		self.serialConnection.write('AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
+		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
 		
-		self.serialConnection.write('AT+LINK=%s\r\n'%(modulo))  #CONECTAR AO DISPOSITIVO
+		self.serialConnection.write(b'AT+LINK=%s\r\n'%(modulo))  #CONECTAR AO DISPOSITIVO
 		
-		self.serialConnection.write('AT+ROLE=0\r\n')
+		self.serialConnection.write(b'AT+ROLE=0\r\n')
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
@@ -95,7 +95,7 @@ class HubParaModulo(object):
 			return (True,x)
 
 	def mandarModulo(mensagem):
-		self.serialConnection.write(mensagem)
+		self.serialConnection.write(b'%s'%(mensagem))
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
