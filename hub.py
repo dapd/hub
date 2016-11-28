@@ -21,8 +21,8 @@ class Hub(object):
 	pinoLedRed=3
 	pinoLedGreen=5
 	pinoLedBlue=7
-	pinoBuzzer=0
-	pinoBotao=0
+	pinoBuzzer=13
+	pinoBotao=11
 
 	#------------------------------------------------------------------------------
 	## @brief      Método de inicialização para o HUB.
@@ -81,7 +81,7 @@ class Hub(object):
 			# recebe e trata as mensagens
 			for modulo in self.pareados:
 				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
-					(msg, x) = self.hubParaModulo.receberModulo()
+					(x, msg) = self.hubParaModulo.receberModulo()
 					if not x:
 						self.hubParaModulo.mandarModulo("falha\r\n")
 					else:
