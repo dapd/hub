@@ -109,7 +109,7 @@ class GerenciadorIO(object):
 		temp["blue"] = blue
 		temp["buzzerLigado"] = buzzer
 
-		self.informacaoVisual[staus] = temp
+		self.informacaoVisual[status] = temp
 
 	def ___ligarLed(self,red,green,blue):
 		self.LedRed.ChangeDutyCycle ((1-red/255.0)*100)
