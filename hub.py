@@ -1,7 +1,8 @@
 # -*- coding: UTF-8 -*-
 
 from gerenciadorIO import *
-import hubParaFirebase
+from hubParaFirebase import *
+from hubParaModulo import *
 
 #-------------------------------------------------------------------------------
 ## @brief      Classe para o HUB.
