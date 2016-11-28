@@ -93,5 +93,5 @@ class Hub(object):
 
 
 
-hubs = Hub("normal")
+hubs = Hub()
 hubs.loopPrincipal()
