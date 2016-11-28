@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-import gerenciadorIO
+from gerenciadorIO import *
 import hubParaFirebase
 
 #-------------------------------------------------------------------------------
