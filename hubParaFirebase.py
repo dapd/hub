@@ -436,38 +436,39 @@ class HubParaFirebase(object):
 	## @return     { description_of_the_return_value }
 	##
 	def __reconectar(self):
-		while not self.__internet_on():
+		if not self.__internet_on():
 			print("Reconectando ao servidor...\n\n\n")
-		print("Reconectado.")
+		else:
+			print("Reconectado.")
 
-		self.__firebase = pyrebase.initialize_app(self.__config)
-		if self.__firebase == None:
-			print(" #warning: Nao foi possivel criar a instancia do firebase")
+			self.__firebase = pyrebase.initialize_app(self.__config)
+			if self.__firebase == None:
+				print(" #warning: Nao foi possivel criar a instancia do firebase")
 
-		self.database = self.__firebase.database()
-		if self.database == None:
-			print(" #warning: Nao foi possivel criar a instancia de database")
+			self.database = self.__firebase.database()
+			if self.database == None:
+				print(" #warning: Nao foi possivel criar a instancia de database")
 
-		if self.appID != None:
-			try:
-				self.stream.close()
-			except:
-				pass
+			if self.appID != None:
+				try:
+					self.stream.close()
+				except:
+					pass
 
-			self.gerenciadorMensagensRecebidas.acquire()
-			try:
-				self.mensagensRecebidas = collections.deque()
-				if self.mensagensRecebidas == None:
-					raise RuntimeError(" Nao foi possivel criar o deque")
-			finally:
-				self.gerenciadorMensagensRecebidas.release()
+				self.gerenciadorMensagensRecebidas.acquire()
+				try:
+					self.mensagensRecebidas = collections.deque()
+					if self.mensagensRecebidas == None:
+						raise RuntimeError(" Nao foi possivel criar o deque")
+				finally:
+					self.gerenciadorMensagensRecebidas.release()
 
-			self.stream = self.database.child("msgs_app").child(self.appID).stream(self.__receberFirebase, stream_id="mensagens_app")
-			if self.stream == None:
-				print(" #warning: Nao foi possivel criar o stream de dados com o firebase")
+				self.stream = self.database.child("msgs_app").child(self.appID).stream(self.__receberFirebase, stream_id="mensagens_app")
+				if self.stream == None:
+					print(" #warning: Nao foi possivel criar o stream de dados com o firebase")
 
-			print(self.database.child("hubs").get().val())
-		print("Coneccao restabelecida.		")
+				print(self.database.child("hubs").get().val())
+			print("Coneccao restabelecida.		")
 	##
 	## @brief      { function_description }
 	##
