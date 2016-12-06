@@ -79,9 +79,7 @@ class Hub(object):
 					self.hubParaFirebase.mensagemModuloStatus(modulos[0])
 				else:
 					if modulos in self.pareados:
-						print('modulos ');
-						print(modulos)
-						self.pareados.pop(modulos)
+						self.pareados = [i for i  in self.pareados if i != modulos]
 					self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
 
 			# recebe e trata as mensagens
