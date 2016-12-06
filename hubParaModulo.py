@@ -23,12 +23,12 @@ class HubParaModulo(object):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
 
-		self.serialConnection.write(b'AT+ORGL\r\n')
-		x=self.serialConnection.readline()
-		print(x.decode().strip('\r\n'))
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando AT nao funcionou')
-			#return False
+		# self.serialConnection.write(b'AT+ORGL\r\n')
+		# x=self.serialConnection.readline()
+		# print(x.decode().strip('\r\n'))
+		# if(x.decode().strip('\r\n') != 'OK'):
+		# 	print('Comando AT nao funcionou')
+		# 	#return False
 		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
