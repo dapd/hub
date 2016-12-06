@@ -23,8 +23,8 @@ class HubParaModulo(object):
 	def parear(self,idt,pin=1234):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
-		
-		self.serialConnection.write(b'AT+ORGL\r\n')
+
+		self.serialConnection.write('AT+ORGL\r\n')
 		x=self.serialConnection.readline()
 		print(x.decode().strip('\r\n'))
 		if(x.decode().strip('\r\n') != 'ok'):
