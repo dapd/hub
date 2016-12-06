@@ -24,7 +24,7 @@ class HubParaModulo(object):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
 		
-		self.serialConnection.write('AT+ORGL\r\n')
+		self.serialConnection.write(b'AT+ORGL\r\n')
 		x=self.serialConnection.readline()
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
