@@ -103,7 +103,7 @@ class HubParaModulo(object):
 	def receberModulo(self):
 		x=self.serialConnection.readline()
 		#return x
-		if(x[0]!=48 | x[0]!=49):
+		if(x and (x[0]!=48 | x[0]!=49)):
 			return (False, x.decode())
 		else:
 			return (True, x.decode())
