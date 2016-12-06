@@ -79,6 +79,8 @@ class Hub(object):
 					self.hubParaFirebase.mensagemModuloStatus(modulos[0])
 				else:
 					if modulos in self.pareados:
+						print('modulos ');
+						print(modulos)
 						self.pareados.pop(modulos)
 					self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
 

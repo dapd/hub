@@ -90,7 +90,8 @@ class HubParaModulo(object):
 			print('Comando AT nao funcionou 5')
 			#return False
 		
-		self.serialConnection.write(b'AT+LINK=%s\r\n'%(modulo))  #CONECTAR AO DISPOSITIVO
+		message = 'AT+LINK={}\r\n'.format(modulo)
+		self.serialConnection.write(message.encode())  #CONECTAR AO DISPOSITIVO
 		
 		self.serialConnection.write(b'AT+ROLE=0\r\n')
 		x=self.serialConnection.readline()
