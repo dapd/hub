@@ -83,7 +83,7 @@ class HubParaModulo(object):
 		
 		return True
 	
-	def conectarModulo(modulo):
+	def conectarModulo(self, modulo):
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
@@ -100,7 +100,7 @@ class HubParaModulo(object):
 			#return False
 		return True
 
-	def receberModulo():
+	def receberModulo(self):
 		x=self.serialConnection.readline()
 		#return x
 		if(x[0]!=48 | x[0]!=49):
@@ -108,7 +108,7 @@ class HubParaModulo(object):
 		else:
 			return (True, x.decode())
 
-	def mandarModulo(mensagem):
+	def mandarModulo(self, mensagem):
 		message2 = '{}'.format(mensagem)
 		self.serialConnection.write(message2.encode())
 		x=self.serialConnection.readline()
