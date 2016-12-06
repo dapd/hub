@@ -24,6 +24,12 @@ class HubParaModulo(object):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
 		
+		self.serialConnection.write('AT+ORGL\r\n')
+		x=self.serialConnection.readline()
+		if(x!=self.ok):
+			print('Comando AT nao funcionou')
+			return False
+		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		print(x)
@@ -46,6 +52,10 @@ class HubParaModulo(object):
 			return False
 		#print(x)
 		
+		self.serialConnection.write(b'AT+INIT\r\n')
+		
+		self.serialConnection.write(b'AT+INQM=0,5,10\r\n')
+		
 		self.serialConnection.write(b'AT+PAIR=%s,10\r\n'%(idt))  #PAREAR COM O DISPOSITIVO
 		#time.sleep(5)
 		x=self.serialConnection.readline()
@@ -62,8 +72,8 @@ class HubParaModulo(object):
 			return False
 		#print(x)
 		
-		self.serialConnection.write(b'OK\r\n')
-		time.sleep(1)
+		#self.serialConnection.write(b'OK\r\n')
+		#time.sleep(1)
 		#x=self.serialConnection.readline()
 		#if(x!=self.ok):
 			#print('Pareamento falhou')
