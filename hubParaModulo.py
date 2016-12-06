@@ -45,8 +45,7 @@ class HubParaModulo(object):
 		#print(x)
 		
 		message = 'AT+PSWD={}\r\n'.format(pin)
-		message = message.encode()
-		self.serialConnection.write(b'AT+PSWD=%d\r\n'%(pin))  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
+		self.serialConnection.write(message.encode())  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 3')
