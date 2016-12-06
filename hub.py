@@ -76,16 +76,19 @@ class Hub(object):
 			self.hubParaFirebase.getIDBluetooth()
 			for modulos in self.hubParaFirebase.idsBluetooth:
 				#print (modulos[2])
-				if not modulos in self.pareados and self.hubParaModulo.parear(modulos[2]) != False:
-					self.pareados.append(modulos)
-					self.hubParaFirebase.mensagemModuloStatus(modulos[0])
-				else:
-					if modulos in self.pareados:
-						self.hubParaModulo.mandarModulo("ping")
-						(x, msg) = self.hubParaModulo.receberModulo()
-						if msg != "OK":
-							self.pareados = [i for i  in self.pareados if i != modulos]
-							self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
+				if not modulos in self.pareados:
+					if  self.hubParaModulo.parear(modulos[2]) != False:
+						self.pareados.append(modulos)
+						self.hubParaFirebase.mensagemModuloStatus(modulos[0])
+					else:
+						if modulos in self.pareados:
+							self.hubParaModulo.mandarModulo("ping")
+							(x, msg) = self.hubParaModulo.receberModulo()
+							if msg != "OK":
+								self.pareados = [i for i  in self.pareados if i != modulos]
+								self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
+
+			print(self.pareados)
 
 			# recebe e trata as mensagens
 			# for modulo in self.pareados:
