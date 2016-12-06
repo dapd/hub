@@ -36,9 +36,15 @@ class HubParaModulo(object):
 	##
 	## @return     { description_of_the_return_value }
 	##
-	def parear(self,idt,pin):
+	def parear(self,idt,pin=1234):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
+		
+		ser.write('AT+ORGL\r\n')
+		x=ser.readline()
+		if(x!=ok):
+			print('Comando AT nao funcionou')
+			return False
 		
 		ser.write('AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=ser.readline()
@@ -61,13 +67,17 @@ class HubParaModulo(object):
 			return False
 		#print(x)
 		
+		ser.write('AT+INIT\r\n')
+		
+		ser.write('AT+INQM=0,5,10\r\n')
+		
 		ser.write('AT+PAIR=%s,10\r\n'%(idt))  #PAREAR COM O DISPOSITIVO
 		time.sleep(5)
-		x=ser.readline()
+		#x=ser.readline()
 		#print(x)
 		
 		ser.write('AT+LINK=%s\r\n'%(idt))  #CONECTAR AO DISPOSITIVO
-		x=ser.readline()
+		#x=ser.readline()
 		#print(x)
 		
 		ser.write('AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
@@ -77,12 +87,12 @@ class HubParaModulo(object):
 			return False
 		#print(x)
 		
-		ser.write('OK')
-		time.sleep(1)
-		x=ser.readline()
-		if(x!=ok):
-			print('Pareamento falhou')
-			return False
+		#ser.write('OK')
+		#time.sleep(1)
+		#x=ser.readline()
+		#if(x!=ok):
+			#print('Pareamento falhou')
+			#return False
 		
 		return True
 	
