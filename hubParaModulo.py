@@ -24,7 +24,7 @@ class HubParaModulo(object):
 		#print('Pressione o botao do bluetooth')
 		time.sleep(5)
 
-		self.serialConnection.write('AT+ORGL\r\n')
+		self.serialConnection.write(b'AT+ORGL\r\n')
 		x=self.serialConnection.readline()
 		print(x.decode().strip('\r\n'))
 		if(x.decode().strip('\r\n') != 'ok'):
@@ -45,6 +45,8 @@ class HubParaModulo(object):
 			#return False
 		#print(x)
 		
+		message = 'AT+PSWD={}\r\n'.format(pin)
+		message = message.encode()
 		self.serialConnection.write(b'AT+PSWD=%d\r\n'%(pin))  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'ok'):
