@@ -26,9 +26,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+ORGL\r\n')
 		x=self.serialConnection.readline()
-		print(x)
-		print(x[0])
-		print(str.encode(x,'uft-8'))
+		print(x.decode().strip('\r\n'))
 		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou')
 			return False
