@@ -26,6 +26,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+ORGL\r\n')
 		x=self.serialConnection.readline()
+		print(x)
 		if(x!=self.ok):
 			print('Comando AT nao funcionou')
 			return False
