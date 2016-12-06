@@ -33,7 +33,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
-		print(x)
+		print(str.encode(x,'uft-8'))
 		if(x!=self.ok):
 			print('Comando AT nao funcionou 1')
 			return False
