@@ -28,20 +28,20 @@ class HubParaModulo(object):
 		# print(x.decode().strip('\r\n'))
 		# if(x.decode().strip('\r\n') != 'OK'):
 		# 	print('Comando AT nao funcionou')
-		# 	#return False
+		#	return False
 		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 1')
-			#return False
+			return False
 	
 		
 		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 2')
-			#return False
+			return False
 		#print(x)
 		
 		message = 'AT+PSWD={}\r\n'.format(pin)
@@ -49,7 +49,7 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 3')
-			#return False
+			return False
 		#print(x)
 		
 		self.serialConnection.write(b'AT+INIT\r\n')
@@ -71,7 +71,7 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 4')
-			#return False
+			return False
 		#print(x)
 		
 		#self.serialConnection.write(b'OK\r\n')
