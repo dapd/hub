@@ -104,12 +104,13 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		#return x
 		if(x[0]!=48 | x[0]!=49):
-			return (False,x)
+			return (False, x.decode())
 		else:
-			return (True,x)
+			return (True, x.decode())
 
 	def mandarModulo(mensagem):
-		self.serialConnection.write(b'%s'%(mensagem))
+		message2 = '{}'.format(mensagem)
+		self.serialConnection.write(message2.encode())
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 7')

@@ -60,6 +60,8 @@ class Hub(object):
 	def loopPrincipal(self):
 		if not self.hubParaFirebase.haDono():
 			self.hubParaFirebase.atualizarDono()
+		
+		if not self.hubParaFirebase.haDono():
 			self.gerenciadorIO.mudarStatus("sem dono")
 			self.status = "sem dono"
 		else:
@@ -79,21 +81,24 @@ class Hub(object):
 					self.hubParaFirebase.mensagemModuloStatus(modulos[0])
 				else:
 					if modulos in self.pareados:
-						self.pareados = [i for i  in self.pareados if i != modulos]
-					self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
+						self.hubParaModulo.mandarModulo("ping")
+						(x, msg) = self.hubParaModulo.receberModulo()
+						if msg != "OK":
+							self.pareados = [i for i  in self.pareados if i != modulos]
+							self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
 
 			# recebe e trata as mensagens
-			for modulo in self.pareados:
-				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
-					(x, msg) = self.hubParaModulo.receberModulo()
-					if not x:
-						self.hubParaModulo.mandarModulo("falha\r\n")
-					else:
-						mensagem = msg.split(":")
-						if msg[0] == "alarme":
-							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
-							self.gerenciadorIO.mudarStatus("alarme")
-							self.status = "alarme"
+			# for modulo in self.pareados:
+			# 	if self.hubParaModulo.conectarModulo(modulo[2]) == True:
+			# 		(x, msg) = self.hubParaModulo.receberModulo()
+			# 		if not x:
+			# 			self.hubParaModulo.mandarModulo("falha\r\n")
+			# 		else:
+			# 			mensagem = msg.split(":")
+			# 			if msg[0] == "alarme":
+			# 				self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
+			# 				self.gerenciadorIO.mudarStatus("alarme")
+			# 				self.status = "alarme"
 
 
 
