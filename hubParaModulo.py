@@ -56,12 +56,14 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+INQM=0,5,10\r\n')
 		
-		self.serialConnection.write(b'AT+PAIR=%s,10\r\n'%(idt))  #PAREAR COM O DISPOSITIVO
+		message2 = 'AT+PAIR={},10\r\n'.format(idt)
+		self.serialConnection.write(message2.encode())  #PAREAR COM O DISPOSITIVO
 		#time.sleep(5)
 		x=self.serialConnection.readline()
 		#print(x)
 		
-		self.serialConnection.write(b'AT+LINK=%s\r\n'%(idt))  #CONECTAR AO DISPOSITIVO
+		message3 = 'AT+LINK={}\r\n'.format(idt)
+		self.serialConnection.write(message3.encode())  #CONECTAR AO DISPOSITIVO
 		x=self.serialConnection.readline()
 		#print(x)
 		
