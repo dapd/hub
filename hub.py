@@ -106,4 +106,5 @@ class Hub(object):
 
 
 hubs = Hub()
-hubs.loopPrincipal()
+while True:
+	hubs.loopPrincipal()
