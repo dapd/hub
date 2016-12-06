@@ -6,7 +6,7 @@ import serial
 class HubParaModulo(object):
 	
 	serialConnection = None
-	ok='ok\r\n'
+	ok='ok'
 
 	def __init__(self):
 		super(HubParaModulo, self).__init__()
@@ -29,27 +29,27 @@ class HubParaModulo(object):
 		print(x)
 		print(x[0])
 		print(str.encode(x,'uft-8'))
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou')
 			return False
 		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 1')
 			return False
 	
 		
 		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 2')
 			return False
 		#print(x)
 		
 		self.serialConnection.write(b'AT+PSWD=%d\r\n'%(pin))  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 3')
 			return False
 		#print(x)
@@ -69,7 +69,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 4')
 			return False
 		#print(x)
@@ -86,7 +86,7 @@ class HubParaModulo(object):
 	def conectarModulo(modulo):
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 5')
 			return False
 		
@@ -94,7 +94,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+ROLE=0\r\n')
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 6')
 			return False
 		return True
@@ -110,7 +110,7 @@ class HubParaModulo(object):
 	def mandarModulo(mensagem):
 		self.serialConnection.write(b'%s'%(mensagem))
 		x=self.serialConnection.readline()
-		if(x!=self.ok):
+		if(x.decode().strip('\r\n') != 'ok'):
 			print('Comando AT nao funcionou 7')
 			return False
 		return True
