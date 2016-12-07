@@ -70,7 +70,7 @@ class adaptadorBluetooth:
 
 		return retorno
 
-	def receiveFromSerial(self)
+	def receiveFromSerial(self):
 		message=self.serialConnection.readline()
 		message=message.decode().strip('\r\n')
 		if(not message in ['', '1', '0', 'o']):
