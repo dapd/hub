@@ -25,8 +25,9 @@ class adaptadorBluetooth:
 
 		GPIO.output(self.PIO11,0)
 		GPIO.output(self.SUPPLY,0)
+		self.AT=False
     
-    def modoComunicacao(self):
+	def modoComunicacao(self):
 		if self.AT:
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
@@ -77,6 +78,7 @@ class adaptadorBluetooth:
 			return (False, message)	
 
 	def master(self):  #define o modo de operacao do modulo como MASTER
+		self.modoAT()
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 
    		GPIO.output(self.PIO11,0)
@@ -85,37 +87,52 @@ class adaptadorBluetooth:
 		return retorno
 	
 	def adressing(self, param):
+		self.modoAT()
 		message = 'AT+CMODE={}\r\n'.format(param)
 		retorno = self.sendToSerial(message, "Adressing", "OK")
 		return retorno
      
 	def inicialize(self): #inicializar bluetooth
+		self.modoAT()
 		retorno = self.sendToSerial('AT+INIT\r\n', "Inicialize", "OK")
     	return retorno
 
 	def  disconnect(self): #disconecta
+		self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCESS")
     	return retorno
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
+		self.modoAT()
 		message = 'AT+PSWD={}\r\n'.format(pin)
 		retorno = self.sendToSerial(message, "Password", "OK")
     	return retorno
 
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
+		self.modoAT()
 		message = 'AT+PAIR={},10\r\n'.format(adress)
 		retorno = self.sendToSerial(message, "Pair", "OK")
     	return retorno
 
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
+		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		retorno = self.sendToSerial(message, "Link", "OK")
     	return retorno
 	
 	def reset(self): #RESETA
+		self.modoAT()
 		retorno = self.sendToSerial('AT+RESET\r\n', "Reset", "OK")
     	return retorno
 
 class hubParaModulo:
-  
+  adaptador=None
   def __init__(self):
+	adaptador=adaptadorBluetooth()
+  def gerenciar(self):
+	self.adaptador.mestre()
+	self.adaptador.modoComunicacao()
+	self.adaptado.sendToSerial(Teste, 'teste', 'OKmod'):
+	
+
+	
