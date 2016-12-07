@@ -38,6 +38,7 @@ class adaptadorBluetooth:
 	def modoAT(self):
 		if self.AT:
 			return
+		GPIO.output(self.SUPPLY,0)
 		GPIO.output(self.PIO11,0)
 		GPIO.output(self.SUPPLY,1)
 		time.sleep(0.5)
