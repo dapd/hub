@@ -106,7 +106,7 @@ class Hub(object):
 						self.hubParaModulo.mandarModulo("falha\r\n")
 					else:
 						mensagem = msg.split(":")
-						if msg[0] == "alarme":
+						if msg[0] == "1Alerta":
 							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
 							self.gerenciadorIO.mudarStatus("alarme")
 							self.status = "alarme"
