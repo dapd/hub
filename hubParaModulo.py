@@ -77,7 +77,7 @@ class HubParaModulo(object):
 		#message3 = 'AT+LINK={}\r\n'.format(idt)
 		#self.serialConnection.write(message3.encode())  #CONECTAR AO DISPOSITIVO
 		
-		self.serialConnection.write(b'AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
+		self.serialConnection.write(b'AT+RESET\r\n') #define o modo de operacao do modulo como SLAVE
 		x=self.serialConnection.readline()
 		print(x)
 		print('4')
