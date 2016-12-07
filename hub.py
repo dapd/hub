@@ -110,7 +110,7 @@ class Hub(object):
 							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
 							self.gerenciadorIO.mudarStatus("alarme")
 							self.status = "alarme"
-						else if mensagem == "desativaralerta":
+						elif mensagem == "desativaralerta":
 							self.status = "normal"
 							self.gerenciadorIO.mudarStatus("normal")
 
