@@ -99,6 +99,7 @@ class Hub(object):
 							self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
 
 			# recebe e trata as mensagens
+			print(self.pareados)
 			for modulo in self.pareados:
 				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
 					(x, msg) = self.hubParaModulo.receberModulo()
