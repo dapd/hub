@@ -109,12 +109,12 @@ class Hub(object):
 						self.hubParaModulo.mandarModulo("falha\r\n")
 					else:
 						mensagem = msg.split(":")
-						if msg[0] == "1Alerta" and msg[1] == "gas":
-							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
+						if mensagem[0] == "1Alerta" and mensagem[1] == "gas":
+							self.hubParaFirebase.mensagemAlarme(modulo[0], mensagem[1])
 							self.gerenciadorIO.mudarStatus("alarme")
 							self.status = "alarme"
-						elif msg[1] == "objetos":
-							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
+						elif mensagem[1] == "objetos":
+							self.hubParaFirebase.mensagemAlarme(modulo[0], mensagem[1])
 
 			if self.hubParaFirebase.getUltimaMensagem() == "desativaralarme":
 				self.status = "normal"
