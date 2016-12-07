@@ -89,7 +89,7 @@ class HubParaModulo(object):
 		self.serialConnection.write(b'AT+DISC\r\n')
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
-		 	print('Comando AT nao funcionou')
+			print('Comando AT nao funcionou')
 			GPIO.output(self.pinoBT,0)
 			return False
 		
