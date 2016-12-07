@@ -99,17 +99,17 @@ class Hub(object):
 							self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
 
 			# recebe e trata as mensagens
-			# for modulo in self.pareados:
-			# 	if self.hubParaModulo.conectarModulo(modulo[2]) == True:
-			# 		(x, msg) = self.hubParaModulo.receberModulo()
-			# 		if not x:
-			# 			self.hubParaModulo.mandarModulo("falha\r\n")
-			# 		else:
-			# 			mensagem = msg.split(":")
-			# 			if msg[0] == "alarme":
-			# 				self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
-			# 				self.gerenciadorIO.mudarStatus("alarme")
-			# 				self.status = "alarme"
+			for modulo in self.pareados:
+				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
+					(x, msg) = self.hubParaModulo.receberModulo()
+					if not x:
+						self.hubParaModulo.mandarModulo("falha\r\n")
+					else:
+						mensagem = msg.split(":")
+						if msg[0] == "alarme":
+							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
+							self.gerenciadorIO.mudarStatus("alarme")
+							self.status = "alarme"
 
 
 
