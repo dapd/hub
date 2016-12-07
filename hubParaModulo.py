@@ -32,8 +32,8 @@ class HubParaModulo(object):
 		print('1')
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou')
-			GPIO.output(self.pinoBT,0)
-			return False
+			#GPIO.output(self.pinoBT,0)
+			#return False
 		
 		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
@@ -41,8 +41,8 @@ class HubParaModulo(object):
 		print('2')
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 2')
-			GPIO.output(self.pinoBT,0)
-			return False
+			#GPIO.output(self.pinoBT,0)
+			#return False
 		
 		self.serialConnection.write(b'AT+INIT\r\n')
 		x=self.serialConnection.readline()
@@ -63,8 +63,8 @@ class HubParaModulo(object):
 		print('3')
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 3')
-			GPIO.output(self.pinoBT,0)
-			return False
+			#GPIO.output(self.pinoBT,0)
+			#return False
 		#print(x)
 		
 		self.serialConnection.write(b'AT+INQM=0,5,10\r\n')
@@ -83,8 +83,8 @@ class HubParaModulo(object):
 		print('4')
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 4')
-			GPIO.output(self.pinoBT,0)
-			return False
+			#GPIO.output(self.pinoBT,0)
+			#return False
 		
 		GPIO.output(self.pinoBT,0)
 		return True
@@ -96,8 +96,8 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 5')
-			GPIO.output(self.pinoBT,0)
-			return False
+			#GPIO.output(self.pinoBT,0)
+			#return False
 		
 		self.serialConnection.write(b'AT+DISC\r\n')
 		x=self.serialConnection.readline()
@@ -118,7 +118,7 @@ class HubParaModulo(object):
 		msg=msg.decode().strip('\r\n')
 		print(msg)
 		print('aqui î')
-		if(msg and (ord(msg[0])!=48 | ord(msg[0])!=49 | ord(msg[0])!=32)):
+		if(msg and (ord(msg[0])!=48 | ord(msg[0])!=49 | ord(msg[0])!=32 | ord(msg[0])!=79)):
 			return (False, msg)
 		else:
 			return (True, msg)
@@ -129,5 +129,5 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Mandar modulo falhou')
-			return False
+			#return False
 		return True
