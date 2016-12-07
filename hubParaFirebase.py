@@ -382,6 +382,40 @@ class HubParaFirebase(object):
 			else:
 				raise ValueError(" Mensagem vazia")
 
+	def enviarObjeto(self, objeto, moduloID):
+		try:
+			query = self.database.child("hubs").child(self.hubID).child("modulos").get()
+		except:
+			self.__reconectar()
+			query = self.database.child("hubs").child(self.hubID).child("modulos").get()
+
+		modulos = query.val()
+
+		if not moduloID in modulos:
+			raise ValueError(" Modulo nao encontrado para o hub atual") 
+		else:
+			if len(mensagem) > 0:
+				try:
+					query = self.database.self.database.child("modulos").child(moduloID).child("componentes").get()
+					objetos = query.val()
+
+					if not objeto in objetos:
+						self.database.child("modulos").child(moduloID).child("componentes").push(objeto)
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).push({"Ativo" : "Nao"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).push({"status" : "Desconhecido"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).push({"nome" : "Desconhecido"})
+					else:
+						query = self.database.child("modulos").child(moduloID).child("componentes").child(objeto).get()
+						ativado = query.val()
+						if ativado["Ativo"] == "Sim":
+							self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"status" : "Presente"})
+				except:
+					self.__reconectar()
+					self.database.child("msgs_hub").child(self.hubID).push("alarme:" + moduloID)
+					self.database.child("msgs_hub").child(self.hubID).push(mensagem)
+			else:
+				raise ValueError(" Objeto vazio")
+
 	##
 	## @brief      { function_description }
 	##
