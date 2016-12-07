@@ -112,7 +112,7 @@ class Hub(object):
 						elif msg[1] == "objetos":
 							self.hubParaFirebase.mensagemAlarme(modulo[0], msg[1])
 
-			if getUltimaMensagem() == "desativaralarme":
+			if self.hubParaFirebase.getUltimaMensagem() == "desativaralarme":
 				self.status = "normal"
 				self.gerenciadorIO.mudarStatus("normal")
 
