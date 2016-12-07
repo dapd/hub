@@ -26,6 +26,7 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
+		print(x)
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou')
 			GPIO.output(self.pinoBT,0)
@@ -33,7 +34,9 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+DISC\r\n')
 		x=self.serialConnection.readline()
+		print(x)
 		x=self.serialConnection.readline()
+		print(x)
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 1')
 			GPIO.output(self.pinoBT,0)
