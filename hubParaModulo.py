@@ -119,9 +119,9 @@ class HubParaModulo(object):
 		print(msg)
 		print('aqui î')
 		if(msg and (ord(msg[0])!=48 | ord(msg[0])!=49 | ord(msg[0])!=32 | ord(msg[0])!=79)):
-			return (False, msg)
-		else:
 			return (True, msg)
+		else:
+			return (False, msg)
 
 	def mandarModulo(self, mensagem):
 		message2 = '{}'.format(mensagem)
