@@ -81,6 +81,12 @@ class adaptadorBluetooth:
 			print('Comando link nao funcionou')
 			#GPIO.output(self.pinoBT,0)
 			return False
+	def modoComunicacao(self):
+		pass
+	def modoAT(self):
+		pass
+	
+	
 class hubParaModulo:
   
   def __init__(self):
