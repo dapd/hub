@@ -116,6 +116,8 @@ class HubParaModulo(object):
 		msg=self.serialConnection.readline()
 		print(msg)
 		msg=msg.decode().strip('\r\n')
+		print(msg)
+		print('aqui î')
 		if(msg and (ord(msg[0])!=48 | ord(msg[0])!=49 | ord(msg[0])!=32)):
 			return (False, msg)
 		else:
