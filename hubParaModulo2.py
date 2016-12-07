@@ -7,8 +7,8 @@ import RPi.GPIO as GPIO
 class adaptadorBluetooth:
 	serialConnection = None
 	PIO11  = 0#?
-	PIN34  = 0#?
 	SUPPLY = 0#? 
+	AT=False
   
 	def __init__(self):
 		self.serialConnection = serial.Serial(
@@ -21,27 +21,31 @@ class adaptadorBluetooth:
 		)
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(self.PIO11, GPIO.OUT)
-		GPIO.setup(self.PIN34, GPIO.OUT)
 		GPIO.setup(self.SUPPLY, GPIO.OUT)
 
-		GPIO.output(self.SUPPLY,0)
-		GPIO.output(self.PIN34,0)
 		GPIO.output(self.PIO11,0)
+		GPIO.output(self.SUPPLY,0)
     
     def modoComunicacao(self):
-		GPIO.output(self.SUPPLY,0)
-		GPIO.output(self.PIN34,0)
-		GPIO.output(self.SUPPLY,1)
-		self.serialConnection.setBaudrate(9600)
+		if self.AT:
+			GPIO.output(self.SUPPLY,0)
+			GPIO.output(self.PIO11,0)
+			GPIO.output(self.SUPPLY,1)
+			if self.serialConnection.baudrate != 9600:
+				self.serialConnection.setBaudrate(9600)
+			self.AT=False
 
 	def modoAT(self):
-		
-		GPIO.output(self.PIN34,0)
+		if self.AT:
+			return
+		GPIO.output(self.PIO11,0)
 		GPIO.output(self.SUPPLY,1)
 		time.sleep(0.5)
-		GPIO.output(self.PIN34,1)
+		GPIO.output(self.PIO11,1)
 		time.sleep(0.5)
-		self.serialConnection.setBaudrate(9600)
+		if self.serialConnection.baudrate != 9600:
+			self.serialConnection.setBaudrate(9600)
+		self.AT=True
 
     def sendToSerial(self, message, cmd, ok):
 
@@ -72,13 +76,6 @@ class adaptadorBluetooth:
 			return (False, message)	
 
 	def master(self):  #define o modo de operacao do modulo como MASTER
-
-		GPIO.output(self.PIO11,1)
-		GPIO.output(self.SUPPLY,1)
-		
-		if self.serialConnection.baudrate != 38400:
-			self.serialConnection.setBaudrate(38400)
-		
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 
    		GPIO.output(self.PIO11,0)
