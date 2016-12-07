@@ -7,8 +7,8 @@ import RPi.GPIO as GPIO
 class adaptadorBluetooth:
 	
 	serialConnection = None
-	PIO11  = 0#?
-	SUPPLY = 0#? 
+	PIO11  = 20
+	SUPPLY = 21 
 	AT=False
 
 	def __init__(self):
