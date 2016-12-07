@@ -117,9 +117,9 @@ class HubParaModulo(object):
 		x=x.decode().strip('\r\n')
 		print(x)
 		if(x and (ord(x[0])!=48 | ord(x[0])!=49 | ord(x[0])!=32)):
-			return (False, x.decode().strip('\r\n'))
+			return (False, x)
 		else:
-			return (True, x.decode().strip('\r\n'))
+			return (True, x)
 
 	def mandarModulo(self, mensagem):
 		message2 = '{}'.format(mensagem)
