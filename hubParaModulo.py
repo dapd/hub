@@ -2,11 +2,13 @@
 
 import time
 import serial
+import RPi.GPIO as GPIO
 
 class HubParaModulo(object):
 	
 	serialConnection = None
-
+	pinoBT = 15
+	
 	def __init__(self):
 		super(HubParaModulo, self).__init__()
 		self.serialConnection = serial.Serial(
@@ -17,23 +19,23 @@ class HubParaModulo(object):
 		  bytesize=serial.EIGHTBITS,
 		  timeout=1
 		)
+		GPIO.setup(self.pinoBT, GPIO.OUT)
 	
-
 	def parear(self,idt,pin=1234):
-		#print('Pressione o botao do bluetooth')
-		time.sleep(5)
-
-		# self.serialConnection.write(b'AT+ORGL\r\n')
-		# x=self.serialConnection.readline()
-		# print(x.decode().strip('\r\n'))
-		# if(x.decode().strip('\r\n') != 'OK'):
-		# 	print('Comando AT nao funcionou')
-		#	return False
+		GPIO.output(self.pinoBT,1)
+		
+		self.serialConnection.write(b'AT+DISC\r\n')
+		x=self.serialConnection.readline()
+		if(x.decode().strip('\r\n') != 'OK'):
+		 	print('Comando AT nao funcionou')
+			GPIO.output(self.pinoBT,0)
+			return False
 		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 1')
+			GPIO.output(self.pinoBT,0)
 			return False
 	
 		
@@ -41,14 +43,15 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 2')
+			GPIO.output(self.pinoBT,0)
 			return False
-		#print(x)
 		
 		message = 'AT+PSWD={}\r\n'.format(pin)
 		self.serialConnection.write(message.encode())  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 3')
+			GPIO.output(self.pinoBT,0)
 			return False
 		#print(x)
 		
@@ -58,51 +61,46 @@ class HubParaModulo(object):
 		
 		message2 = 'AT+PAIR={},10\r\n'.format(idt)
 		self.serialConnection.write(message2.encode())  #PAREAR COM O DISPOSITIVO
-		#time.sleep(5)
 		x=self.serialConnection.readline()
-		#print(x)
 		
-		message3 = 'AT+LINK={}\r\n'.format(idt)
-		self.serialConnection.write(message3.encode())  #CONECTAR AO DISPOSITIVO
-		x=self.serialConnection.readline()
-		#print(x)
+		#message3 = 'AT+LINK={}\r\n'.format(idt)
+		#self.serialConnection.write(message3.encode())  #CONECTAR AO DISPOSITIVO
 		
 		self.serialConnection.write(b'AT+ROLE=0\r\n') #define o modo de operacao do modulo como SLAVE
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 4')
+			GPIO.output(self.pinoBT,0)
 			return False
-		#print(x)
 		
-		#self.serialConnection.write(b'OK\r\n')
-		#time.sleep(1)
-		#x=self.serialConnection.readline()
-		#if(x!=self.OK):
-			#print('Pareamento falhou')
-			#return False
-		
+		GPIO.output(self.pinoBT,0)
 		return True
 	
 	def conectarModulo(self, modulo):
+		GPIO.output(self.pinoBT,1)
+		
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 5')
-			#return False
+			GPIO.output(self.pinoBT,0)
+			return False
+		
+		self.serialConnection.write(b'AT+DISC\r\n')
+		x=self.serialConnection.readline()
+		if(x.decode().strip('\r\n') != 'OK'):
+		 	print('Comando AT nao funcionou')
+			GPIO.output(self.pinoBT,0)
+			return False
 		
 		message = 'AT+LINK={}\r\n'.format(modulo)
 		self.serialConnection.write(message.encode())  #CONECTAR AO DISPOSITIVO
 		
-		self.serialConnection.write(b'AT+ROLE=0\r\n')
-		x=self.serialConnection.readline()
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando AT nao funcionou 6')
-			#return False
+		GPIO.output(self.pinoBT,0)
 		return True
 
 	def receberModulo(self):
 		x=self.serialConnection.readline()
-		#return x
 		if(x and (x[0]!=48 | x[0]!=49)):
 			return (False, x.decode())
 		else:
@@ -112,7 +110,7 @@ class HubParaModulo(object):
 		message2 = '{}'.format(mensagem)
 		self.serialConnection.write(message2.encode())
 		x=self.serialConnection.readline()
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando AT nao funcionou 7')
-			#return False
+		if(x.decode() != 'OK'):
+			print('Mandar modulo falhou')
+			return False
 		return True
