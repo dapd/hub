@@ -106,15 +106,15 @@ class HubParaModulo(object):
 	def receberModulo(self):
 		x=self.serialConnection.readline()
 		if(x and (x[0]!=48 | x[0]!=49)):
-			return (False, x.decode())
+			return (False, x.decode().strip('\r\n'))
 		else:
-			return (True, x.decode())
+			return (True, x.decode().strip('\r\n'))
 
 	def mandarModulo(self, mensagem):
 		message2 = '{}'.format(mensagem)
 		self.serialConnection.write(message2.encode())
 		x=self.serialConnection.readline()
-		if(x.decode() != 'OK'):
+		if(x.decode().strip('\r\n') != 'OK'):
 			print('Mandar modulo falhou')
 			return False
 		return True
