@@ -24,20 +24,20 @@ class HubParaModulo(object):
 	def parear(self,idt,pin=1234):
 		GPIO.output(self.pinoBT,1)
 		
-		self.serialConnection.write(b'AT+DISC\r\n')
+		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou')
 			GPIO.output(self.pinoBT,0)
 			return False
 		
-		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
+		self.serialConnection.write(b'AT+DISC\r\n')
+		x=self.serialConnection.readline()
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 1')
 			GPIO.output(self.pinoBT,0)
 			return False
-	
 		
 		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
