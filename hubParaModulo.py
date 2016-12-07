@@ -20,6 +20,7 @@ class HubParaModulo(object):
 		  timeout=1
 		)
 		GPIO.setup(self.pinoBT, GPIO.OUT)
+		GPIO.output(self.pinoBT,0)
 	
 	def parear(self,idt,pin=1234):
 		GPIO.output(self.pinoBT,1)
@@ -32,22 +33,24 @@ class HubParaModulo(object):
 			GPIO.output(self.pinoBT,0)
 			return False
 		
-		self.serialConnection.write(b'AT+DISC\r\n')
-		x=self.serialConnection.readline()
-		print(x)
-		x=self.serialConnection.readline()
-		print(x)
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando AT nao funcionou 1')
-			GPIO.output(self.pinoBT,0)
-			return False
-		
 		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Comando AT nao funcionou 2')
 			GPIO.output(self.pinoBT,0)
 			return False
+		
+		self.serialConnection.write(b'AT+INIT\r\n')
+		
+		self.serialConnection.write(b'AT+DISC\r\n')
+		#x=self.serialConnection.readline()
+		#print(x)
+		#x=self.serialConnection.readline()
+		#print(x)
+		#if(x.decode().strip('\r\n') != 'OK'):
+			#print('Comando AT nao funcionou 1')
+			#GPIO.output(self.pinoBT,0)
+			#return False
 		
 		message = 'AT+PSWD={}\r\n'.format(pin)
 		self.serialConnection.write(message.encode())  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
@@ -57,8 +60,6 @@ class HubParaModulo(object):
 			GPIO.output(self.pinoBT,0)
 			return False
 		#print(x)
-		
-		self.serialConnection.write(b'AT+INIT\r\n')
 		
 		self.serialConnection.write(b'AT+INQM=0,5,10\r\n')
 		
