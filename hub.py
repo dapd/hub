@@ -104,11 +104,11 @@ class Hub(object):
 			print(self.pareados)
 			for modulo in self.pareados:
 				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
-					
-					#(x, msg) = self.hubParaModulo.receberModulo()
-					#print(msg)
-					if not self.hubParaModulo.mandarModulo("ping"):
-						self.hubParaModulo.mandarModulo("falha\r\n")
+					self.hubParaModulo.mandarModulo("ping")
+					(x, msg) = self.hubParaModulo.receberModulo()
+					print(msg)
+					if not x:
+						#self.hubParaModulo.mandarModulo("falha\r\n")
 						pass
 					else:
 						mensagem = msg.split(":")
