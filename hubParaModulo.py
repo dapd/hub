@@ -25,7 +25,7 @@ class HubParaModulo(object):
 	
 	def parear(self,idt,pin=1234):
 		GPIO.output(self.pinoBT,1)
-		time.sleep(1)
+		time.sleep(0.5)
 		self.serialConnection.write(b'AT+ROLE=1\r\n') #define o modo de operacao do modulo como MASTER
 		x=self.serialConnection.readline()
 		print(x)
