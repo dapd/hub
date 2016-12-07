@@ -101,10 +101,10 @@ class HubParaModulo(object):
 		
 		self.serialConnection.write(b'AT+DISC\r\n')
 		x=self.serialConnection.readline()
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando AT nao funcionou')
-			GPIO.output(self.pinoBT,0)
-			return False
+		#if(x.decode().strip('\r\n') != 'OK'):
+		#	print('Comando AT nao funcionou')
+		#	GPIO.output(self.pinoBT,0)
+		#	return False
 		
 		message = 'AT+LINK={}\r\n'.format(modulo)
 		self.serialConnection.write(message.encode())  #CONECTAR AO DISPOSITIVO
@@ -114,7 +114,7 @@ class HubParaModulo(object):
 
 	def receberModulo(self):
 		x=self.serialConnection.readline()
-		if(x and (x[0]!=48 | x[0]!=49)):
+		if(x and (ord(x[0])!=48 | ord(x[0])!=49 | ord(x[0])!=32)):
 			return (False, x.decode().strip('\r\n'))
 		else:
 			return (True, x.decode().strip('\r\n'))
