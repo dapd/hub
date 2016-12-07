@@ -6,7 +6,9 @@ import RPi.GPIO as GPIO
 
 class adaptadorBluetooth:
 	serialConnection = None
-	pinoBT = 15
+	PIO11  = 0#?
+	PIN34  = 0#?
+	SUPPLY = 0#? 
   
 	def __init__(self):
 		self.serialConnection = serial.Serial(
@@ -18,75 +20,104 @@ class adaptadorBluetooth:
 		timeout=1
 		)
 		GPIO.setmode(GPIO.BOARD)
-		GPIO.setup(self.pinoBT, GPIO.OUT)
-		GPIO.output(self.pinoBT,0)
-      
-	def master(self):  #define o modo de operacao do modulo como MASTER
-		GPIO.output(self.pinoBT,1)
+		GPIO.setup(self.PIO11, GPIO.OUT)
+		GPIO.setup(self.PIN34, GPIO.OUT)
+		GPIO.setup(self.SUPPLY, GPIO.OUT)
+
+		GPIO.output(self.SUPPLY,0)
+		GPIO.output(self.PIN34,0)
+		GPIO.output(self.PIO11,0)
+    
+    def modoComunicacao(self):
+		GPIO.output(self.SUPPLY,0)
+		GPIO.output(self.PIN34,0)
+		GPIO.output(self.SUPPLY,1)
+		self.serialConnection.setBaudrate(9600)
+
+	def modoAT(self):
+		
+		GPIO.output(self.PIN34,0)
+		GPIO.output(self.SUPPLY,1)
 		time.sleep(0.5)
-		self.serialConnection.write(b'AT+ROLE=1\r\n')
-		x=self.serialConnection.readline()
-		GPIO.output(self.pinoBT,0)
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando master nao funcionou')
-			return False
-   
-	def adressing(self):
-		self.serialConnection.write(b'AT+CMODE=1\r\n') #Permite a conexao a qualquer endereco
-		x=self.serialConnection.readline()
-		print(x);
-		print('2')
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando adressing nao funcionou')
-			#GPIO.output(self.pinoBT,0)
-			return False
+		GPIO.output(self.PIN34,1)
+		time.sleep(0.5)
+		self.serialConnection.setBaudrate(9600)
+
+    def sendToSerial(self, message, cmd, ok):
+
+    	retorno = False
+
+    	self.serialConnection.write(message.encode())
+    	ret = self.serialConnection.readline()
+    	ret = ret.decode().strip('\r\n')
+
+    	errorMessage = "Comando {0} nao funcionou. Retornou {1}".format(cmd, ret)
+    	successMessage = "Comando {} OK".format(cmd)
+
+    	if(ret == ok):
+			print(successMessage)
+			retorno = True
+		else:
+			print(errorMessage)
+			retorno = False
+
+		return retorno
+
+	def receiveFromSerial(self)
+		message=self.serialConnection.readline()
+		message=message.decode().strip('\r\n')
+		if(not message in ['', '1', '0', 'o']):
+			return (True, message)
+		else:
+			return (False, message)	
+
+	def master(self):  #define o modo de operacao do modulo como MASTER
+
+		GPIO.output(self.PIO11,1)
+		GPIO.output(self.SUPPLY,1)
+		
+		if self.serialConnection.baudrate != 38400:
+			self.serialConnection.setBaudrate(38400)
+		
+		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
+
+   		GPIO.output(self.PIO11,0)
+		GPIO.output(self.SUPPLY,1)
+
+		return retorno
+	
+	def adressing(self, param):
+		message = 'AT+CMODE={}\r\n'.format(param)
+		retorno = self.sendToSerial(message, "Adressing", "OK")
+		return retorno
      
 	def inicialize(self): #inicializar bluetooth
-		self.serialConnection.write(b'AT+INIT\r\n')
-		x=self.serialConnection.readline()
-		if x=='FAIL\r\n':
-			print('Comando inicialize nao funcionou')
-			return False
-    
+		retorno = self.sendToSerial('AT+INIT\r\n', "Inicialize", "OK")
+    	return retorno
+
 	def  disconnect(self): #disconecta
-		self.serialConnection.write(b'AT+DISC\r\n')
-		x=self.serialConnection.readline()
-		print(x);
-		if(x.decode().strip('\r\n') != '+DISC:SUCESS'):
-		print('Comando disconnect nao funcionou')
-		#GPIO.output(self.pinoBT,0)
-		return False
+		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCESS")
+    	return retorno
+
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		message = 'AT+PSWD={}\r\n'.format(pin)
-		self.serialConnection.write(message.encode()) 
-		x=self.serialConnection.readline()
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando password nao funcionou')
-			#GPIO.output(self.pinoBT,0)
-			return False
+		retorno = self.sendToSerial(message, "Password", "OK")
+    	return retorno
 
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
-		message2 = 'AT+PAIR={},10\r\n'.format(adress)
-		self.serialConnection.write(message2.encode()) 
-		x=self.serialConnection.readline()
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando pair nao funcionou')
-			#GPIO.output(self.pinoBT,0)
-			return False
+		message = 'AT+PAIR={},10\r\n'.format(adress)
+		retorno = self.sendToSerial(message, "Pair", "OK")
+    	return retorno
 
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
-		message3 = 'AT+LINK={}\r\n'.format(adress)
-		self.serialConnection.write(message3.encode())  
-		if(x.decode().strip('\r\n') != 'OK'):
-			print('Comando link nao funcionou')
-			#GPIO.output(self.pinoBT,0)
-			return False
-	def modoComunicacao(self):
-		pass
-	def modoAT(self):
-		pass
+		message = 'AT+LINK={}\r\n'.format(adress)
+		retorno = self.sendToSerial(message, "Link", "OK")
+    	return retorno
 	
-	
+	def reset(self): #RESETA
+		retorno = self.sendToSerial('AT+RESET\r\n', "Reset", "OK")
+    	return retorno
+
 class hubParaModulo:
   
   def __init__(self):
