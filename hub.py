@@ -106,6 +106,7 @@ class Hub(object):
 				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
 					self.hubParaModulo.mandarModulo("ping")
 					(x, msg) = self.hubParaModulo.receberModulo()
+					print(msg)
 					if not x:
 						#self.hubParaModulo.mandarModulo("falha\r\n")
 						pass
