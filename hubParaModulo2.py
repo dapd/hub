@@ -5,11 +5,12 @@ import serial
 import RPi.GPIO as GPIO
 
 class adaptadorBluetooth:
+	
 	serialConnection = None
 	PIO11  = 0#?
 	SUPPLY = 0#? 
 	AT=False
-  
+
 	def __init__(self):
 		self.serialConnection = serial.Serial(
 		port='/dev/ttyAMA0',
@@ -26,7 +27,7 @@ class adaptadorBluetooth:
 		GPIO.output(self.PIO11,0)
 		GPIO.output(self.SUPPLY,0)
 		self.AT=False
-    
+
 	def modoComunicacao(self):
 		if self.AT:
 			GPIO.output(self.SUPPLY,0)
@@ -49,18 +50,18 @@ class adaptadorBluetooth:
 			self.serialConnection.setBaudrate(9600)
 		self.AT=True
 
-    def sendToSerial(self, message, cmd, ok):
+	def sendToSerial(self, message, cmd, ok):
 
-    	retorno = False
+		retorno = False
 
-    	self.serialConnection.write(message.encode())
-    	ret = self.serialConnection.readline()
-    	ret = ret.decode().strip('\r\n')
+		self.serialConnection.write(message.encode())
+		ret = self.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
 
-    	errorMessage = "Comando {0} nao funcionou. Retornou {1}".format(cmd, ret)
-    	successMessage = "Comando {} OK".format(cmd)
+		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format(cmd, ret)
+		successMessage = "Comando {} OK".format(cmd)
 
-    	if(ret == ok):
+		if(ret == ok):
 			print(successMessage)
 			retorno = True
 		else:
@@ -81,58 +82,65 @@ class adaptadorBluetooth:
 		self.modoAT()
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 
-   		GPIO.output(self.PIO11,0)
+		GPIO.output(self.PIO11,0)
 		GPIO.output(self.SUPPLY,1)
 
 		return retorno
-	
+
 	def adressing(self, param):
 		self.modoAT()
 		message = 'AT+CMODE={}\r\n'.format(param)
 		retorno = self.sendToSerial(message, "Adressing", "OK")
 		return retorno
-     
+
 	def inicialize(self): #inicializar bluetooth
 		self.modoAT()
 		retorno = self.sendToSerial('AT+INIT\r\n', "Inicialize", "OK")
-    	return retorno
+		return retorno
 
 	def  disconnect(self): #disconecta
 		self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCESS")
-    	return retorno
+		return retorno
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		self.modoAT()
 		message = 'AT+PSWD={}\r\n'.format(pin)
 		retorno = self.sendToSerial(message, "Password", "OK")
-    	return retorno
+		return retorno
 
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
 		self.modoAT()
 		message = 'AT+PAIR={},10\r\n'.format(adress)
 		retorno = self.sendToSerial(message, "Pair", "OK")
-    	return retorno
+		return retorno
 
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
 		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		retorno = self.sendToSerial(message, "Link", "OK")
-    	return retorno
+		return retorno
 	
 	def reset(self): #RESETA
 		self.modoAT()
 		retorno = self.sendToSerial('AT+RESET\r\n', "Reset", "OK")
-    	return retorno
+		return retorno
 
 class hubParaModulo:
-  adaptador=None
-  def __init__(self):
-	adaptador=adaptadorBluetooth()
-  def gerenciar(self):
-	self.adaptador.mestre()
-	self.adaptador.modoComunicacao()
-	self.adaptado.sendToSerial(Teste, 'teste', 'OKmod'):
-	
-
-	
+	adaptador=None
+	def __init__(self):
+		adaptador=adaptadorBluetooth()
+	def gerenciar(self):
+		self.adaptador.mestre()
+		self.modoAT()
+		self.sendToSerial('AT', 'Teste1','OK')
+		self.adaptador.serialConnection.write(b'AT+STATE?')
+		ret = self.adaptador.serialConnection.readLine()
+		ret = ret.decode().strip('\r\n')
+		print (ret,' STATE')
+		ret = self.adaptador.serialConnection.readLine()
+		ret = ret.decode().strip('\r\n')
+		print (ret," OK")
+		
+		self.adaptador.modoComunicacao()
+		self.adaptado.sendToSerial(Teste, 'teste', 'OKmod')
