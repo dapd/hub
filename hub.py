@@ -80,17 +80,19 @@ class Hub(object):
 						if self.hubParaModulo.parear(modulos[2]) != False:
 							self.pareados.append(modulos)
 							self.hubParaFirebase.mensagemModuloStatus(modulos[0])
-						else:
-							print("pingando...")
-							self.hubParaModulo.mandarModulo("ping")
-							(x, msg) = self.hubParaModulo.receberModulo()
-							if msg == "OK":
-								self.pareados.append(modulos)
-								self.hubParaFirebase.mensagemModuloStatus(modulos[0])
+						#else:
+						#	print("pingando...")
+						#	self.hubParaModulo.conectarModulo(modulos[2])
+						#	self.hubParaModulo.mandarModulo("ping")
+						#	(x, msg) = self.hubParaModulo.receberModulo()
+						#	if msg == "OK":
+						#		self.pareados.append(modulos)
+						#		self.hubParaFirebase.mensagemModuloStatus(modulos[0])
 					else:
 						print(self.pareados)
 						print(modulos)
 						print("pingando...")
+						self.hubParaModulo.conectarModulo(modulos[2])
 						self.hubParaModulo.mandarModulo("ping")
 						(x, msg) = self.hubParaModulo.receberModulo()
 						print(msg,x)
