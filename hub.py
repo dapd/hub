@@ -104,9 +104,11 @@ class Hub(object):
 			print(self.pareados)
 			for modulo in self.pareados:
 				if self.hubParaModulo.conectarModulo(modulo[2]) == True:
+					self.hubParaModulo.mandarModulo("ping")
 					(x, msg) = self.hubParaModulo.receberModulo()
 					if not x:
-						self.hubParaModulo.mandarModulo("falha\r\n")
+						#self.hubParaModulo.mandarModulo("falha\r\n")
+						pass
 					else:
 						mensagem = msg.split(":")
 						if mensagem[0] == "1Alerta" and mensagem[1] == "gas":
