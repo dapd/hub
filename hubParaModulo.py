@@ -45,12 +45,12 @@ class HubParaModulo(object):
 			return False
 		
 		self.serialConnection.write(b'AT+INIT\r\n')
+		x=self.serialConnection.readline()
+		print(x);
 		
 		self.serialConnection.write(b'AT+DISC\r\n')
-		#x=self.serialConnection.readline()
-		#print(x)
-		#x=self.serialConnection.readline()
-		#print(x)
+		x=self.serialConnection.readline()
+		print(x);
 		#if(x.decode().strip('\r\n') != 'OK'):
 			#print('Comando AT nao funcionou 1')
 			#GPIO.output(self.pinoBT,0)
