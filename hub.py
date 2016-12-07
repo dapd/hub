@@ -96,9 +96,9 @@ class Hub(object):
 						self.hubParaModulo.mandarModulo("ping")
 						(x, msg) = self.hubParaModulo.receberModulo()
 						print(msg,x)
-						if msg != "OK":
-							self.pareados = [i for i  in self.pareados if i != modulos]
-							self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
+						#if msg != "OK":
+						#	self.pareados = [i for i  in self.pareados if i != modulos]
+						#	self.hubParaFirebase.mensagemModuloStatus(modulos[0], False)
 
 			# recebe e trata as mensagens
 			print(self.pareados)
