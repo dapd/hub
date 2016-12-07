@@ -129,5 +129,5 @@ class HubParaModulo(object):
 		x=self.serialConnection.readline()
 		if(x.decode().strip('\r\n') != 'OK'):
 			print('Mandar modulo falhou')
-			#return False
+			return False
 		return True
