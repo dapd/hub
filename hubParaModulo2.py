@@ -141,7 +141,7 @@ class adaptadorBluetooth:
 		print( ret, ' getBaud')
 		
 		ret2 = self.serialConnection.readline()
-		ret2 = ret.decode().strip('\r\n')
+		ret2 = ret2.decode().strip('\r\n')
 		print( ret2, ' getBaud2')
 		
 		return ret
