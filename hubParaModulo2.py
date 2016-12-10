@@ -162,6 +162,7 @@ class hubParaModulo:
 		print (ret," OK")
 		self.adaptador.modoComunicacao()
 		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
+		self.adaptador.disconnect()
 
 Hub=hubParaModulo()
 Hub.gerenciar()
