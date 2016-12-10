@@ -152,8 +152,8 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		
-		#self.adaptador.modoComunicacao()
-		#self.adaptado.sendToSerial(Teste, 'teste', 'OKmod')
+		self.adaptador.modoComunicacao()
+		self.adaptado.sendToSerial(Teste, 'teste', 'OKmod')
 
 Hub=hubParaModulo()
 Hub.gerenciar()
