@@ -36,7 +36,7 @@ class adaptadorBluetooth:
 			GPIO.output(self.SUPPLY,1)
 			if self.serialConnection.baudrate != 9600:
 				self.serialConnection.write(b'AT+UART=9600,1,0\r\n')
-				ret = self.adaptador.serialConnection.readline()
+				ret = self.serialConnection.readline()
 				ret = ret.decode().strip('\r\n')
 				print (ret," OK")
 				#self.serialConnection.setBaudrate(9600)
