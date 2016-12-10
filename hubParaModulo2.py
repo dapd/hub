@@ -207,7 +207,7 @@ class hubParaModulo:
 		time.sleep(5)
 		print('testando conexao')	
 		
-		print(self.adaptador.getBaldBlue(), 'BAUD BLUETOOTH')
+		print(self.adaptador.getBaudBlue(), 'BAUD BLUETOOTH')
 		print( self.adaptador.serialConnection.getBaudrate() , 'BAUD HW' )
 		
 		
