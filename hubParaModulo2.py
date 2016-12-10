@@ -137,7 +137,7 @@ class hubParaModulo:
 		self.adaptador.master()
 		print('entrando no modo at')
 		self.adaptador.modoAT()
-		print('mandando primeiro teste)
+		print('mandando primeiro teste')
 		self.adaptador.sendToSerial('AT', 'Teste1','OK')
 		self.adaptador.serialConnection.write(b'AT+STATE?')
 		print('resposta do teste')
