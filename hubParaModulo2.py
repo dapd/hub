@@ -151,7 +151,13 @@ class hubParaModulo:
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
-		
+		self.adaptador.serialConnection.write(b'AT+NAME\r\n')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret,' STATE')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret," OK")
 		self.adaptador.modoComunicacao()
 		self.adaptador.sendToSerial('Teste', 'teste', 'OKmod')
 
