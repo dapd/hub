@@ -30,7 +30,7 @@ class adaptadorBluetooth:
 		GPIO.output(self.SUPPLY,1)
 		self.AT=False
 		
-		self.changeBaudBlue(cBaud)
+		self.changeBaudBlue(self.cBaud)
 
 	def modoComunicacao(self):
 		if self.AT:
@@ -40,7 +40,7 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
 			GPIO.output(self.SUPPLY,1)
-			#self.changeBaudBlue(cBaud)
+			#self.changeBaudBlue(self.cBaud)
 			self.serialConnection.setBaudrate(self.cBaud)
 			
 
@@ -59,7 +59,7 @@ class adaptadorBluetooth:
 			time.sleep(0.3)
 			GPIO.output(self.PIO11,1)
 			time.sleep(0.3)
-			#self.changeBaudBlue(cBaud)
+			#self.changeBaudBlue(self.cBaud)
 			self.serialConnection.setBaudrate(self.aBaud)
 			
 	def sendToSerial(self, message, cmd, ok):
