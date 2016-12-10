@@ -226,18 +226,21 @@ class hubParaModulo:
 		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual BLUE')
 		
-		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
+		ret=self.adaptador.compareBaud('9600,1,0',baudAtual)
 		print(ret,' == False')
 		
-		self.adaptador.changeBaudBlue('38400,1,0')
-
+		self.adaptador.changeBaudBlue('9600,1,0')
+		
+		print('vAI DAR ERRADO?? MUDOU P 9600')
 		
 		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual BLUE')
 		
-		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
+		ret=self.adaptador.compareBaud('9600,1,0',baudAtual)
 		print(ret,' == True')
 
+		
+		self.adaptador.changeBaudBlue('38400,1,0')
 		
 		print('---------------------------------------------------------------------------------')
 		self.adaptador.serialConnection.setBaudrate(9600)
@@ -246,15 +249,15 @@ class hubParaModulo:
 		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual')
 		
-		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
+		ret=self.adaptador.compareBaud('9600,1,0',baudAtual)
 		print(ret,' == False')
 		
-		self.adaptador.changeBaudBlue('38400,1,0')
+		self.adaptador.changeBaudBlue('9600,1,0')
 		
 		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual')
 		
-		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
+		ret=self.adaptador.compareBaud('9600,1,0',baudAtual)
 		print(ret,' == True')
 
 				
