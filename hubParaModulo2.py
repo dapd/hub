@@ -10,13 +10,13 @@ class adaptadorBluetooth:
 	PIO11  = 15
 	SUPPLY = 40 
 	AT=False
-	cBaud=38400
-	aBaud=9600
+	cBaud=9600
+	aBaud=38400
 
 	def __init__(self):
 		self.serialConnection = serial.Serial(
 		port='/dev/ttyAMA0',
-		baudrate=self.cBaud,
+		baudrate=self.aBaud,
 		parity=serial.PARITY_NONE,
 		stopbits=serial.STOPBITS_ONE,
 		bytesize=serial.EIGHTBITS,
