@@ -133,10 +133,14 @@ class hubParaModulo:
 	def __init__(self):
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
+		print('entrando no modo master')
 		self.adaptador.master()
+		print('entrando no modo at')
 		self.adaptador.modoAT()
+		print('mandando primeiro teste)
 		self.adaptador.sendToSerial('AT', 'Teste1','OK')
 		self.adaptador.serialConnection.write(b'AT+STATE?')
+		print('resposta do teste')
 		ret = self.adaptador.serialConnection.readLine()
 		ret = ret.decode().strip('\r\n')
 		print (ret,' STATE')
