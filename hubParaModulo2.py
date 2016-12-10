@@ -54,7 +54,18 @@ class adaptadorBluetooth:
 		#time.sleep(0.5)
 		GPIO.output(self.PIO11,1)
 		time.sleep(0.5)
-		if self.serialConnection.baudrate != 38400:
+		
+		self.serialConnection.write(b'AT+UART\r\n')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret," UART")
+		
+		if ret == "38400":
+			self.serialConnection.write(b'AT+UART=38400,1,0\r\n')
+			ret = self.adaptador.serialConnection.readline()
+			ret = ret.decode().strip('\r\n')
+			print (ret," UART")
+			
 			self.serialConnection.setBaudrate(38400)
 		self.AT=True
 
@@ -147,10 +158,7 @@ class hubParaModulo:
 		print('entrando no modo at')
 		self.adaptador.modoAT()
 		
-		self.adaptador.serialConnection.write(b'AT+UART=9600,1,0\r\n')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret," UART")
+		
 		
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		print('resposta do teste')
