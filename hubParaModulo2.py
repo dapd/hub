@@ -143,7 +143,7 @@ class hubParaModulo:
 		self.adaptador.modoAT()
 		print('mandando primeiro teste')
 		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
-		self.adaptador.serialConnection.write(b'AT+STATE?\r\n')
+		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		print('resposta do teste')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
