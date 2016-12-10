@@ -29,26 +29,28 @@ class adaptadorBluetooth:
 		GPIO.output(self.PIO11,0)
 		GPIO.output(self.SUPPLY,1)
 		self.AT=False
+		
+		self.changeBaudBlue(cBaud)
 
 	def modoComunicacao(self):
 		if self.AT:
 			self.AT=False
-			print('entrou no metodo modoComunicacao')
+			#print('entrou no metodo modoComunicacao')
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
 			GPIO.output(self.SUPPLY,1)
-			self.changeBaudBlue('{},1,0'.format(self.cBaud))
+			#self.changeBaudBlue(cBaud)
 			self.serialConnection.setBaudrate(self.cBaud)
 			
 
 	def modoAT(self):
 		if self.AT:
-			print('ja esta em modo AT')
+			#print('ja esta em modo AT')
 			return
 		else:
 			self.AT=True
-			print('entrando no modo AT')
+			#print('entrando no modo AT')
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
@@ -57,7 +59,7 @@ class adaptadorBluetooth:
 			time.sleep(0.3)
 			GPIO.output(self.PIO11,1)
 			time.sleep(0.3)
-			self.changeBaudBlue('{},1,0'.format(self.aBaud))
+			#self.changeBaudBlue(cBaud)
 			self.serialConnection.setBaudrate(self.aBaud)
 			
 	def sendToSerial(self, message, cmd, ok):
@@ -98,7 +100,7 @@ class adaptadorBluetooth:
 		message = 'AT+CMODE={}\r\n'.format(param)
 		retorno = self.sendToSerial(message, "Adressing", "OK")
 		return retorno
-
+	
 	def inicialize(self): #inicializar bluetooth
 		self.modoAT()
 		retorno = self.sendToSerial('AT+INIT\r\n', "Inicialize", "OK")
@@ -166,10 +168,13 @@ class hubParaModulo:
 	def __init__(self):
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
+		
+		self.adaptador.modoAT()
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret,' STATE')
+		
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
@@ -195,27 +200,17 @@ class hubParaModulo:
 		self.adaptador.pair('2016,03,042425')
 		time.sleep(5)
 		self.adaptador.link('2016,03,042425')
-		print('testeando conexao')
-		self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
+		print('testando conexao')	
 		
-		
-		print('mandando primeiro teste')
-		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		print('resposta do teste')
+		print('VER ESTADO CoNEXAO')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret,' STATE')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
-		self.adaptador.serialConnection.write(b'AT+NAME\r\n')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret,' NAME')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret," OK")
+		
 		self.adaptador.modoComunicacao()
 		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 		self.adaptador.disconnect()
@@ -263,4 +258,4 @@ class hubParaModulo:
 				
 					   
 Hub=hubParaModulo()
-Hub.teste()
+Hub.gerenciar()
