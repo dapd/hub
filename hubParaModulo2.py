@@ -227,7 +227,7 @@ class hubParaModulo:
 		ret=self.adaptador.compareBaud('38400,1,0')
 		print(ret,' == False')
 		
-		self.changeBaud('38400,1,0')
+		self.adaptador.changeBaud('38400,1,0')
 		print('OK2')
 		
 		ret=self.adaptador.compareBaud('38400,1,0')
