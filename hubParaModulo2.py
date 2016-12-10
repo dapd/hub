@@ -147,7 +147,7 @@ class hubParaModulo:
 		print('entrando no modo at')
 		self.adaptador.modoAT()
 		
-		self.adaptador.serialConnection.write(b'AT+UART\r\n')
+		self.adaptador.serialConnection.write(b'AT+UART=9600,1,0\r\n')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret," UART")
