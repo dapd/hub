@@ -140,7 +140,7 @@ class hubParaModulo:
 	def __init__(self):
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
-		
+		self.adaptador.inicialize()
 		print('entrando no modo master')
 		self.adaptador.master()
 		print('entrando no modo at')
