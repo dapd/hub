@@ -153,7 +153,7 @@ class hubParaModulo:
 		print (ret," OK")
 		
 		self.adaptador.modoComunicacao()
-		self.adaptado.sendToSerial(Teste, 'teste', 'OKmod')
+		self.adaptador.sendToSerial(Teste, 'teste', 'OKmod')
 
 Hub=hubParaModulo()
 Hub.gerenciar()
