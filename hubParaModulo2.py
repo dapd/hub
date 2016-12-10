@@ -14,7 +14,7 @@ class adaptadorBluetooth:
 	def __init__(self):
 		self.serialConnection = serial.Serial(
 		port='/dev/ttyAMA0',
-		baudrate=9600,
+		baudrate=38400,
 		parity=serial.PARITY_NONE,
 		stopbits=serial.STOPBITS_ONE,
 		bytesize=serial.EIGHTBITS,
@@ -48,8 +48,8 @@ class adaptadorBluetooth:
 		#time.sleep(0.5)
 		GPIO.output(self.PIO11,1)
 		time.sleep(0.5)
-		if self.serialConnection.baudrate != 9600:
-			self.serialConnection.setBaudrate(9600)
+		if self.serialConnection.baudrate != 38400:
+			self.serialConnection.setBaudrate(38400)
 		self.AT=True
 
 	def sendToSerial(self, message, cmd, ok):
