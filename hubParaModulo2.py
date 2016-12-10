@@ -39,7 +39,7 @@ class adaptadorBluetooth:
 				ret = self.serialConnection.readline()
 				ret = ret.decode().strip('\r\n')
 				print (ret," OK")
-				self.serialConnection.setBaudrate(9600)
+				#self.serialConnection.setBaudrate(9600)
 				
 			self.AT=False
 
@@ -66,7 +66,7 @@ class adaptadorBluetooth:
 			ret = ret.decode().strip('\r\n')
 			print (ret," UART")
 			
-			self.serialConnection.setBaudrate(38400)
+			#self.serialConnection.setBaudrate(38400)
 		self.AT=True
 
 	def sendToSerial(self, message, cmd, ok):
