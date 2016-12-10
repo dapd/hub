@@ -10,8 +10,8 @@ class adaptadorBluetooth:
 	PIO11  = 15
 	SUPPLY = 40 
 	AT=False
-	cBaud=38400
-	cBaudB='38400,1,0'
+	cBaud=9600
+	cBaudB='9600,1,0'
 	aBaud=38400
 	aBaudB='38400,1,0'
 
@@ -32,16 +32,16 @@ class adaptadorBluetooth:
 		GPIO.output(self.SUPPLY,1)
 		self.AT=False
 		
-		#self.changeBaudBlue(self.cBaudB)
+		self.changeBaudBlue(self.cBaudB)
 
 	def modoComunicacao(self):
 		if self.AT:
 			self.AT=False
 			#print('entrou no metodo modoComunicacao')
-			GPIO.output(self.SUPPLY,0)
+			#GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
-			GPIO.output(self.SUPPLY,1)
+			#GPIO.output(self.SUPPLY,1)
 			#self.changeBaudBlue(self.cBaudB)
 			self.serialConnection.setBaudrate(self.cBaud)
 			
@@ -53,12 +53,12 @@ class adaptadorBluetooth:
 		else:
 			self.AT=True
 			#print('entrando no modo AT')
-			GPIO.output(self.SUPPLY,0)
-			GPIO.output(self.PIO11,0)
-			time.sleep(0.3)
-			GPIO.output(self.SUPPLY,1)
-			GPIO.output(self.PIO11,0)
-			time.sleep(0.3)
+# 			GPIO.output(self.SUPPLY,0)
+# 			GPIO.output(self.PIO11,0)
+# 			time.sleep(0.3)
+# 			GPIO.output(self.SUPPLY,1)
+# 			GPIO.output(self.PIO11,0)
+# 			time.sleep(0.3)
 			GPIO.output(self.PIO11,1)
 			time.sleep(0.3)
 			#self.changeBaudBlue(self.aBaudB)
@@ -160,6 +160,7 @@ class adaptadorBluetooth:
 		baud2=self.getBaudBlue()
 		
 		if self.compareBaud(newBaud,baud2):
+			print('FOI IGUAL')
 			pass
 		else:	
 			message = 'AT+UART={}\r\n'.format(newBaud)
@@ -172,39 +173,43 @@ class hubParaModulo:
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
 		
-		self.adaptador.modoAT()
-		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret,' STATE')
+# 		self.adaptador.modoAT()
+# 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
+# 		ret = self.adaptador.serialConnection.readline()
+# 		ret = ret.decode().strip('\r\n')
+# 		print (ret,' STATE')
 		
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret," OK")
+# 		ret = self.adaptador.serialConnection.readline()
+# 		ret = ret.decode().strip('\r\n')
+# 		print (ret," OK")
 		
 		self.adaptador.inicialize()
 		
 		print('entrando no modo master')
 		self.adaptador.master()
 		print('entrando no modo at')
-		self.adaptador.modoAT()
+		#self.adaptador.modoAT()
 		
 		
 		
-		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret,' STATE')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret," OK")
+# 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
+# 		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
+# 		ret = self.adaptador.serialConnection.readline()
+# 		ret = ret.decode().strip('\r\n')
+# 		print (ret,' STATE')
+# 		ret = self.adaptador.serialConnection.readline()
+# 		ret = ret.decode().strip('\r\n')
+# 		print (ret," OK")
 		
 		self.adaptador.pair('2016,03,042425')
 		time.sleep(5)
 		self.adaptador.link('2016,03,042425')
 		time.sleep(5)
 		print('testando conexao')	
+		
+		print(self.adaptador.getBaldBlue(), 'BAUD BLUETOOTH')
+		print( self.adaptador.serialConnection.getBaudrate() , 'BAUD HW' )
+		
 		
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		print('VER ESTADO CoNEXAO')
@@ -215,7 +220,9 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		
+		
 		self.adaptador.modoComunicacao()
+		print( self.adaptador.serialConnection.getBaudrate() , 'BAUD HW com' )
 		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 		#self.adaptador.disconnect()
 		
