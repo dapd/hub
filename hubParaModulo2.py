@@ -149,9 +149,9 @@ class adaptadorBluetooth:
 		return baud1==baud2
 	
 	def changeBaud(self,newBaud):
-		baud2=getBaud()
+		baud2=self.getBaud()
 		
-		if compareBaud(newBaud,baud2):
+		if self.compareBaud(newBaud,baud2):
 			pass
 		else:	
 			message = 'AT+UART={}\r\n'.format(newBaud)
@@ -172,8 +172,6 @@ class hubParaModulo:
 		print (ret," OK")
 		
 		self.adaptador.inicialize()
-		
-		
 		
 		print('entrando no modo master')
 		self.adaptador.master()
@@ -232,11 +230,7 @@ class hubParaModulo:
 		
 		ret=self.adaptador.compareBaud('38400,1,0')
 		print(ret,' == True')
-		
-		
-		
-		
-		
+				
 					   
 Hub=hubParaModulo()
 Hub.teste()
