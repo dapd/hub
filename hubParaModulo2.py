@@ -147,10 +147,10 @@ class hubParaModulo:
 		print('entrando no modo at')
 		self.adaptador.modoAT()
 		
-		#self.adaptador.serialConnection.write(b'AT+UART=38400,1,0\r\n')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret," UART")
+		self.adaptador.serialConnection.write(b'AT+UART\r\n')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret," UART")
 		
 		self.adaptador.pair('2016,03,042425')
 		self.adaptador.link('2016,03,042425')
