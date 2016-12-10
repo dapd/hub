@@ -10,7 +10,7 @@ class adaptadorBluetooth:
 	PIO11  = 15
 	SUPPLY = 40 
 	AT=False
-	cBaud=9600
+	cBaud=38400
 	aBaud=9600
 
 	def __init__(self):
