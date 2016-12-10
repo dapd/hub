@@ -131,7 +131,7 @@ class adaptadorBluetooth:
 class hubParaModulo:
 	adaptador=None
 	def __init__(self):
-		adaptador=adaptadorBluetooth()
+		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
 		self.adaptador.master()
 		self.modoAT()
