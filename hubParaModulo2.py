@@ -201,8 +201,9 @@ class hubParaModulo:
 		print (ret," OK")
 		
 		self.adaptador.pair('2016,03,042425')
-		#time.sleep(5)
+		time.sleep(5)
 		self.adaptador.link('2016,03,042425')
+		time.sleep(5)
 		print('testando conexao')	
 		
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
