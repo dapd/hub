@@ -32,8 +32,6 @@ class adaptadorBluetooth:
 		GPIO.output(self.SUPPLY,1)
 		self.AT=False
 		
-		self.changeBaudBlue(self.cBaudB)
-
 	def modoComunicacao(self):
 		if self.AT:
 			self.AT=False
@@ -43,7 +41,9 @@ class adaptadorBluetooth:
 			time.sleep(1)
 			#GPIO.output(self.SUPPLY,1)
 			self.changeBaudBlue(self.cBaudB)
+			time.sleep(1)
 			self.serialConnection.setBaudrate(self.cBaud)
+			time.sleep(1)
 			
 
 	def modoAT(self):
@@ -62,14 +62,18 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,1)
 			time.sleep(1)
 			self.changeBaudBlue(self.aBaudB)
+			time.sleep(1)
 			self.serialConnection.setBaudrate(self.aBaud)
+			time.sleep(1)
 			
 	def sendToSerial(self, message, cmd, ok):
 
 		retorno = False
 
 		self.serialConnection.write(message.encode())
+		time.sleep(1)
 		ret = self.serialConnection.readline()
+		time.sleep(1)
 		ret = ret.decode().strip('\r\n')
 
 		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format(cmd, ret)
@@ -86,6 +90,7 @@ class adaptadorBluetooth:
 
 	def receiveFromSerial(self):
 		message=self.serialConnection.readline()
+		time.sleep(1)
 		message=message.decode().strip('\r\n')
 		if(not message in ['', '1', '0', 'o']):
 			return (True, message)
@@ -93,23 +98,23 @@ class adaptadorBluetooth:
 			return (False, message)	
 
 	def master(self):  #define o modo de operacao do modulo como MASTER
-		self.modoAT()
+		#self.modoAT()
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 		return retorno
 
 	def adressing(self, param):
-		self.modoAT()
+		#self.modoAT()
 		message = 'AT+CMODE={}\r\n'.format(param)
 		retorno = self.sendToSerial(message, "Adressing", "OK")
 		return retorno
 	
 	def inicialize(self): #inicializar bluetooth
-		self.modoAT()
+		#self.modoAT()
 		retorno = self.sendToSerial('AT+INIT\r\n', "Inicialize", "OK")
 		return retorno
 
 	def  disconnect(self): #disconecta
-		self.modoAT()
+		#self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
 		self.serialConnection.readline()
 		
@@ -122,25 +127,25 @@ class adaptadorBluetooth:
 		return retorno
 
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
-		self.modoAT()
-		message = 'AT+PAIR={},5\r\n'.format(adress)
+		#self.modoAT()
+		message = 'AT+PAIR={},10\r\n'.format(adress)
 		time.sleep(5)
 		retorno = self.sendToSerial(message, "Pair", "OK")
 		return retorno
 
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
-		self.modoAT()
+		#self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		retorno = self.sendToSerial(message, "Link", "OK")
 		return retorno
 	
 	def reset(self): #RESETA
-		self.modoAT()
+		#self.modoAT()
 		retorno = self.sendToSerial('AT+RESET\r\n', "Reset", "OK")
 		return retorno
 	
 	def getBaudBlue(self):
-		self.modoAT()
+		#self.modoAT()
 		self.serialConnection.write(b'AT+UART\r\n')
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
@@ -182,12 +187,12 @@ class hubParaModulo:
 # 		ret = self.adaptador.serialConnection.readline()
 # 		ret = ret.decode().strip('\r\n')
 # 		print (ret," OK")
-		
+		self.adaptador.modoAT()
 		self.adaptador.inicialize()
 		
 		print('entrando no modo master')
 		self.adaptador.master()
-		print('entrando no modo at')
+		#print('entrando no modo at')
 		#self.adaptador.modoAT()
 		
 		
@@ -215,15 +220,21 @@ class hubParaModulo:
 		print('VER ESTADO CoNEXAO')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
-		print (ret,' STATE')
+		print (ret,':STATE')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
-		print (ret," OK")
+		print (ret,":OK")
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret,":???")
 		
 		
 		self.adaptador.modoComunicacao()
 		print( self.adaptador.serialConnection.getBaudrate() , 'BAUD HW com' )
-		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
+		self.adaptador.serialConnection.write(b'ping')
+		time.sleep(5)
+		
+		##self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 		#self.adaptador.disconnect()
 		
 	def teste(self):
