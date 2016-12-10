@@ -35,6 +35,13 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,0)
 			GPIO.output(self.SUPPLY,1)
 			if self.serialConnection.baudrate != 9600:
+				self.adaptador.serialConnection.write(b'AT+UART=9600,1,0\r\n')
+				ret = self.adaptador.serialConnection.readline()
+				ret = ret.decode().strip('\r\n')
+				print (ret,' STATE')
+				ret = self.adaptador.serialConnection.readline()
+				ret = ret.decode().strip('\r\n')
+				print (ret," OK")
 				self.serialConnection.setBaudrate(9600)
 			self.AT=False
 
@@ -152,13 +159,6 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		self.adaptador.serialConnection.write(b'AT+NAME\r\n')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret,' STATE')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret," OK")
-		self.adaptador.serialConnection.write(b'AT+UART\r\n')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret,' STATE')
