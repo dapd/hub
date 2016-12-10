@@ -220,16 +220,19 @@ class hubParaModulo:
 		
 	def teste(self):
 		
-		self.adaptador.getBaud()
-		print('OK1')
+		baudAtual=self.adaptador.getBaud()
+		print(baudAtual,' baud atual')
 		
-		ret=self.adaptador.compareBaud('38400,1,0')
+		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
 		print(ret,' == False')
 		
 		self.adaptador.changeBaud('38400,1,0')
 		print('OK2')
 		
-		ret=self.adaptador.compareBaud('38400,1,0')
+		baudAtual=self.adaptador.getBaud()
+		print(baudAtual,' baud atual')
+		
+		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
 		print(ret,' == True')
 				
 					   
