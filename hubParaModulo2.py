@@ -34,8 +34,8 @@ class adaptadorBluetooth:
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			GPIO.output(self.SUPPLY,1)
-			#if self.serialConnection.baudrate != 9600:
-			#	self.serialConnection.setBaudrate(9600)
+			if self.serialConnection.baudrate != 9600:
+				self.serialConnection.setBaudrate(9600)
 			self.AT=False
 
 	def modoAT(self):
