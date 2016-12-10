@@ -34,6 +34,9 @@ class adaptadorBluetooth:
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			GPIO.output(self.SUPPLY,1)
+			
+			
+			
 			if self.serialConnection.baudrate != 9600:
 				self.serialConnection.write(b'AT+UART=9600,1,0\r\n')
 				ret = self.serialConnection.readline()
@@ -172,7 +175,7 @@ class hubParaModulo:
 		
 		
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		print('resposta do teste')
+		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret,' STATE')
