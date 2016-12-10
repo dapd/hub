@@ -42,7 +42,7 @@ class adaptadorBluetooth:
 				ret = self.serialConnection.readline()
 				ret = ret.decode().strip('\r\n')
 				print (ret," OK")
-				self.serialConnection.setBaudrate(9600)
+				#self.serialConnection.setBaudrate(9600)
 				
 			self.AT=False
 
