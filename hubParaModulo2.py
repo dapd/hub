@@ -30,6 +30,7 @@ class adaptadorBluetooth:
 
 	def modoComunicacao(self):
 		if self.AT:
+			print('entrou no metodo modoComunicacao')
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			GPIO.output(self.SUPPLY,1)
