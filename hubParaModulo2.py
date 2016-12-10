@@ -85,7 +85,7 @@ class adaptadorBluetooth:
 		self.modoAT()
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 
-		GPIO.output(self.PIO11,0)
+		GPIO.output(self.PIO11,1)#
 		GPIO.output(self.SUPPLY,1)
 
 		return retorno
