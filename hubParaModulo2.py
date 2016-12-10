@@ -10,8 +10,8 @@ class adaptadorBluetooth:
 	PIO11  = 15
 	SUPPLY = 40 
 	AT=False
-	cBaud=9600
-	cBaudB='9600,1,0'
+	cBaud=38400
+	cBaudB='38400,1,0'
 	aBaud=38400
 	aBaudB='38400,1,0'
 
