@@ -201,7 +201,7 @@ class hubParaModulo:
 		print (ret," OK")
 		
 		self.adaptador.pair('2016,03,042425')
-		time.sleep(5)
+		#time.sleep(5)
 		self.adaptador.link('2016,03,042425')
 		print('testando conexao')	
 		
@@ -216,7 +216,7 @@ class hubParaModulo:
 		
 		self.adaptador.modoComunicacao()
 		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
-		self.adaptador.disconnect()
+		#self.adaptador.disconnect()
 		
 	def teste(self):
 		print (self.adaptador.serialConnection.getBaudrate(), 'HW baud')
