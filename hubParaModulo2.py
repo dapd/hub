@@ -24,7 +24,7 @@ class adaptadorBluetooth:
 		GPIO.setup(self.PIO11, GPIO.OUT)
 		GPIO.setup(self.SUPPLY, GPIO.OUT)
 
-		GPIO.output(self.PIO11,0)
+		GPIO.output(self.PIO11,1)
 		GPIO.output(self.SUPPLY,0)
 		self.AT=False
 
