@@ -60,7 +60,7 @@ class adaptadorBluetooth:
 		ret = ret.decode().strip('\r\n')
 		print (ret," UART")
 		
-		if ret == "38400":
+		if ret == "+UART:9600,1,0":
 			self.serialConnection.write(b'AT+UART=38400,1,0\r\n')
 			ret = self.serialConnection.readline()
 			ret = ret.decode().strip('\r\n')
