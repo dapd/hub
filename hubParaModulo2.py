@@ -223,17 +223,17 @@ class hubParaModulo:
 	def teste(self):
 		print (self.adaptador.serialConnection.getBaudrate(), 'HW baud')
 		
-		baudAtual=self.adaptador.getBaud()
-		print(baudAtual,' baud atual')
+		baudAtual=self.adaptador.getBaudBlue()
+		print(baudAtual,' baud atual BLUE')
 		
 		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
 		print(ret,' == False')
 		
-		self.adaptador.changeBaud('38400,1,0')
-		print('OK2')
+		self.adaptador.changeBaudBlue('38400,1,0')
+
 		
 		baudAtual=self.adaptador.getBaud()
-		print(baudAtual,' baud atual')
+		print(baudAtual,' baud atual BLUE')
 		
 		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
 		print(ret,' == True')
@@ -243,16 +243,15 @@ class hubParaModulo:
 		self.adaptador.serialConnection.setBaudrate(9600)
 		print (self.adaptador.serialConnection.getBaudrate(), 'HW baud2')
 		
-		baudAtual=self.adaptador.getBaud()
+		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual')
 		
 		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
 		print(ret,' == False')
 		
-		self.adaptador.changeBaud('38400,1,0')
-		print('OK2')
+		self.adaptador.changeBaudBlue('38400,1,0')
 		
-		baudAtual=self.adaptador.getBaud()
+		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual')
 		
 		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
