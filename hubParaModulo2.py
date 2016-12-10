@@ -48,10 +48,10 @@ class adaptadorBluetooth:
 			print('ja esta em modo AT')
 			return
 		print('entrando no modo AT')
-		#GPIO.output(self.SUPPLY,0)
+		GPIO.output(self.SUPPLY,0)
 		#GPIO.output(self.PIO11,0)
-		#GPIO.output(self.SUPPLY,1)
-		#time.sleep(0.5)
+		time.sleep(0.5)
+		GPIO.output(self.SUPPLY,1)
 		GPIO.output(self.PIO11,1)
 		time.sleep(0.5)
 		
