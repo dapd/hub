@@ -38,7 +38,8 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
 			GPIO.output(self.SUPPLY,1)
-			self.changeBaud('{},1,0'.format(self.cBaud))				
+			self.changeBaud('{},1,0'.format(self.cBaud))
+			self.serialConnection.setBaudrate(self.cBaud)
 			
 
 	def modoAT(self):
@@ -57,7 +58,8 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,1)
 			time.sleep(0.3)
 			self.changeBaud('{},1,0'.format(self.aBaud))
-		
+			self.serialConnection.setBaudrate(self.aBaud)
+			
 	def sendToSerial(self, message, cmd, ok):
 
 		retorno = False
@@ -132,7 +134,7 @@ class adaptadorBluetooth:
 		retorno = self.sendToSerial('AT+RESET\r\n', "Reset", "OK")
 		return retorno
 	
-	def getBaud(self):
+	def getBaudBlue(self):
 		self.modoAT()
 		self.serialConnection.write(b'AT+UART\r\n')
 		ret = self.serialConnection.readline()
@@ -149,7 +151,7 @@ class adaptadorBluetooth:
 	def compareBaud(self,baud1,baud2):
 		return baud1==baud2
 	
-	def changeBaud(self,newBaud):
+	def changeBaudBlue(self,newBaud):
 		baud2=self.getBaud()
 		
 		if self.compareBaud(newBaud,baud2):
@@ -157,7 +159,7 @@ class adaptadorBluetooth:
 		else:	
 			message = 'AT+UART={}\r\n'.format(newBaud)
 			retorno = self.sendToSerial(message, "changeBaud", "OK")
-			return retorno
+			return retorno	
 		
 class hubParaModulo:
 	adaptador=None
@@ -219,6 +221,7 @@ class hubParaModulo:
 		self.adaptador.disconnect()
 		
 	def teste(self):
+		print (self.adaptador.serialConnection.getBaudrate(), 'HW baud')
 		
 		baudAtual=self.adaptador.getBaud()
 		print(baudAtual,' baud atual')
@@ -234,6 +237,27 @@ class hubParaModulo:
 		
 		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
 		print(ret,' == True')
+
+		
+		print('---------------------------------------------------------------------------------')
+		self.adaptador.serialConnection.setBaudrate(9600)
+		print (self.adaptador.serialConnection.getBaudrate(), 'HW baud2')
+		
+		baudAtual=self.adaptador.getBaud()
+		print(baudAtual,' baud atual')
+		
+		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
+		print(ret,' == False')
+		
+		self.adaptador.changeBaud('38400,1,0')
+		print('OK2')
+		
+		baudAtual=self.adaptador.getBaud()
+		print(baudAtual,' baud atual')
+		
+		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
+		print(ret,' == True')
+
 				
 					   
 Hub=hubParaModulo()
