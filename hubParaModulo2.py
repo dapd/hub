@@ -108,7 +108,7 @@ class adaptadorBluetooth:
 
 	def  disconnect(self): #disconecta
 		self.modoAT()
-		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCESS")
+		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
 		self.serialConnection.readline()
 		
 		return retorno
