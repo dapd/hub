@@ -38,7 +38,7 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
 			GPIO.output(self.SUPPLY,1)
-			self.changeBaud('{},1,0'.format(self.cBaud))
+			self.changeBaudBlue('{},1,0'.format(self.cBaud))
 			self.serialConnection.setBaudrate(self.cBaud)
 			
 
@@ -57,7 +57,7 @@ class adaptadorBluetooth:
 			time.sleep(0.3)
 			GPIO.output(self.PIO11,1)
 			time.sleep(0.3)
-			self.changeBaud('{},1,0'.format(self.aBaud))
+			self.changeBaudBlue('{},1,0'.format(self.aBaud))
 			self.serialConnection.setBaudrate(self.aBaud)
 			
 	def sendToSerial(self, message, cmd, ok):
@@ -140,11 +140,11 @@ class adaptadorBluetooth:
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		ret= ret.strip('+UART:')
-		print( ret, ' getBaud')
+		print( ret, ' getBaudBlue')
 		
 		ret2 = self.serialConnection.readline()
 		ret2 = ret2.decode().strip('\r\n')
-		print( ret2, ' getBaud2')
+		print( ret2, ' getBaud2Blue')
 		
 		return ret
 		
@@ -152,13 +152,13 @@ class adaptadorBluetooth:
 		return baud1==baud2
 	
 	def changeBaudBlue(self,newBaud):
-		baud2=self.getBaud()
+		baud2=self.getBaudBlue()
 		
 		if self.compareBaud(newBaud,baud2):
 			pass
 		else:	
 			message = 'AT+UART={}\r\n'.format(newBaud)
-			retorno = self.sendToSerial(message, "changeBaud", "OK")
+			retorno = self.sendToSerial(message, "changeBaudBlue", "OK")
 			return retorno	
 		
 class hubParaModulo:
@@ -232,7 +232,7 @@ class hubParaModulo:
 		self.adaptador.changeBaudBlue('38400,1,0')
 
 		
-		baudAtual=self.adaptador.getBaud()
+		baudAtual=self.adaptador.getBaudBlue()
 		print(baudAtual,' baud atual BLUE')
 		
 		ret=self.adaptador.compareBaud('38400,1,0',baudAtual)
