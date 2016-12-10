@@ -128,7 +128,7 @@ class adaptadorBluetooth:
 		return retorno
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
-		self.modoAT()
+		self.master()
 		message = 'AT+PSWD={}\r\n'.format(pin)
 		retorno = self.sendToSerial(message, "Password", "OK")
 		return retorno
@@ -209,7 +209,7 @@ class hubParaModulo:
 		print (ret," OK")
 		self.adaptador.modoComunicacao()
 		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
-		self.adaptador.disconnect()
+		#self.adaptador.disconnect()
 
 Hub=hubParaModulo()
 Hub.gerenciar()
