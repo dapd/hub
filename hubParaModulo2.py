@@ -219,7 +219,7 @@ class hubParaModulo:
 		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 		self.adaptador.disconnect()
 		
-	teste(self):
+	def teste(self):
 		
 		self.adaptador.getBaud()
 		print('OK1')
