@@ -32,19 +32,21 @@ class adaptadorBluetooth:
 
 	def modoComunicacao(self):
 		if self.AT:
+			self.AT=False
 			print('entrou no metodo modoComunicacao')
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.3)
 			GPIO.output(self.SUPPLY,1)
 			self.changeBaud('{},1,0'.format(self.cBaud))				
-			self.AT=False
+			
 
 	def modoAT(self):
 		if self.AT:
 			print('ja esta em modo AT')
 			return
 		else:
+			self.AT=True
 			print('entrando no modo AT')
 			GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
@@ -55,7 +57,6 @@ class adaptadorBluetooth:
 			GPIO.output(self.PIO11,1)
 			time.sleep(0.3)
 			self.changeBaud('{},1,0'.format(self.aBaud))
-			self.AT=True
 		
 	def sendToSerial(self, message, cmd, ok):
 
