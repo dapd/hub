@@ -22,27 +22,25 @@ class adaptadorBluetooth:
 		)
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(self.PIO11, GPIO.OUT)
-		GPIO.setup(self.SUPPLY, GPIO.OUT)
+		#GPIO.setup(self.SUPPLY, GPIO.OUT)
 
 		GPIO.output(self.PIO11,1)
-		GPIO.output(self.SUPPLY,0)
+		#GPIO.output(self.SUPPLY,0)
 		self.AT=True
 
 	def modoComunicacao(self):
 		if self.AT:
 			print('entrou no metodo modoComunicacao')
-			GPIO.output(self.SUPPLY,0)
+			#GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
-			GPIO.output(self.SUPPLY,1)
+			#GPIO.output(self.SUPPLY,1)
 			
-			
-			
-			if self.serialConnection.baudrate != 9600:
-				self.serialConnection.write(b'AT+UART=9600,1,0\r\n')
-				ret = self.serialConnection.readline()
-				ret = ret.decode().strip('\r\n')
-				print (ret," OK")
-				self.serialConnection.setBaudrate(9600)
+			#if self.serialConnection.baudrate != 9600:
+			#	self.serialConnection.write(b'AT+UART=9600,1,0\r\n')
+			#	ret = self.serialConnection.readline()
+			#	ret = ret.decode().strip('\r\n')
+			#	print (ret," OK")
+			#	self.serialConnection.setBaudrate(9600)
 				
 			self.AT=False
 
@@ -51,10 +49,10 @@ class adaptadorBluetooth:
 			print('ja esta em modo AT')
 			return
 		print('entrando no modo AT')
-		GPIO.output(self.SUPPLY,0)
-		#GPIO.output(self.PIO11,0)
+		#GPIO.output(self.SUPPLY,0)
+		GPIO.output(self.PIO11,0)
 		time.sleep(0.5)
-		GPIO.output(self.SUPPLY,1)
+		#GPIO.output(self.SUPPLY,1)
 		GPIO.output(self.PIO11,1)
 		time.sleep(0.5)
 		
@@ -104,8 +102,8 @@ class adaptadorBluetooth:
 		self.modoAT()
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 
-		GPIO.output(self.PIO11,1)#
-		GPIO.output(self.SUPPLY,1)
+		#GPIO.output(self.PIO11,1)#
+		#GPIO.output(self.SUPPLY,1)
 
 		return retorno
 
