@@ -134,6 +134,7 @@ class adaptadorBluetooth:
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
 		self.modoAT()
 		message = 'AT+PAIR={},5\r\n'.format(adress)
+		time.sleep(5)
 		retorno = self.sendToSerial(message, "Pair", "OK")
 		return retorno
 
@@ -177,30 +178,24 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		
-		#self.adaptador.pair('2016,03,042425')
-		#time.sleep(5)
+		self.adaptador.pair('2016,03,042425')
+		#
 		#self.adaptador.link('2016,03,042425')
 		#print('testeando conexao')
 		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
 		
+		print('Mandando Primeiro Teste')
+		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
 		
-		#print('mandando primeiro teste')
-		#self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
-		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		#print('resposta do teste')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret,' STATE')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret," OK")
-		#self.adaptador.serialConnection.write(b'AT+NAME\r\n')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret,' NAME')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret," OK")
+		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
+		print('Resposta do Teste')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret,' STATE')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret," OK")
+		
 		#self.adaptador.modoComunicacao()
 		#self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 		#self.adaptador.disconnect()
