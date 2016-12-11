@@ -62,10 +62,10 @@ class adaptadorBluetooth:
 		print('entrando no modo AT')
 		#GPIO.output(self.SUPPLY,0)
 		GPIO.output(self.PIO11,0)
-		time.sleep(0.7)
+		time.sleep(0.5)
 		#GPIO.output(self.SUPPLY,1)
 		GPIO.output(self.PIO11,1)
-		time.sleep(0.7)
+		time.sleep(0.3)
 		
 		self.serialConnection.write(b'AT+UART\r\n')
 		ret = self.serialConnection.readline()
@@ -260,7 +260,7 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		
-		self.adaptador.pair('2016,03,042425')
+		#self.adaptador.pair('2016,03,042425')
 		self.adaptador.bind('2016,03,042425')
 		self.adaptador.link('2016,03,042425')
 		print('testando conexao')
