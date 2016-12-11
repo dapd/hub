@@ -136,7 +136,7 @@ class adaptadorBluetooth:
 	def  disconnect(self): #disconecta
 		self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
-		time.sleep(1)
+		time.sleep(2)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print(ret,' OK')
@@ -150,9 +150,9 @@ class adaptadorBluetooth:
 
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
 		self.modoAT()
-		message = 'AT+PAIR={},5\r\n'.format(adress)
+		message = 'AT+PAIR={},2\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(6)
+		time.sleep(2)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		
@@ -176,7 +176,7 @@ class adaptadorBluetooth:
 		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(5)
+		time.sleep(2)
 		
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
@@ -249,6 +249,16 @@ class hubParaModulo:
 		#print (ret," OK")
 		
 		self.adaptador.inicialize()
+		
+		self.adaptador.serialConnection.write(b'AT+INQM=0,5,2\r\n')
+		self.adaptador.serialConnection.write(b'AT+INQM\r\n')
+		time.sleep(2)
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret,' INQ')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret,' INQ')
 		
 		print('entrando no modo master')
 		self.adaptador.master()
