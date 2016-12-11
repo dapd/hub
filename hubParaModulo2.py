@@ -43,7 +43,7 @@ class adaptadorBluetooth:
 			print('entrou no metodo modoComunicacao')
 			#GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
-			time.sleep(0.3)
+			time.sleep(1)
 			#GPIO.output(self.SUPPLY,1)
 			
 			#if self.serialConnection.baudrate != 9600:
