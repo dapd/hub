@@ -24,7 +24,10 @@ class adaptadorBluetooth:
 		GPIO.setup(self.PIO11, GPIO.OUT)
 		#GPIO.setup(self.SUPPLY, GPIO.OUT)
 
+		GPIO.output(self.PIO11,0)
+		time.sleep(0.3)
 		GPIO.output(self.PIO11,1)
+		
 		self.serialConnection.write(b'AT+UART=38400,1,0\r\n')
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
