@@ -32,9 +32,9 @@ class adaptadorBluetooth:
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret," UART")
-		ret = self.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret," OK")
+		#ret = self.serialConnection.readline()
+		#ret = ret.decode().strip('\r\n')
+		#print (ret," OK")
 		#GPIO.output(self.SUPPLY,0)
 		self.AT=True
 
