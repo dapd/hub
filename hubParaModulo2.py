@@ -266,11 +266,11 @@ class hubParaModulo:
 		#ret = ret.decode().strip('\r\n')
 		#print (ret," OK")
 		
-		#self.adaptador.disconnect()
+		self.adaptador.disconnect()
 		
 		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		#print('ESTADO APOS USAR DISCONNECT')
-		#self.adaptador.state()
+		print('ESTADO APOS USAR DISCONNECT')
+		self.adaptador.state()
 		#ret = self.adaptador.serialConnection.readline()
 		#ret = ret.decode().strip('\r\n')
 		#print (ret,' STATE')
