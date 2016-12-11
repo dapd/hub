@@ -197,8 +197,8 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		
-		#self.adaptador.modoComunicacao()
-		#self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
+		self.adaptador.modoComunicacao()
+		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 		#self.adaptador.disconnect()
 
 Hub=hubParaModulo()
