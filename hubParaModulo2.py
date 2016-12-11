@@ -133,7 +133,9 @@ class adaptadorBluetooth:
 		self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
 		time.sleep(1)
-		self.serialConnection.readline()		
+		ret = self.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print(ret,' OK')
 		return retorno
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
@@ -169,15 +171,49 @@ class adaptadorBluetooth:
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
 		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
+		self.serialConnection.write(message.encode())
 		time.sleep(1)
-		retorno = self.sendToSerial(message, "Link", "OK")
+		
+		ret = self.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		
+		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Link', ret)
+		successMessage = "Comando {} OK".format('Link')
+
+		if(ret == 'OK'):
+			print(successMessage)
+			retorno = True
+		else:
+			print(errorMessage)
+			retorno = False
+
 		return retorno
+		#retorno = self.sendToSerial(message, "Link", "OK")
+		#return retorno
 	
 	def bind(self,adress):
 		self.modoAT()
 		message = 'AT+BIND={}\r\n'.format(adress)
-		retorno = self.sendToSerial(message, 'Bind', 'OK')
+		self.serialConnection.write(message.encode())
+		time.sleep(1)
+		
+		ret = self.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		
+		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Bind', ret)
+		successMessage = "Comando {} OK".format('Bind')
+
+		if(ret == 'OK'):
+			print(successMessage)
+			retorno = True
+		else:
+			print(errorMessage)
+			retorno = False
+
 		return retorno
+		
+		#retorno = self.sendToSerial(message, 'Bind', 'OK')
+		#return retorno
 	
 	def reset(self): #RESETA
 		self.modoAT()
