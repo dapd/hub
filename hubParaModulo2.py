@@ -148,7 +148,7 @@ class adaptadorBluetooth:
 		self.modoAT()
 		message = 'AT+PAIR={},5\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(5)
+		time.sleep(5.5)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		
@@ -172,7 +172,7 @@ class adaptadorBluetooth:
 		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(1)
+		time.sleep(5)
 		
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
