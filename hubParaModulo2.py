@@ -289,9 +289,9 @@ class hubParaModulo:
 		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
 		self.adaptador.state()
 		
-		#self.adaptador.disconnect()
-		#print('ESTADO APOS USAR DISCONNECT')
-		#self.adaptador.state()
+		self.adaptador.disconnect()
+		print('ESTADO APOS USAR DISCONNECT')
+		self.adaptador.state()
 		
 		self.adaptador.pair('2016,03,042425')
 		self.adaptador.bind('2016,03,042425')
