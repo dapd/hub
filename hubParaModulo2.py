@@ -231,6 +231,7 @@ class hubParaModulo:
 		
 # 		self.adaptador.modoComunicacao()
 		#print( self.adaptador.serialConnection.getBaudrate() , 'BAUD HW com' )
+		self.adaptador.serialConnection.setBaudrate(38400)
 		self.adaptador.serialConnection.write(b'ping')
 		self.adaptador.serialConnection.write(b'wkdjhglkjndsalkg')
 		self.adaptador.serialConnection.write(b'HELP')
