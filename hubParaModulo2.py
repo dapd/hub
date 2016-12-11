@@ -57,6 +57,10 @@ class adaptadorBluetooth:
 
 	def modoAT(self):
 		if self.AT:
+			GPIO.output(self.PIO11,0)
+			time.sleep(0.5)
+			GPIO.output(self.PIO11,1)
+			time.sleep(0.5)
 			print('ja esta em modo AT')
 			return
 		print('entrando no modo AT')
@@ -65,7 +69,7 @@ class adaptadorBluetooth:
 		time.sleep(0.5)
 		#GPIO.output(self.SUPPLY,1)
 		GPIO.output(self.PIO11,1)
-		time.sleep(0.3)
+		time.sleep(0.5)
 		
 		self.serialConnection.write(b'AT+UART\r\n')
 		ret = self.serialConnection.readline()
