@@ -161,12 +161,12 @@ class hubParaModulo:
 		ret = ret.decode().strip('\r\n')
 		print (ret," OK")
 		
-		#self.adaptador.inicialize()
+		self.adaptador.inicialize()
 		
-		#print('entrando no modo master')
-		#self.adaptador.master()
-		#print('entrando no modo at')
-		#self.adaptador.modoAT()
+		print('entrando no modo master')
+		self.adaptador.master()
+		print('entrando no modo at')
+		self.adaptador.modoAT()
 		
 		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		#print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
