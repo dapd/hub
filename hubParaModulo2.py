@@ -14,7 +14,7 @@ class adaptadorBluetooth:
 	def __init__(self):
 		self.serialConnection = serial.Serial(
 		port='/dev/ttyAMA0',
-		baudrate=9600,
+		baudrate=38400,
 		parity=serial.PARITY_NONE,
 		stopbits=serial.STOPBITS_ONE,
 		bytesize=serial.EIGHTBITS,
