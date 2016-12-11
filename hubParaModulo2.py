@@ -145,9 +145,26 @@ class adaptadorBluetooth:
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
 		self.modoAT()
 		message = 'AT+PAIR={},5\r\n'.format(adress)
+		self.serialConnection.write(message.encode())
 		time.sleep(5)
-		retorno = self.sendToSerial(message, "Pair", "OK")
+		ret = self.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		
+		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Pair', ret)
+		successMessage = "Comando {} OK".format('Pair')
+
+		if(ret == 'OK'):
+			print(successMessage)
+			retorno = True
+		else:
+			print(errorMessage)
+			retorno = False
+
 		return retorno
+		
+		#retorno = self.sendToSerial(message, "Pair", "OK")
+		
+		#return retorno
 
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
 		self.modoAT()
