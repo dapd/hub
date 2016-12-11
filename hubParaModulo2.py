@@ -42,7 +42,6 @@ class adaptadorBluetooth:
 		if self.AT:
 			print('entrou no metodo modoComunicacao')
 			#GPIO.output(self.SUPPLY,0)
-			time.sleep(0.5)
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.5)
 			#GPIO.output(self.SUPPLY,1)
@@ -91,7 +90,7 @@ class adaptadorBluetooth:
 		retorno = False
 
 		self.serialConnection.write(message.encode())
-		time.sleep(0.2)
+		time.sleep(0.3)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 
@@ -290,9 +289,9 @@ class hubParaModulo:
 		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
 		self.adaptador.state()
 		
-		self.adaptador.disconnect()
-		print('ESTADO APOS USAR DISCONNECT')
-		self.adaptador.state()
+		#self.adaptador.disconnect()
+		#print('ESTADO APOS USAR DISCONNECT')
+		#self.adaptador.state()
 		
 		self.adaptador.pair('2016,03,042425')
 		self.adaptador.bind('2016,03,042425')
