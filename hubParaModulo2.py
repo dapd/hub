@@ -25,7 +25,7 @@ class adaptadorBluetooth:
 		#GPIO.setup(self.SUPPLY, GPIO.OUT)
 
 		GPIO.output(self.PIO11,0)
-		time.sleep(0.3)
+		time.sleep(0.5)
 		GPIO.output(self.PIO11,1)
 		
 		self.serialConnection.write(b'AT+UART=38400,1,0\r\n')
@@ -43,7 +43,7 @@ class adaptadorBluetooth:
 			print('entrou no metodo modoComunicacao')
 			#GPIO.output(self.SUPPLY,0)
 			GPIO.output(self.PIO11,0)
-			time.sleep(0.3)
+			time.sleep(0.5)
 			#GPIO.output(self.SUPPLY,1)
 			
 			#if self.serialConnection.baudrate != 9600:
@@ -62,10 +62,10 @@ class adaptadorBluetooth:
 		print('entrando no modo AT')
 		#GPIO.output(self.SUPPLY,0)
 		GPIO.output(self.PIO11,0)
-		time.sleep(0.3)
+		time.sleep(0.5)
 		#GPIO.output(self.SUPPLY,1)
 		GPIO.output(self.PIO11,1)
-		time.sleep(0.3)
+		time.sleep(0.5)
 		
 		self.serialConnection.write(b'AT+UART\r\n')
 		ret = self.serialConnection.readline()
