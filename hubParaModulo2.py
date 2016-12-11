@@ -187,13 +187,14 @@ class adaptadorBluetooth:
 		self.serialConnection.readline()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		#time.sleep(2)
 		
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		while ret == '':
 			ret = self.serialConnection.readline()
 			ret = ret.decode().strip('\r\n')
+		
+		time.sleep(2)
 		
 		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Link', ret)
 		successMessage = "Comando {} OK".format('Link')
