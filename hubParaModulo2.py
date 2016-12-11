@@ -132,8 +132,8 @@ class adaptadorBluetooth:
 	def  disconnect(self): #disconecta
 		self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
-		self.serialConnection.readline()
-		time.sleep(1)		
+		time.sleep(1)
+		self.serialConnection.readline()		
 		return retorno
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
