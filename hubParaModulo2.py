@@ -133,7 +133,7 @@ class adaptadorBluetooth:
 		self.modoAT()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
 		self.serialConnection.readline()
-		
+		time.sleep(1)		
 		return retorno
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
@@ -200,6 +200,17 @@ class hubParaModulo:
 		
 		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret,' STATE')
+		ret = self.adaptador.serialConnection.readline()
+		ret = ret.decode().strip('\r\n')
+		print (ret," OK")
+		
+		self.adaptador.disconnect()
+		
+		self.adaptador.serialConnection.write(b'AT+STATE\r\n')
+		print('ESTADO APOS USAR DISC')
 		ret = self.adaptador.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		print (ret,' STATE')
