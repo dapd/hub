@@ -115,6 +115,7 @@ class adaptadorBluetooth:
 
 	def master(self):  #define o modo de operacao do modulo como MASTER
 		self.modoAT()
+		self.serialConnection.readline()
 		retorno = self.sendToSerial('AT+ROLE=1\r\n', 'Master', 'OK')
 
 		#GPIO.output(self.PIO11,1)#
@@ -124,17 +125,20 @@ class adaptadorBluetooth:
 
 	def adressing(self, param):
 		self.modoAT()
+		self.serialConnection.readline()
 		message = 'AT+CMODE={}\r\n'.format(param)
 		retorno = self.sendToSerial(message, "Adressing", "OK")
 		return retorno
 
 	def inicialize(self): #inicializar bluetooth
 		self.modoAT()
+		self.serialConnection.readline()
 		retorno = self.sendToSerial('AT+INIT\r\n', "Inicialize", "OK")
 		return retorno
 
 	def  disconnect(self): #disconecta
 		self.modoAT()
+		self.serialConnection.readline()
 		retorno = self.sendToSerial('AT+DISC\r\n', "Disconect", "+DISC:SUCCESS")
 		time.sleep(2)
 		ret = self.serialConnection.readline()
@@ -144,12 +148,14 @@ class adaptadorBluetooth:
 
 	def password(self,pin):  #define a senha do modulo mestre, que deve ser a mesma do modulo slave/escravo
 		self.master()
+		self.serialConnection.readline()
 		message = 'AT+PSWD={}\r\n'.format(pin)
 		retorno = self.sendToSerial(message, "Password", "OK")
 		return retorno
 
 	def pair(self,adress):  #PAREAR COM O DISPOSITIVO
 		self.modoAT()
+		self.serialConnection.readline()
 		message = 'AT+PAIR={},2\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
 		#time.sleep(2)
@@ -177,6 +183,7 @@ class adaptadorBluetooth:
 
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
 		self.modoAT()
+		self.serialConnection.readline()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
 		#time.sleep(2)
@@ -203,6 +210,7 @@ class adaptadorBluetooth:
 	
 	def bind(self,adress):
 		self.modoAT()
+		self.serialConnection.readline()
 		message = 'AT+BIND={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
 		#time.sleep(1)
@@ -230,6 +238,7 @@ class adaptadorBluetooth:
 	
 	def state(self):
 		#self.modoAT()
+		self.serialConnection.readline()
 		self.serialConnection.write(b'AT+STATE\r\n')
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
@@ -279,9 +288,9 @@ class hubParaModulo:
 		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
 		self.adaptador.state()
 		
-		self.adaptador.disconnect()
-		print('ESTADO APOS USAR DISCONNECT')
-		self.adaptador.state()
+		#self.adaptador.disconnect()
+		#print('ESTADO APOS USAR DISCONNECT')
+		#self.adaptador.state()
 		
 		self.adaptador.pair('2016,03,042425')
 		self.adaptador.bind('2016,03,042425')
