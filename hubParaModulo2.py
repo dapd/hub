@@ -42,6 +42,7 @@ class adaptadorBluetooth:
 		if self.AT:
 			print('entrou no metodo modoComunicacao')
 			#GPIO.output(self.SUPPLY,0)
+			time.sleep(0.5)
 			GPIO.output(self.PIO11,0)
 			time.sleep(0.5)
 			#GPIO.output(self.SUPPLY,1)
@@ -300,6 +301,7 @@ class hubParaModulo:
 		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
 		
 		print('Mandando Primeiro Teste')
+		self.adaptador.serialConnection.readline()
 		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
 		
 		print('Resposta do Teste')
