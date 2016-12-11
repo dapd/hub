@@ -252,6 +252,7 @@ class hubParaModulo:
 		
 		print('entrando no modo master')
 		self.adaptador.master()
+		self.adaptador.adressing(0)
 		print('entrando no modo at')
 		self.adaptador.modoAT()
 		
