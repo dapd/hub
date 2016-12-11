@@ -173,6 +173,12 @@ class adaptadorBluetooth:
 		retorno = self.sendToSerial(message, "Link", "OK")
 		return retorno
 	
+	def bind(self,adress):
+		self.modoAT()
+		message = 'AT+BIND={}\r\n'.format(adress)
+		retorno = self.sendToSerial(message, 'Bind', 'OK')
+		return retorno
+	
 	def reset(self): #RESETA
 		self.modoAT()
 		retorno = self.sendToSerial('AT+RESET\r\n', "Reset", "OK")
@@ -219,7 +225,7 @@ class hubParaModulo:
 		print (ret," OK")
 		
 		self.adaptador.pair('2016,03,042425')
-		#
+		self.adaptador.bind('2016,03,042425')
 		self.adaptador.link('2016,03,042425')
 		print('testando conexao')
 		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
