@@ -90,6 +90,7 @@ class adaptadorBluetooth:
 		retorno = False
 
 		self.serialConnection.write(message.encode())
+		time.sleep(0.2)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 
