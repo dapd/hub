@@ -220,7 +220,7 @@ class adaptadorBluetooth:
 		#return retorno
 	
 	def state(self):
-		self.modoAT()
+		#self.modoAT()
 		self.serialConnection.write(b'AT+STATE\r\n')
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
@@ -292,6 +292,7 @@ class hubParaModulo:
 		
 		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		print('Resposta do Teste')
+		self.adaptador.modoAT()
 		self.adaptador.state()
 		#ret = self.adaptador.serialConnection.readline()
 		#ret = ret.decode().strip('\r\n')
