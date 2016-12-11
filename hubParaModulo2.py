@@ -239,6 +239,7 @@ class hubParaModulo:
 	def __init__(self):
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
+		time.sleep(2)
 		self.adaptador.state()
 		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		#ret = self.adaptador.serialConnection.readline()
@@ -250,15 +251,15 @@ class hubParaModulo:
 		
 		self.adaptador.inicialize()
 		
-		self.adaptador.serialConnection.write(b'AT+INQM=0,5,2\r\n')
-		self.adaptador.serialConnection.write(b'AT+INQM\r\n')
-		time.sleep(2)
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret,' INQ')
-		ret = self.adaptador.serialConnection.readline()
-		ret = ret.decode().strip('\r\n')
-		print (ret,' INQ')
+		#self.adaptador.serialConnection.write(b'AT+INQM=0,5,2\r\n')
+		#self.adaptador.serialConnection.write(b'AT+INQM\r\n')
+		#time.sleep(2)
+		#ret = self.adaptador.serialConnection.readline()
+		#ret = ret.decode().strip('\r\n')
+		#print (ret,' INQ')
+		#ret = self.adaptador.serialConnection.readline()
+		#ret = ret.decode().strip('\r\n')
+		#print (ret,' INQ')
 		
 		print('entrando no modo master')
 		self.adaptador.master()
