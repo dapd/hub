@@ -141,6 +141,7 @@ class adaptadorBluetooth:
 	def link(self,adress): #CONECTAR AO DISPOSITIVO
 		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
+		time.sleep(1)
 		retorno = self.sendToSerial(message, "Link", "OK")
 		return retorno
 	
@@ -180,8 +181,8 @@ class hubParaModulo:
 		
 		self.adaptador.pair('2016,03,042425')
 		#
-		#self.adaptador.link('2016,03,042425')
-		#print('testeando conexao')
+		self.adaptador.link('2016,03,042425')
+		print('testando conexao')
 		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
 		
 		print('Mandando Primeiro Teste')
