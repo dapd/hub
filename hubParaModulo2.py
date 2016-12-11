@@ -152,9 +152,12 @@ class adaptadorBluetooth:
 		self.modoAT()
 		message = 'AT+PAIR={},2\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(2)
+		#time.sleep(2)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
+		while ret == '':
+			ret = self.serialConnection.readline()
+			ret = ret.decode().strip('\r\n')
 		
 		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Pair', ret)
 		successMessage = "Comando {} OK".format('Pair')
@@ -176,10 +179,13 @@ class adaptadorBluetooth:
 		self.modoAT()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(2)
+		#time.sleep(2)
 		
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
+		while ret == '':
+			ret = self.serialConnection.readline()
+			ret = ret.decode().strip('\r\n')
 		
 		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Link', ret)
 		successMessage = "Comando {} OK".format('Link')
@@ -199,10 +205,13 @@ class adaptadorBluetooth:
 		self.modoAT()
 		message = 'AT+BIND={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(1)
+		#time.sleep(1)
 		
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
+		while ret == '':
+			ret = self.serialConnection.readline()
+			ret = ret.decode().strip('\r\n')
 		
 		errorMessage = "Comando {0} nao funcionou. Retornou {1}".format('Bind', ret)
 		successMessage = "Comando {} OK".format('Bind')
