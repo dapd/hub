@@ -259,65 +259,67 @@ class hubParaModulo:
 	def __init__(self):
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
-		time.sleep(2)
-		self.adaptador.adressing(0)
-		self.adaptador.state()
-		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret,' STATE')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret," OK")
-		
-		self.adaptador.inicialize()
-		
-		#self.adaptador.serialConnection.write(b'AT+INQM=0,5,2\r\n')
-		#self.adaptador.serialConnection.write(b'AT+INQM\r\n')
-		#time.sleep(2)
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret,' INQ')
-		#ret = self.adaptador.serialConnection.readline()
-		#ret = ret.decode().strip('\r\n')
-		#print (ret,' INQ')
-		
-		print('entrando no modo master')
-		self.adaptador.master()
-		#self.adaptador.adressing(0)
-		print('entrando no modo at')
-		self.adaptador.modoAT()
-		
-		print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
-		self.adaptador.state()
-		
-		self.adaptador.disconnect()
-		print('ESTADO APOS USAR DISCONNECT')
-		self.adaptador.state()
-		
-		self.adaptador.pair('2016,03,042425')
-		print('ESTADO APOS PAIR')
-		self.adaptador.state()
-		self.adaptador.bind('2016,03,042425')
-		print('ESTADO APOS BIND')
-		self.adaptador.state()
-		self.adaptador.link('2016,03,042425')
-		print('ESTADO APOS LINK')
-		self.adaptador.state()
-		
-		print('Mandando Primeiro Teste')
-		self.adaptador.serialConnection.readline()
-		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
-		
-		print('Resposta do Teste')
-		#self.adaptador.modoAT()
-		self.adaptador.state()
-		
-		self.adaptador.modoComunicacao()
-		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
-		
-		self.adaptador.modoAT()
-		self.adaptador.state()
+		bluetoothIDs = ['2016,03,042425','2016,03,041298']
+		for id in bluetoothIDs:
+			time.sleep(2)
+			self.adaptador.adressing(0)
+			self.adaptador.state()
+			#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
+			#ret = self.adaptador.serialConnection.readline()
+			#ret = ret.decode().strip('\r\n')
+			#print (ret,' STATE')
+			#ret = self.adaptador.serialConnection.readline()
+			#ret = ret.decode().strip('\r\n')
+			#print (ret," OK")
+
+			self.adaptador.inicialize()
+
+			#self.adaptador.serialConnection.write(b'AT+INQM=0,5,2\r\n')
+			#self.adaptador.serialConnection.write(b'AT+INQM\r\n')
+			#time.sleep(2)
+			#ret = self.adaptador.serialConnection.readline()
+			#ret = ret.decode().strip('\r\n')
+			#print (ret,' INQ')
+			#ret = self.adaptador.serialConnection.readline()
+			#ret = ret.decode().strip('\r\n')
+			#print (ret,' INQ')
+
+			print('entrando no modo master')
+			self.adaptador.master()
+			#self.adaptador.adressing(0)
+			print('entrando no modo at')
+			self.adaptador.modoAT()
+
+			print('ESTADO APOS ENTRAR NO MODO MASTER E MODO AT NOVAMENTE')
+			self.adaptador.state()
+
+			self.adaptador.disconnect()
+			print('ESTADO APOS USAR DISCONNECT')
+			self.adaptador.state()
+
+			self.adaptador.pair(id)
+			print('ESTADO APOS PAIR')
+			self.adaptador.state()
+			self.adaptador.bind(id)
+			print('ESTADO APOS BIND')
+			self.adaptador.state()
+			self.adaptador.link(id)
+			print('ESTADO APOS LINK')
+			self.adaptador.state()
+
+			print('Mandando Primeiro Teste')
+			self.adaptador.serialConnection.readline()
+			self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
+
+			print('Resposta do Teste')
+			#self.adaptador.modoAT()
+			self.adaptador.state()
+
+			self.adaptador.modoComunicacao()
+			self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
+
+			self.adaptador.modoAT()
+			self.adaptador.state()
 
 Hub=hubParaModulo()
 Hub.gerenciar()
