@@ -662,5 +662,3 @@ def rotinaDeTeste(var1):
 	hubParaFirebase.enviarObjeto("ajsdklsajdlkd" ,"X81k9AeCPFQh")
 
 	hubParaFirebase.desconectarFirebase()
-
-rotinaDeTeste(True)
