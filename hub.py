@@ -40,7 +40,7 @@ class Hub(object):
 		self.hubParaFirebase = HubParaFirebase(self.factoryID)
 
 		self.hubParaFirebase.getIDBluetooth()
-		a = self.hubParaFirebase.idsBluetooth[0];
+		a = self.hubParaFirebase.idsBluetooth[1];
 		self.hubParaModulo.gerenciar(a[2])
 
 		if self.hubParaModulo.adaptador.sendToSerial('ping', 'ping', 'OKmod'):
