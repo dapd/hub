@@ -89,7 +89,7 @@ class GerenciadorIO(object):
 		else:
 			self.___desligarLed()
 
-		if info["buzzerLigado"] != False:
+		if status=="alarme":
 			GPIO.output(self.pinoBuzzer,1)
 		else:
 			GPIO.output(self.pinoBuzzer,0)
