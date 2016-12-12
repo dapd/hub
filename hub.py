@@ -137,7 +137,7 @@ class Hub(object):
 				pass
 			else:
 				(x, msg) = self.hubParaModulo.adaptador.receiveFromSerial()
-				if x:
+				if msg!='':
 					mensagem = msg.split(":")
 					if mensagem[0] == "1Alerta" and mensagem[1] == "gas":
 						self.hubParaFirebase.mensagemAlarme(modulo[0], mensagem[1])
