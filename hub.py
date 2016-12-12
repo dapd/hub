@@ -140,11 +140,11 @@ class Hub(object):
 				if msg!='':
 					mensagem = msg.split(":")
 					if mensagem[0] == "1Alerta" and mensagem[1] == "gas":
-						self.hubParaFirebase.mensagemAlarme(modulo[0], mensagem[1])
+						self.hubParaFirebase.mensagemAlarme('j7TEhFJVTx7H', mensagem[1])
 						self.gerenciadorIO.mudarStatus("alarme")
 						self.status = "alarme"
 					elif mensagem[1] == "objetos":
-						self.hubParaFirebase.mensagemAlarme(modulo[0], mensagem[1])
+						self.hubParaFirebase.mensagemAlarme('j7TEhFJVTx7H', mensagem[1])
 
 			msg = self.hubParaFirebase.getUltimaMensagem()
 			while msg != None:
