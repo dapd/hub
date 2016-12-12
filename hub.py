@@ -34,7 +34,7 @@ class Hub(object):
 	def __init__(self):
 		super(Hub, self).__init__()
 		self.status = "STARTING"
-		self.factoryID = "C0Oj2DnuuU2Y"
+		self.factoryID = "ahuha"
 		self.gerenciadorIO = GerenciadorIO(self.pinoLedRed, self.pinoLedGreen, self.pinoLedBlue, self.pinoBuzzer, self.pinoBotao)
 		self.hubParaModulo = hubParaModulo()
 		self.hubParaFirebase = HubParaFirebase(self.factoryID)
