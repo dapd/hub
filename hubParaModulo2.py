@@ -307,8 +307,8 @@ class hubParaModulo:
 			#self.adaptador.modoAT()
 		self.adaptador.state()
 
-		#self.adaptador.modoComunicacao()
+		self.adaptador.modoComunicacao()
 		#self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 
-Hub=hubParaModulo()
-Hub.gerenciar('2016,03,042425')
+#Hub=hubParaModulo()
+#Hub.gerenciar('2016,03,042425')
