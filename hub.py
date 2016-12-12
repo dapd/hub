@@ -160,7 +160,7 @@ class Hub(object):
 						vals = query.val()
 						for asd in vals.items():
 							print(asd)
-							if asd[1]["status"] == "Ausente" and asd[1]["Ativo"] == "Sim":
+							if asd[0] != "none" and asd[1]["status"] == "Ausente" and asd[1]["Ativo"] == "Sim":
 								self.hubParaFirebase.mensagemAlarme('X81k9AeCPFQh', asd[1]["nome"])
 								self.gerenciadorIO.mudarStatus("alarme")
 								self.status = "alarme"
