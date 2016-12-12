@@ -83,6 +83,7 @@ class Hub(object):
 						self.gerenciadorIO.botaoClicked = False
 					finally:
 						self.gerenciadorIO.mutexBotao.release()
+					self.gerenciadorIO.GPIO.output(self.pinoBuzzer,0)
 					
 
 			# # Verifica a coneccao dos modulos
