@@ -259,7 +259,7 @@ class hubParaModulo:
 	def __init__(self):
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
-		bluetoothIDs = ['2016,03,042425','2016,03,041298']
+		bluetoothIDs = ['2016,03,041298','2016,03,042425']
 		for id in bluetoothIDs:
 			time.sleep(2)
 			self.adaptador.adressing(0)
