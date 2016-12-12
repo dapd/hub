@@ -294,22 +294,25 @@ class hubParaModulo:
 		print('ESTADO APOS USAR DISCONNECT')
 		self.adaptador.state()
 		
-		#self.adaptador.pair('2016,03,042425')
-		#self.adaptador.bind('2016,03,042425')
-		#self.adaptador.link('2016,03,042425')
+		self.adaptador.pair('2016,03,042425')
+		self.adaptador.bind('2016,03,042425')
+		self.adaptador.link('2016,03,042425')
 		#print('testando conexao')
 		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
 		
-		#print('Mandando Primeiro Teste')
-		#self.adaptador.serialConnection.readline()
-		#self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
+		rint('Mandando Primeiro Teste')
+		self.adaptador.serialConnection.readline()
+		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
 		
-		#print('Resposta do Teste')
+		print('Resposta do Teste')
 		#self.adaptador.modoAT()
-		#self.adaptador.state()
+		self.adaptador.state()
 		
-		#self.adaptador.modoComunicacao()
-		#self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
+		self.adaptador.modoComunicacao()
+		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
+		
+		self.adaptador.modoAT()
+		self.adaptador.state()
 
 Hub=hubParaModulo()
 Hub.gerenciar()
