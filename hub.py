@@ -157,7 +157,7 @@ class Hub(object):
 								self.hubParaFirebase.enviarObjeto(memb, 'j7TEhFJVTx7H')
 						
 						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
-						vals = query.vals()
+						vals = query.val()
 						for asd in vals:
 							if vals["status"] == "Ausente":
 								self.hubParaFirebase.mensagemAlarme('X81k9AeCPFQh', asd["nome"])
