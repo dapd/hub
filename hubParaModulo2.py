@@ -260,6 +260,7 @@ class hubParaModulo:
 		self.adaptador=adaptadorBluetooth()
 	def gerenciar(self):
 		time.sleep(2)
+		self.adaptador.adressing(0)
 		self.adaptador.state()
 		#self.adaptador.serialConnection.write(b'AT+STATE\r\n')
 		#ret = self.adaptador.serialConnection.readline()
@@ -294,9 +295,9 @@ class hubParaModulo:
 		print('ESTADO APOS USAR DISCONNECT')
 		self.adaptador.state()
 		
-		#self.adaptador.pair('2016,03,042425')
-		#print('ESTADO APOS PAIR')
-		#self.adaptador.state()
+		self.adaptador.pair('2016,03,042425')
+		print('ESTADO APOS PAIR')
+		self.adaptador.state()
 		self.adaptador.bind('2016,03,042425')
 		print('ESTADO APOS BIND')
 		self.adaptador.state()
