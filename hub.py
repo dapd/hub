@@ -78,6 +78,12 @@ class Hub(object):
 			else:
 				if self.gerenciadorIO.getBotao == True:
 					self.gerenciadorIO.mudarStatus("normal")
+					self.gerenciadorIO.mutexBotao.Lock()
+					try:
+						self.gerenciadorIO.botaoClicked = False
+					finally:
+						self.gerenciadorIO.mutexBotao.release()
+					
 
 			# # Verifica a coneccao dos modulos
 			# self.hubParaFirebase.getIDBluetooth()
