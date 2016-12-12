@@ -158,6 +158,7 @@ class Hub(object):
 						
 						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
 						vals = query.val()
+						print(vals)
 						for asd in vals:
 							print(asd)
 							if asd["status"] == "Ausente":
