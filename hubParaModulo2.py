@@ -295,7 +295,11 @@ class hubParaModulo:
 		self.adaptador.state()
 		
 		#self.adaptador.pair('2016,03,042425')
-		#self.adaptador.bind('2016,03,042425')
+		#print('ESTADO APOS PAIR')
+		#self.adaptador.state()
+		self.adaptador.bind('2016,03,042425')
+		print('ESTADO APOS BIND')
+		self.adaptador.state()
 		self.adaptador.link('2016,03,042425')
 		print('ESTADO APOS LINK')
 		self.adaptador.state()
