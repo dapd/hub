@@ -64,8 +64,6 @@ class GerenciadorIO(object):
 			try:
 				if GPIO.input(self.pinoBotao) == GPIO.HIGH:
 					self.botaoClicked = True
-				else: 
-					self.botaoClicked = False
 			finally:
 				self.mutexBotao.release()
 
@@ -76,6 +74,7 @@ class GerenciadorIO(object):
 		self.mutexBotao.acquire()
 		try:
 			botao = self.botaoClicked
+			self.botaoClicked = False
 		finally:
 			self.mutexBotao.release()
 
