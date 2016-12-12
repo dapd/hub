@@ -159,7 +159,7 @@ class adaptadorBluetooth:
 		self.serialConnection.readline()
 		message = 'AT+PAIR={},2\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(2.5)
+		time.sleep(3)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		#while ret == '':
@@ -187,7 +187,7 @@ class adaptadorBluetooth:
 		self.serialConnection.readline()
 		message = 'AT+LINK={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(2.5)
+		time.sleep(3)
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
 		#while ret == '':
@@ -213,7 +213,7 @@ class adaptadorBluetooth:
 		self.serialConnection.readline()
 		message = 'AT+BIND={}\r\n'.format(adress)
 		self.serialConnection.write(message.encode())
-		time.sleep(2)
+		time.sleep(3)
 		
 		ret = self.serialConnection.readline()
 		ret = ret.decode().strip('\r\n')
@@ -307,11 +307,8 @@ class hubParaModulo:
 			#self.adaptador.modoAT()
 		self.adaptador.state()
 
-		self.adaptador.modoComunicacao()
-		self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
-
-		#self.adaptador.modoAT()
-		#self.adaptador.state()
+		#self.adaptador.modoComunicacao()
+		#self.adaptador.sendToSerial('ping', 'teste', 'OKmod')
 
 Hub=hubParaModulo()
 Hub.gerenciar('2016,03,042425')
