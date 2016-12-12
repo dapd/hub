@@ -339,8 +339,9 @@ class HubParaFirebase(object):
 	##
 	def desconectarFirebase(self):
 		modulos = self.database.child("hubs").child(self.hubID).child("modulos").get()
-		for modulo in modulos.each():
-			self.database.child("hubs").child(self.hubID).child("modulos").update({modulo.key() : "DISCONECTED"})
+		modulo = modulos.val()
+		for moduloID in modulo.keys():
+			self.database.child("hubs").child(self.hubID).child("modulos").child(moduloID).update({"status" : "OFF"})
 		self.database.child("hubs").child(self.hubID).update({"status" : "OFF"})
 		
 		if self.appID != None and self.stream != None:
@@ -394,16 +395,15 @@ class HubParaFirebase(object):
 		if not moduloID in modulos:
 			raise ValueError(" Modulo nao encontrado para o hub atual") 
 		else:
-			if len(mensagem) > 0:
+			if len(objeto) > 0:
 				try:
-					query = self.database.self.database.child("modulos").child(moduloID).child("componentes").get()
+					query = self.database.child("modulos").child(moduloID).child("componentes").get()
 					objetos = query.val()
 
 					if not objeto in objetos:
-						self.database.child("modulos").child(moduloID).child("componentes").push(objeto)
-						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).push({"Ativo" : "Nao"})
-						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).push({"status" : "Desconhecido"})
-						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).push({"nome" : "Desconhecido"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).set({"Ativo" : "Nao"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"status" : "Desconhecido"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"nome" : "Desconhecido"})
 					else:
 						query = self.database.child("modulos").child(moduloID).child("componentes").child(objeto).get()
 						ativado = query.val()
@@ -411,8 +411,18 @@ class HubParaFirebase(object):
 							self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"status" : "Presente"})
 				except:
 					self.__reconectar()
-					self.database.child("msgs_hub").child(self.hubID).push("alarme:" + moduloID)
-					self.database.child("msgs_hub").child(self.hubID).push(mensagem)
+					query = self.database.child("modulos").child(moduloID).child("componentes").get()
+					objetos = query.val()
+
+					if not objeto in objetos:
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).set({"Ativo" : "Nao"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"status" : "Desconhecido"})
+						self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"nome" : "Desconhecido"})
+					else:
+						query = self.database.child("modulos").child(moduloID).child("componentes").child(objeto).get()
+						ativado = query.val()
+						if ativado["Ativo"] == "Sim":
+							self.database.child("modulos").child(moduloID).child("componentes").child(objeto).update({"status" : "Presente"})
 			else:
 				raise ValueError(" Objeto vazio")
 
@@ -429,7 +439,7 @@ class HubParaFirebase(object):
 		if status_on == True:
 			mensagem = "ON"
 		else:
-			mensagem = "DISCONECTED"
+			mensagem = "OFF"
 
 		try:
 			query = self.database.child("hubs").child(self.hubID).child("modulos").get()
@@ -443,10 +453,10 @@ class HubParaFirebase(object):
 			raise ValueError(" Modulo nao encontrado para o hub atual") 
 		else:
 			try:
-				self.database.child("hubs").child(self.hubID).child("modulos").update({moduloID : mensagem})
+				self.database.child("hubs").child(self.hubID).child("modulos").child(moduloID).update({"status" : mensagem})
 			except:
 				self.__reconectar()
-				self.database.child("hubs").child(self.hubID).child("modulos").update({moduloID : mensagem})
+				self.database.child("hubs").child(self.hubID).child("modulos").child(moduloID).update({"status" : mensagem})
 
 	##
 	## @brief      { function_description }
@@ -645,3 +655,12 @@ class HubParaFirebase(object):
 			listaModulos.append((modulo, lista["tipo"], lista["idBluetooth"]))
 
 		self.idsBluetooth = deepcopy(listaModulos)
+
+def rotinaDeTeste(var1):
+	hubParaFirebase = HubParaFirebase("ahuha")
+
+	hubParaFirebase.enviarObjeto("ajsdklsajdlkd" ,"X81k9AeCPFQh")
+
+	hubParaFirebase.desconectarFirebase()
+
+rotinaDeTeste(True)
