@@ -316,4 +316,4 @@ class hubParaModulo:
 		#self.adaptador.state()
 
 Hub=hubParaModulo()
-Hub.gerenciar()
+Hub.gerenciar('2016,03,041298')
