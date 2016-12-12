@@ -297,12 +297,14 @@ class hubParaModulo:
 			print('ESTADO APOS USAR DISCONNECT')
 			self.adaptador.state()
 
-			self.adaptador.pair(id)
-			print('ESTADO APOS PAIR')
-			self.adaptador.state()
 			self.adaptador.bind(id)
 			print('ESTADO APOS BIND')
 			self.adaptador.state()
+			
+			self.adaptador.pair(id)
+			print('ESTADO APOS PAIR')
+			self.adaptador.state()
+			
 			self.adaptador.link(id)
 			print('ESTADO APOS LINK')
 			self.adaptador.state()
