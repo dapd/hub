@@ -145,6 +145,7 @@ class Hub(object):
 						self.gerenciadorIO.mudarStatus("alarme")
 						self.status = "alarme"
 					elif mensagem[1] == "objetos":
+						print("OBJETOS VINDO")
 						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
 						vals = query.vals()
 						for asd in vals.keys():
