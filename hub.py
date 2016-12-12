@@ -158,13 +158,12 @@ class Hub(object):
 						
 						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
 						vals = query.val()
-						for asd in vals.vals():
+						for asd in vals.items():
 							print(asd)
-							if not isinstance(asd, str):
-								if asd["status"] == "Ausente":
-									self.hubParaFirebase.mensagemAlarme('X81k9AeCPFQh', asd["nome"])
-									self.gerenciadorIO.mudarStatus("alarme")
-									self.status = "alarme"
+							if asd[1]["status"] == "Ausente":
+								self.hubParaFirebase.mensagemAlarme('X81k9AeCPFQh', asd[1]["nome"])
+								self.gerenciadorIO.mudarStatus("alarme")
+								self.status = "alarme"
 			msg = self.hubParaFirebase.getUltimaMensagem()
 			while msg != None:
 				if msg == "ativaralerta":
