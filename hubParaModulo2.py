@@ -294,11 +294,11 @@ class hubParaModulo:
 		print('ESTADO APOS USAR DISCONNECT')
 		self.adaptador.state()
 		
-		self.adaptador.pair('2016,03,042425')
-		self.adaptador.bind('2016,03,042425')
+		#self.adaptador.pair('2016,03,042425')
+		#self.adaptador.bind('2016,03,042425')
 		self.adaptador.link('2016,03,042425')
-		#print('testando conexao')
-		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
+		print('ESTADO APOS LINK')
+		self.adaptador.state()
 		
 		print('Mandando Primeiro Teste')
 		self.adaptador.serialConnection.readline()
