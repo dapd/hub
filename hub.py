@@ -148,7 +148,7 @@ class Hub(object):
 					elif mensagem[1] == "objetos":
 						print("OBJETOS VINDO")
 						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
-						vals = query.vals()
+						vals = query.val()
 						for asd in vals.keys():
 							self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").child(asd).update({"status": "Ausente"})
 						messages = mensagem[0].split(",")
