@@ -141,12 +141,25 @@ class Hub(object):
 				if msg!='':
 					mensagem = msg.split(":")
 					if mensagem[0] == "1Alerta" and mensagem[1] == "gas":
-						self.hubParaFirebase.mensagemAlarme('j7TEhFJVTx7H', mensagem[1])
+						self.hubParaFirebase.mensagemAlarme('X81k9AeCPFQh', mensagem[1])
 						self.gerenciadorIO.mudarStatus("alarme")
 						self.status = "alarme"
 					elif mensagem[1] == "objetos":
-						self.hubParaFirebase.mensagemAlarme('j7TEhFJVTx7H', mensagem[1])
-
+						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
+						vals = query.vals()
+						for asd in vals.keys():
+							self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").child(asd).update({"status": "Ausente"})
+						messages = mensagem[0].split(",")
+						for memb in messages:
+							self.hubParaFirebase.enviarObjeto(memb, 'j7TEhFJVTx7H')
+						
+						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
+						vals = query.vals()
+						for asd in vals:
+							if vals["status"] == "Ausente":
+								self.hubParaFirebase.mensagemAlarme('X81k9AeCPFQh', asd["nome"])
+								self.gerenciadorIO.mudarStatus("alarme")
+								self.status = "alarme"
 			msg = self.hubParaFirebase.getUltimaMensagem()
 			while msg != None:
 				if msg == "ativaralerta":
