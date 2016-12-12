@@ -153,7 +153,8 @@ class Hub(object):
 							self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").child(asd).update({"status": "Ausente"})
 						messages = mensagem[0].split(",")
 						for memb in messages:
-							self.hubParaFirebase.enviarObjeto(memb, 'j7TEhFJVTx7H')
+							if memb != '':
+								self.hubParaFirebase.enviarObjeto(memb, 'j7TEhFJVTx7H')
 						
 						query = self.hubParaFirebase.database.child("modulos").child("X81k9AeCPFQh").child("componentes").get()
 						vals = query.vals()
