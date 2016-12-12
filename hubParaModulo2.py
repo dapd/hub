@@ -300,7 +300,7 @@ class hubParaModulo:
 		#print('testando conexao')
 		#self.adaptador.sendToSerial('AT\r\n','Conexao','OK')
 		
-		rint('Mandando Primeiro Teste')
+		print('Mandando Primeiro Teste')
 		self.adaptador.serialConnection.readline()
 		self.adaptador.sendToSerial('AT\r\n', 'Teste1','OK')
 		
