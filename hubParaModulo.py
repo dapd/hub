@@ -14,33 +14,33 @@ class HubParaModulo(object):
 	## @param      arg   The argument
 	##
 	def __init__(self, arg):
-		super(ubParaModulo, self).__init__()
+		super(HubParaModulo, self).__init__()
 		self.arg = arg
 	
 	##
-	## @brief      { function_description }
+	## @brief      Connect to module
 	##
-	## @param      modulo  The modulo
+	## @param      modulo  The module
 	##
-	## @return     { description_of_the_return_value }
+	## @return     Connection success or failure
 	##
 	def conectarModulo(modulo):
 		return False
 
 	##
-	## @brief      { function_description }
+	## @brief      Receive message from module
 	##
-	## @return     { description_of_the_return_value }
+	## @return     Message
 	##
 	def receberModulo():
 		return "ASD"
 
 	##
-	## @brief      { function_description }
+	## @brief      Send message to module
 	##
-	## @param      mensagem  The mensagem
+	## @param      mensagem  The message
 	##
-	## @return     { description_of_the_return_value }
+	## @return     None
 	##
 	def mandarModulo(mensagem):
 		pass
