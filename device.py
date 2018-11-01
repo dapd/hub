@@ -20,21 +20,17 @@ class Device(object):
 		self.arg = arg
 	
 	##
-	## @brief      Descrição curta
+	## @brief      Disable device
 	##
-	## Descrição longa
-	##
-	## @return     Valor de retorno
+	## @return     Success or failure to disable
 	##
 	def desativar():
 		return False
 
 	##
-	## @brief      Descrição curta
+	## @brief      Validate password
 	##
-	## Descrição longa
-	##
-	## @return     Valor de retorno
+	## @return     Validation success or failure
 	##
 	def validarSenha():
 		return False
