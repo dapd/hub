@@ -24,17 +24,17 @@ class AdaptadorBluetooth(Device):
 		self.arg = arg
 	
 	##
-	## @brief      { function_description }
+	## @brief      Performs pairing with the device
 	##
-	## @return     { description_of_the_return_value }
+	## @return     Success or failure in pairing
 	##
 	def parear():
 		return False
 
 	##
-	## @brief      { function_description }
+	## @brief      Make the device visible
 	##
-	## @return     { description_of_the_return_value }
+	## @return     None
 	##
 	def tornarVisivel():
 		pass
