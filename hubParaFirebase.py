@@ -20,27 +20,27 @@ class HubParaFirebase(object):
 		self.arg = arg
 	
 	##
-	## @brief      { function_description }
+	## @brief      Receive message from Firebase
 	##
-	## @return     { description_of_the_return_value }
+	## @return     Message
 	##
 	def receberFirebase():
 		return "ASD"
 
 	##
-	## @brief      { function_description }
+	## @brief      Send message to Firebase
 	##
-	## @param      message  The message
+	## @param      mensagem  The message
 	##
-	## @return     { description_of_the_return_value }
+	## @return     None
 	##
 	def mandarFirebase(mensagem):
 		pass
 
 	##
-	## @brief      { function_description }
+	## @brief      Connect to Firebase
 	##
-	## @return     { description_of_the_return_value }
+	## @return     Connection success or failure
 	##
 	def conectarFirebase():
 		return False
